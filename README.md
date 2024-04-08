@@ -14,7 +14,7 @@ Abdul Hadi AlQawas,Carolin Feurich, Roman Kosovtsev, Jennifer Schön und Yannick
 Dokumentation für dieses Projekt finden Sie hier: [Google Docs](https://docs.google.com/document/d/1dvAZjHOX3Jc-2bVEI-lzGPPl5FUN-PChL9QjNTp43Xo/edit?usp=sharing)
 
 
-# Klassendiagramm (Stand 1.April 2024)
+### Klassendiagramm (Stand 1.April 2024)
 
 
 
