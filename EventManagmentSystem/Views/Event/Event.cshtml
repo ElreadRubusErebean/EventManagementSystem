@@ -1,40 +1,44 @@
 ﻿
 
-<PageTitle>Event</PageTitle>
-
 <h3>"Eventüberschrift"</h3>
 
-<label>
-	Event Titel:
-	<input type="text" id="title" />
-</label>
+<br />
+
+<div class="form-group">
+	<label for="title">Event Titel:</label>
+	<input type="text" class="form-control" id="title" required>
+</div>
 
 <br />
 
-<label>
-	Beschreibung:
-	<input type="text" id="description" />
-</label>
+<div class="form-group">
+	<label for="description">Beschreibung:</label>
+	<textarea class="form-control" rows="5" id="description" required></textarea>
+</div>
 
 <br />
 
-<label>
-    Datum und Uhrzeit:
-    <input type="datetime-local" id="date" />
-</label>
+<div class="form-group">
+    <label for="date">
+        Datum und Uhrzeit auswählen:
+        <input type="datetime-local" class="form-control" id="date" required>
+    </label>
+</div>
 
 <br />
 
-<label>Tickets verkauft:
-	<input type="number" id="numberOfSoldTickets" />
-</label>
+<div class="form-group">
+	<label for="title">Tickets verkauft:</label>
+	<input type="number" class="form-control" id="numberOfSoldTickets" required>
+</div>
 
 <br />
 
-<label>Tickets verfügbar:
-	<input type="number" id="numberOfUnsoldTickets" />
-</label>
+<div class="form-group">
+	<label for="title">Tickets verfügbar:</label>
+	<input type="number" class="form-control" id="numberOfSoldTickets" required>
+</div>
 
 <br />
 
-<button id="changeData">Update</button>
+<button id="changeData" type="submit" class="btn btn-primary">Update</button>
