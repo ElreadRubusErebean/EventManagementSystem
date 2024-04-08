@@ -14,10 +14,6 @@ Abdul Hadi AlQawas,Carolin Feurich, Roman Kosovtsev, Jennifer Schön und Yannick
 Dokumentation für dieses Projekt finden Sie hier: [Google Docs](https://docs.google.com/document/d/1dvAZjHOX3Jc-2bVEI-lzGPPl5FUN-PChL9QjNTp43Xo/edit?usp=sharing)
 
 
-### Klassendiagramm (Stand 1.April 2024)
-
-
-
 ## Vorbereitung für das Projekt
 
 Für dieses Projekt benötigt es eine Datenanbindung. Das Projekt selbst basiert auf einer lokalen Datenbank. Der zugehörige Datensatz lässt sich mit dem Projekt zusammen herunterladen. Nun gibt es zwei Möglichkeiten die Datenbank für das Projekt zu initialisieren: Indem Sie sich Microsoft SQL Server 2019 herunterladen und initialisieren oder indem Sie einen entsprechenden Docker-Container aufsetzen.
