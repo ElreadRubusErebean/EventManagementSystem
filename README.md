@@ -4,8 +4,8 @@ Dieses Projekt ist im Zusammenhang mit dem Softwaretechnik-Projekt der BA Sachse
 Ebenso sind die Schwierigkeiten des Datenschutzes zu bedenken.
 
 
-## Verantwortlich für dieses Projekt zeichnen sich:
-
+## Verantwortlich:
+**Verantwortlich sind:**  
 Abdul Hadi AlQawas,Carolin Feurich, Roman Kosovtsev, Jennifer Schön und Yannick Rammelt
 
 
