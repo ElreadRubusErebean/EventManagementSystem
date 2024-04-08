@@ -20,10 +20,10 @@ Für dieses Projekt benötigt es eine Datenanbindung. Das Projekt selbst basiert
 
 ### Microsoft SQL Server 2019
 
-1.) Microsoft SQL herunterladen
+1.) Microsoft SQL herunterladen   
 2.) Pfad anpassen:  
-      - Servername: appsettings.json: Event zu Eventdatenbank ändern
-      - Console, folgende Befehle anwenden: add-migration und update-database
+> - Servername: appsettings.json: Event zu Eventdatenbank ändern    
+> - Console, folgende Befehle anwenden: add-migration und update-database
 
 
 ### Docker Container
