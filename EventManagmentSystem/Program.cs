@@ -1,4 +1,20 @@
+using EventManagmentSystem.DAL;
+using EventManagmentSystem.Models.DbModel;
+using Microsoft.AspNetCore.Connections;
+using Microsoft.Extensions.Options;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.Extensions.Configuration;
+
+
+
 var builder = WebApplication.CreateBuilder(args);
+
+//implement Event services
+builder.Services.AddDbContext<EventDbContext>(options =>
+options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"))
+);
+
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
