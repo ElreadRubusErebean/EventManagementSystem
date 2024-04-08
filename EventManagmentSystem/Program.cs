@@ -1,4 +1,13 @@
+using EventManagmentSystem.DAL;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
+
+//implement EventDbContext services
+builder.Services.AddDbContext<EventDbContext>(options =>
+options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"))
+);
+
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
