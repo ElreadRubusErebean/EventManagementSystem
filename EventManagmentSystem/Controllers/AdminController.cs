@@ -2,9 +2,9 @@
 
 namespace EventManagmentSystem.Controllers
 {
-    public class BayerController : Controller
+    public class AdminController : Controller
     {
-        public IActionResult Profile()
+        public IActionResult Admin()
         {
             return View();
         }

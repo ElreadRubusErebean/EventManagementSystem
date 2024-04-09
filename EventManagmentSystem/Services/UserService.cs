@@ -48,7 +48,7 @@ namespace EventManagmentSystem.Services
                 UserName = model.UserName,
                 Email = model.Email,
                 Password = hashedPassword,
-                Role = model.Role,
+                Role = model.Role, 
                 IsAdmin = model.IsAdmin,
                 Salt = Convert.ToBase64String(salt),
             };
