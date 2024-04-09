@@ -1,0 +1,43 @@
+﻿
+
+<h3>Neues Event erstellen</h3>
+
+<br />
+
+<form>
+
+    <div class="form-group">
+        <label for="title">Event Titel:</label>
+        <input type="text" class="form-control" id="title" required>
+    </div>
+
+    <br />
+
+    <div class="form-group">
+        <label for="description">Beschreibung:</label>
+        <textarea class="form-control" rows="5" id="description" required></textarea>
+    </div>
+
+    <br />
+
+    <div class="form-group">
+        <label for="date">
+            Datum und Uhrzeit auswählen:
+            <input type="datetime-local" class="form-control" id="date" required>
+        </label>
+    </div>
+
+    <br />
+
+    <div class="form-group">
+        <label for="numberOfTickets">
+            Anzahl der Tickets:
+            <input type="number" class="form-control" id="numberOfTickets" min="1" step="1" value="1" required>
+        </label>
+    </div>
+
+    <br />
+
+    <button id="createEvent" type="submit" class="btn btn-primary">Event erstellen</button>
+
+</form>
