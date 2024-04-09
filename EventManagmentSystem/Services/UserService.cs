@@ -48,7 +48,7 @@ namespace EventManagmentSystem.Services
                 UserName = model.UserName,
                 Email = model.Email,
                 Password = hashedPassword,
-                Role = (Models.DbModel.UserRole)model.Role,
+                Role = model.Role,
                 IsAdmin = model.IsAdmin,
                 Salt = Convert.ToBase64String(salt),
             };
@@ -57,6 +57,31 @@ namespace EventManagmentSystem.Services
 
             errorMessage = null;
             return true;
+        }
+
+        //Login Todo
+        public (bool Success, string errorMessage, User user) TryLoginUser(LoginViewModel model)
+        {
+            var existingUser = _context.Users.FirstOrDefault(u => u.Email == model.Email);
+            if (existingUser == null)
+            {
+
+                return (false, "Email oder Passwort ist falsch", null);
+            }
+            //passwort und salt hashen.
+            string hashedPassword = Convert.ToBase64String(KeyDerivation.Pbkdf2(
+                password: model.Password,
+                salt: Convert.FromBase64String(existingUser.Salt),
+                prf: KeyDerivationPrf.HMACSHA256,
+                iterationCount: 10000,
+                numBytesRequested: 256 / 8));
+
+            if (existingUser.Password != hashedPassword)
+            {
+                return (false, "Email oder Passwort ist falsch", null);
+            }
+
+            return (true, null, existingUser);
         }
 
     }

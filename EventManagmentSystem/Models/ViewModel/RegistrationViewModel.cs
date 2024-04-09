@@ -1,4 +1,5 @@
-﻿namespace EventManagmentSystem.Models.ViewModel
+﻿using EventManagmentSystem.Enums;
+namespace EventManagmentSystem.Models.ViewModel
 {
     public class RegistrationViewModel
     {
@@ -12,9 +13,4 @@
         public UserRole Role { get; set; } = UserRole.NormalUser; //default ist NormalUser
     }
 
-    public enum UserRole
-    {
-        NormalUser,
-        Seller
-    }
 }

@@ -35,22 +35,36 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Payment" asp-action="Payment">Payment</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Registration" asp-action="Registration">Registration</a>
-                        </li>
+                
                     </ul>
                     <form class="form-inline my-2 my-lg-0 d-flex">
                         <input class="form-control mr-2" type="search" placeholder="Suchen.." aria-label="Suche" style="margin-right: 0.5rem !important;">
                         <button class="btn btn-outline-success my-2 my-sm-0" type="submit" style="margin-right: 1rem !important;">Suchen</button>
                     </form>
                     <div class="btn-group">
-                        <a class="nav-link text-dark" asp-area="" asp-controller="Login" asp-action="Login">
-                            <button class="btn btn-outline-primary" style="">Login</button>
-                        </a>
-                        <a class="nav-link text-dark" asp-area="" asp-controller="Registration" asp-action="Registration">
-                            <button class="btn btn-outline-success" style="margin-right: -1rem !important;margin-left: -1rem !important;">Registrieren</button>
-                        </a>
+                        @if (Context.Session.GetString("UserID") != null)
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark">Rolle: @Context.Session.GetString("UserRole")</a>
+                            </li>
+
+                            <li class="nav-item">
+                                <form method="post" asp-controller="Login" asp-action="Logout">
+                                    <button type="submit" class="btn btn-link nav-link">Logout</button>
+                                </form>
+                            </li>
+                        }
+                        else
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Login" asp-action="Login">Login</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Registration" asp-action="Registration">Registrieren</a>
+                            </li>
+                        }
                     </div>
+
                 </div>
             </div>
         </nav>
@@ -70,3 +84,4 @@
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
+

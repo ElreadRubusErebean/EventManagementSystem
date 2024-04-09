@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using EventManagmentSystem.Enums;
 
 namespace EventManagmentSystem.Models.DbModel
 {
@@ -39,11 +40,5 @@ namespace EventManagmentSystem.Models.DbModel
         public string Salt { get; set; }
 
         // public ICollection<Events> Event { get; set; }
-    }
-
-    public enum UserRole
-    {
-        NormalUser,
-        Seller
     }
 }
