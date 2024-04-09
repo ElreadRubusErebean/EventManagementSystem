@@ -5,6 +5,7 @@ using Microsoft.Extensions.Options;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.Extensions.Configuration;
+using EventManagmentSystem.Services;
 
 
 
@@ -18,6 +19,8 @@ options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnectio
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+//Ich füge hier die Services hinzu, damit ich sie in den Controllern verwenden kann
+builder.Services.AddScoped<UserService>();
 
 var app = builder.Build();
 
