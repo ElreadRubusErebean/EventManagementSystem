@@ -1,15 +1,19 @@
-﻿namespace EventManagmentSystem.Models;
+﻿using System.ComponentModel.DataAnnotations;
 
-public class EventModel
+namespace EventManagmentSystem.Models;
+
+public class Event
 {
-    //appsettings.json Namen ändern zu Servername bei SQL Managment dieses PCFEu14 oder so und neue Datenbank anlegen mit gleichem Namen
+    [Key]
+    public int EventId { get; set; }
+    
     public string Title { get; set; }
 
     public string Description { get; set; }
 
     public DateTime Date { get; set; }
 
-    public int Price { get; set; } //keine Unterscheidung für Plätze 
+    public double Price { get; set; } //keine Unterscheidung für Plätze 
 
     public EventState State { get; set; }
 
