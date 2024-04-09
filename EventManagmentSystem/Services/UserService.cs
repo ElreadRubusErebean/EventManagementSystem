@@ -43,8 +43,12 @@ namespace EventManagmentSystem.Services
 
             var user = new User
             {
+                FirstName = model.FirstName,
+                LastName = model.LastName,
+                UserName = model.UserName,
                 Email = model.Email,
                 Password = hashedPassword,
+                Role = (Models.DbModel.UserRole)model.Role,
                 IsAdmin = model.IsAdmin,
                 Salt = Convert.ToBase64String(salt),
             };

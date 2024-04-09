@@ -33,8 +33,17 @@ namespace EventManagmentSystem.Models.DbModel
 
         public bool IsAdmin { get; set; } = false;
 
+        //rolle des Users definieren enweder NormUser oder Seller
+        public UserRole Role { get; set; } = UserRole.NormalUser; //default ist NormalUser
+
         public string Salt { get; set; }
 
         // public ICollection<Events> Event { get; set; }
+    }
+
+    public enum UserRole
+    {
+        NormalUser,
+        Seller
     }
 }
