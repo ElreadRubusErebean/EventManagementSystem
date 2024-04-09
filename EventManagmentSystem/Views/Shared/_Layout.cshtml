@@ -45,12 +45,16 @@
                         @if (Context.Session.GetString("UserID") != null)
                         {
                             <a class="nav-item">
-                                <a class="nav-link text-dark">Rolle: @Context.Session.GetString("UserRole")</a>
+                                <a class="nav-link text-dark">
+                                    <button class="btn btn-outline-secondary" type="submit" style="margin-right: -1rem !important;">Rolle: @Context.Session.GetString("UserRole")</button>
+                                </a>
                             </a>
 
                             <a class="nav-item">
                                 <form method="post" asp-controller="Login" asp-action="Logout">
-                                    <button class="btn btn-outline-warning" type="submit" class="btn btn-link nav-link">Logout</button>
+                                    <a class="nav-link text-dark">
+                                        <button class="btn btn-outline-warning" type="submit" type="">Logout</button>
+                                    </a>
                                 </form>
                             </a>
                         }
