@@ -1,0 +1,34 @@
+﻿<PageTitle>Mein Konto</PageTitle>
+
+<h3>Mein Konto</h3>
+
+<main>
+    <button id="changeViewBtn">zu EVENTS/DATEN wechseln</button>
+    <div id="persData" class="form-group">
+        <label for="firstName">Vorname:</label>
+        <input name="firstName" type="text" class="accDetailInputs" required />
+        <label for="lastName">Nachname</label>
+        <input name="lastName" type="text" class="accDetailInputs" required />
+
+        <label for="email">E-Mail Adresse:</label>
+        <input name="email" type="email" class="accDetailInputs" required />
+        <label for="password">Passwort</label>
+        <input name="password" type="password" class="accDetailInputs" required />
+
+        <br />
+        <button id="changeDetailsBtn">PLACEHOLDER</button>
+        <button id="deleteAccBtn">Konto löschen</button>
+        <button id="logoutBtn">logout</button>
+    </div>
+    <!--Eventlist-->
+    <div id="bookedEvents">
+        <!--code: foreach Event create vvv -->
+        <section>
+            <p>TITEL</p>
+            <p>BESCHREIBUNG</p>
+            <p>ORT</p>
+            <p>DATUM</p>
+            <button id="cancelOrderBtn">Ticket stornieren</button>
+        </section>
+    </div>
+</main>

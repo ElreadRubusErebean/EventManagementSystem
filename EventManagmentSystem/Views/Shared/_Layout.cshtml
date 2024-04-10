@@ -35,6 +35,17 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Payment" asp-action="Payment">Payment</a>
                         </li>
+
+                        <!--users-->
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Admin" asp-action="Admin">Adminübersicht</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Seller" asp-action="Seller">Sellerübersicht</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Bayer" asp-action="Profile">Buyerübersicht</a>
+                        </li>
                 
                     </ul>
                     <form class="form-inline my-2 my-lg-0 d-flex">
@@ -84,4 +95,3 @@
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
-
