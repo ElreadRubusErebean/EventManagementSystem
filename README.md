@@ -20,7 +20,28 @@ Für dieses Projekt benötigt es eine Datenanbindung. Das Projekt selbst basiert
 
 ### Microsoft SQL Server 2019
 
-1.) Microsoft SQL herunterladen   
-2.) Pfad anpassen:  
+1.) Microsoft SQL herunterladen 
+
+2.) Microsoft SQL starten, Profil kopieren **(wird noch in Schritt 4 notwendig werden)** und verbinden   
+
+3.) Pfad anpassen:  
 > - Servername: appsettings.json: Event zu Eventdatenbank ändern    
-> - Console, folgende Befehle anwenden: add-migration und update-database
+> - Console, folgende Befehle anwenden: **add-migration [Datenbankname]** und **update-database**     
+        
+      
+4.) Zu Bedenken ist, dass die appsettings.development.json immer richtig konfiguriert sein muss
+
+```
+{
+  "Logging": {
+    "LogLevel": {
+      "Default": "Information",
+      "Microsoft.AspNetCore": "Warning"
+    }
+  },
+  "AllowedHosts": "*",
+  "ConnectionStrings": {
+    "DefaultConnection": "Server=[Profil von Microsoft SQL eintragen];Database=[Datenbank eintragen];Trusted_Connection=True;TrustServerCertificate=True"
+  }
+}
+```
