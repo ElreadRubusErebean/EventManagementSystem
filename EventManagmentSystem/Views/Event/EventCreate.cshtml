@@ -4,18 +4,18 @@
 
 <br />
 
-<form>
-
+@using (Html.BeginForm("CreateEvent", "Event", FormMethod.Post))
+{
     <div class="form-group">
         <label for="title">Event Titel:</label>
-        <input type="text" class="form-control" id="title" required>
+        @Html.TextBox("title", null, new{@class= "form-control", required="true", id="title"})
     </div>
 
     <br />
 
     <div class="form-group">
         <label for="description">Beschreibung:</label>
-        <textarea class="form-control" rows="5" id="description" required></textarea>
+        @Html.TextArea("description",null,new{@class="form-control", rows="5", id="description", required="true"})
     </div>
 
     <br />
@@ -23,21 +23,20 @@
     <div class="form-group">
         <label for="date">
             Datum und Uhrzeit auswählen:
-            <input type="datetime-local" class="form-control" id="date" required>
+            @Html.TextBox("date", null, new{@class="form-control", type="datetime-local", id="date", required="true"})
         </label>
     </div>
 
     <br />
 
     <div class="form-group">
-        <label for="numberOfTickets">
+        <label for="amountOfTickets">
             Anzahl der Tickets:
-            <input type="number" class="form-control" id="numberOfTickets" min="1" step="1" value="1" required>
+            @Html.TextBox("amountOfTickets", 1, new{@class="form-control", type="number", id="amountOfTickets",min="1", step="1", required="true"})
         </label>
     </div>
 
     <br />
 
-    <button id="createEvent" type="submit" class="btn btn-primary">Event erstellen</button>
-
-</form>
+    <button id="createEvent" type="submit" class="btn btn-primary" asp-action="CreateEvent">Event erstellen</button>
+}

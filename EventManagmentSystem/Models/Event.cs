@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using EventManagmentSystem.Enums;
 
 namespace EventManagmentSystem.Models;
 
@@ -15,14 +16,11 @@ public class Event
 
     public double Price { get; set; } //keine Unterscheidung für Plätze 
 
-    public EventState State { get; set; }
+    public EventStateEnum State { get; set; }
 
-    public int NumberOfTickets { get; set; } //Gesamtanzahl
-
+    public int AmountOfTickets { get; set; } //Gesamtanzahl
+    
     public int NumberOfSoldTickets { get; set; }
 }
 
-public enum EventState
-{   
-    Sold, ForSale, OutOfDate
-}
+
