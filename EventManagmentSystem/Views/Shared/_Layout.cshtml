@@ -44,34 +44,27 @@
                     <div class="btn-group">
                         @if (Context.Session.GetString("UserID") != null)
                         {
-                            <a class="nav-item">
-                                <a class="nav-link text-dark">
-                                    <button class="btn btn-outline-secondary" type="submit" style="margin-right: -1rem !important;">Rolle: @Context.Session.GetString("UserRole")</button>
-                                </a>
-                            </a>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark">Rolle: @Context.Session.GetString("UserRole")</a>
+                            </li>
 
-                            <a class="nav-item">
+                            <li class="nav-item">
                                 <form method="post" asp-controller="Login" asp-action="Logout">
-                                    <a class="nav-link text-dark">
-                                        <button class="btn btn-outline-warning" type="submit" type="">Logout</button>
-                                    </a>
+                                    <button type="submit" class="btn btn-link nav-link">Logout</button>
                                 </form>
-                            </a>
+                            </li>
                         }
                         else
                         {
-                            <a class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Login" asp-action="Login">
-                                    <button class="btn btn-outline-primary" style="">Login</button>
-                                </a>
-                            </a>
-                            <a class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Registration" asp-action="Registration">
-                                    <button class="btn btn-outline-success" style="margin-right: -1rem !important;margin-left: -1rem !important;">Registrieren</button>
-                                </a>
-                            </a>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Login" asp-action="Login">Login</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Registration" asp-action="Registration">Registrieren</a>
+                            </li>
                         }
                     </div>
+
                 </div>
             </div>
         </nav>
