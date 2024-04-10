@@ -5,6 +5,7 @@ using Microsoft.Extensions.Options;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.Extensions.Configuration;
+using EventManagmentSystem.Services;
 
 
 
@@ -18,6 +19,26 @@ options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnectio
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+//Ich füge hier die Services hinzu, damit ich sie in den Controllern verwenden kann
+builder.Services.AddScoped<UserService>();
+
+//Session
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+       .AddCookie();
+
+
+
+builder.Services.AddControllersWithViews();
+
+builder.Services.AddSession(options =>
+{
+    options.IdleTimeout = TimeSpan.FromMinutes(30);
+    options.Cookie.HttpOnly = true;
+    options.Cookie.IsEssential = true;
+});
+
+
+
 
 var app = builder.Build();
 
@@ -33,6 +54,7 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
+app.UseSession();
 
 app.UseAuthorization();
 

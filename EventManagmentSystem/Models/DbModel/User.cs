@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using EventManagmentSystem.Enums;
 
 namespace EventManagmentSystem.Models.DbModel
 {
@@ -32,6 +33,9 @@ namespace EventManagmentSystem.Models.DbModel
         public string Email { get; set; }
 
         public bool IsAdmin { get; set; } = false;
+
+        //rolle des Users definieren enweder NormUser oder Seller
+        public UserRole Role { get; set; } = UserRole.NormalUser; //default ist NormalUser
 
         public string Salt { get; set; }
 
