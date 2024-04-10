@@ -1,19 +1,19 @@
-﻿
+﻿@model EventManagmentSystem.Models.ViewModel.LoginViewModel
 <h3>Login</h3>
 
 <br />
 
-<form>
+<form asp-action ="Login" method="post">
     <div class="form-group">
-        <label for="username">Benutzername</label>
-        <input type="text" class="form-control" id="username" required>
+        <label asp-for="Email">Email</label>
+        <input asp-for="Email" type="email" class="form-control" id="email" required>
     </div>
 
     <br />
 
     <div class="form-group">
-        <label for="password">Passwort</label>
-        <input type="password" class="form-control" id="password" required>
+        <label asp-for="Password">Passwort</label>
+        <input asp-for="Password" type="password" class="form-control" id="password" required>
     </div>
 
     <br />
