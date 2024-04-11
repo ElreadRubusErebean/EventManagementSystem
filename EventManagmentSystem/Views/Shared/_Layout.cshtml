@@ -44,12 +44,21 @@
                     <div class="btn-group">
                         @if (Context.Session.GetString("UserID") != null)
                         {
-                            <a class="nav-item">
-                                <a class="nav-link text-dark">
-                                    <button class="btn btn-outline-secondary" type="submit" style="margin-right: -1rem !important;">Rolle: @Context.Session.GetString("UserRole")</button>
+                            @if (Context.Session.GetString("Admin").Equals("True", StringComparison.OrdinalIgnoreCase))
+                            {
+                                <a class="nav-item">
+                                    <a class="nav-link text-dark">
+                                        <button class="btn btn-outline-secondary" type="submit" style="margin-right: -1rem !important;">Admin</button>
+                                    </a>
                                 </a>
-                            </a>
-
+                            } else
+                            {
+                                 <a class="nav-item">
+                                    <a class="nav-link text-dark">
+                                        <button class="btn btn-outline-secondary" type="submit" style="margin-right: -1rem !important;">@Context.Session.GetString("UserRole")</button>
+                                    </a>
+                                 </a>
+                            }
                             <a class="nav-item">
                                 <form method="post" asp-controller="Login" asp-action="Logout">
                                     <a class="nav-link text-dark">
