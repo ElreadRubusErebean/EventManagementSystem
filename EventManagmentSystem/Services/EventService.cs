@@ -14,6 +14,10 @@ public class EventService
 
     public void CreateEvent(Event eventModel)
     {
-        
+        using (_context)
+        {
+            _context.Add(eventModel);
+            _context.SaveChanges();
+        }
     }
 }

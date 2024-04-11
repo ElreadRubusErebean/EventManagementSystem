@@ -32,6 +32,7 @@ namespace EventManagmentSystem.Controllers
         public void CreateEvent(Event eventModel)
         {
             _eventService.CreateEvent(eventModel);
+            //return SellerView wo man herkommt
         }
     }
 }

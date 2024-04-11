@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using EventManagmentSystem.Models;
+using Microsoft.EntityFrameworkCore;
 using EventManagmentSystem.Models.DbModel;
 
 namespace EventManagmentSystem.DAL
@@ -9,6 +10,6 @@ namespace EventManagmentSystem.DAL
 
         { }
         public DbSet<User> Users { get; set; }
-        // public DbSet<Event> Events { get; set; }
+        public DbSet<Event> Events { get; set; }
     }
 }
