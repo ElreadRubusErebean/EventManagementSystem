@@ -363,6 +363,4 @@ MigrationBackup/
 FodyWeavers.xsd
 
 # App settings for development environment
-/appsettings.json/appsettings.Development.json
-appsettings.json
-/EventManagmentSystem/appsettings.Development.json
+#/EventManagmentSystem/appsettings.Development.json
