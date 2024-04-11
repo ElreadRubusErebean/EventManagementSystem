@@ -23,9 +23,6 @@
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-controller="Event" asp-action="EventOverview">Eventübersicht</a>
-                        </li>
-                        <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Event" asp-action="EventCreate">Event erstellen</a>
                         </li>
                         <li class="nav-item">
@@ -55,11 +52,12 @@
                     <div class="btn-group">
                         @if (Context.Session.GetString("UserID") != null)
                         {
+                            <!--Hier wird geprüft ob der User ein Admin ist wenn ja, weird der link zum admin Bereich angeschaltet-->
                             @if (Context.Session.GetString("Admin").Equals("True", StringComparison.OrdinalIgnoreCase))
                             {
                                 <a class="nav-item">
                                     <a class="nav-link text-dark">
-                                        <button class="btn btn-outline-secondary" type="submit" style="margin-right: -1rem !important;">Admin</button>
+                                        <a asp-controller="Admin" asp-action="Admin" class="btn btn-outline-secondary" type="submit" style="margin-right: -1rem !important;">Admin</a>
                                     </a>
                                 </a>
                             } else

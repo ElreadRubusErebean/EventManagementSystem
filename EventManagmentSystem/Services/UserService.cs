@@ -1,5 +1,4 @@
 ﻿using EventManagmentSystem.DAL;
-using EventManagmentSystem.Models;
 using EventManagmentSystem.Models.DbModel;
 using EventManagmentSystem.Models.ViewModel;
 using Microsoft.AspNetCore.Cryptography.KeyDerivation;
@@ -84,7 +83,11 @@ namespace EventManagmentSystem.Services
             return (true, null, existingUser);
         }
 
-
+        //Methode zum zeigen alle users für den Admin
+        public async Task<List<User>> GetAllUsersAsync()
+        {
+            return await _context.Users.ToListAsync();
+        }
     }
 }
 

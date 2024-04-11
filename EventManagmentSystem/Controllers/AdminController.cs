@@ -1,12 +1,29 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using EventManagmentSystem.Models.ViewModel;
+using EventManagmentSystem.Services;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace EventManagmentSystem.Controllers
 {
     public class AdminController : Controller
     {
-        public IActionResult Admin()
+        private readonly UserService _userService;
+
+        public AdminController(UserService userService)
         {
-            return View();
+            _userService = userService;
         }
+        [HttpGet]
+        public async Task<IActionResult> Admin()
+        {
+            var users = await _userService.GetAllUsersAsync();
+            var model = new AdminViewModel
+            {
+                Users = users
+            };
+            return View(model);
+        }
+
+
     }
 }
