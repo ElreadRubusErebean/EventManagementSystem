@@ -1,0 +1,30 @@
+﻿<div id="events">
+    <h3>Adminübersicht</h3>
+
+    <div id="adminViewSwitcher" class="justify-content-evenly">
+        <a asp-area="" asp-controller="Admin" asp-action="Admin" class="btn-primary">Mein Konto</a>
+        <a asp-area="" asp-controller="Admin" asp-action="Admin_UserOverview" class="btn-primary">Nutzerübersicht</a>
+    </div>
+
+    <h4>Event Übersicht</h4>
+    <table>
+        <thead>
+            <th>Event ID</th>
+            <th id="eventTitle">Titel</th>
+            <th id="eventDesc">Beschreibung</th>
+            <th id="eventLocation">Ort</th>
+            <th id="eventDate">Datum</th>
+            <th id="deleteEvent">Event löschen</th>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>ID</td>
+                    <td>TITEL</td>
+                    <td>A</td>
+                    <td>ORT</td>
+                    <td>01.01.1970</td>
+                    <td><button id="deleteEventBtn">Event löschen</button></td>
+                </tr>
+            </tbody>
+    </table>
+</div>

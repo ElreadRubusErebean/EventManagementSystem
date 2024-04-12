@@ -1,34 +1,29 @@
-﻿<PageTitle>Mein Konto</PageTitle>
+﻿<h3>Mein Konto</h3>
 
-<h3>Mein Konto</h3>
+<a asp-area="" asp-controller="Bayer" asp-action="Buyer_EventOverview" class="btn-primary">Meine Events</a>
 
-<main>
-    <button id="changeViewBtn">zu EVENTS/DATEN wechseln</button>
+<h4>Meine Daten</h4>
+
+<section>
     <div id="persData" class="form-group">
         <label for="firstName">Vorname:</label>
-        <input name="firstName" type="text" class="accDetailInputs" required />
+        <input name="firstName" type="text" class="accDetailInputs" required readonly />
+        <br/>
         <label for="lastName">Nachname</label>
-        <input name="lastName" type="text" class="accDetailInputs" required />
-
+        <input name="lastName" type="text" class="accDetailInputs" required readonly />
+        <br/>
         <label for="email">E-Mail Adresse:</label>
-        <input name="email" type="email" class="accDetailInputs" required />
+        <input name="email" type="email" class="accDetailInputs" required readonly />
+        <br/>
         <label for="password">Passwort</label>
-        <input name="password" type="password" class="accDetailInputs" required />
+        <input name="password" type="password" class="accDetailInputs" required readonly />
+        <!--remove readonly on edit?-->
 
-        <br />
-        <button id="changeDetailsBtn">PLACEHOLDER</button>
-        <button id="deleteAccBtn">Konto löschen</button>
-        <button id="logoutBtn">logout</button>
+        <div id="buyerConfigBtns" class="justify-content-evenly">
+            <button id="logoutBtn" class="btn-primary">logout</button>
+            <button id="changeDetailsBtn" class="btn-primary">edit</button>
+            <button id="deleteAccBtn" class="btn-primary">Konto löschen</button>
+        </div>
+
     </div>
-    <!--Eventlist-->
-    <div id="bookedEvents">
-        <!--code: foreach Event create vvv -->
-        <section>
-            <p>TITEL</p>
-            <p>BESCHREIBUNG</p>
-            <p>ORT</p>
-            <p>DATUM</p>
-            <button id="cancelOrderBtn">Ticket stornieren</button>
-        </section>
-    </div>
-</main>
+</section>

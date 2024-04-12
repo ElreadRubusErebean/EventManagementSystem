@@ -1,0 +1,28 @@
+﻿<h3>Mein Konto</h3>
+
+<a asp-area="" asp-controller="Bayer" asp-action="Profile" class="btn-primary">Meine Daten</a>
+
+<h4>Meine Events</h4>
+
+<section>
+    <div id="eventBlock" class="form-group">
+        <label for="eventTitle">Titel:</label>
+        <input name="eventTitle" type="text" id="eventTitleInput" required readonly />
+        <br/>
+        <label for="eventDesc">Beschreibung:</label>
+        <input name="eventDesc" type="text" id="eventDescInput" required readonly />
+        <br/>
+        <label for="eventLocation">Ort:</label>
+        <input name="eventLocation" type="text" id="eventLocationInput" required readonly />
+        <br />
+        <label for="eventDate">Datum:</label>
+        <input name="eventDate" type="date" id="eventDateInput" required readonly />
+    
+
+        <div id="eventConfigBtns" class="justify-content-evenly">
+            <button id="changeDetailsBtn">Event bearbeiten</button>
+            <button id="deleteEventBtn">Event löschen</button>
+        </div>
+
+    </div>
+</section>

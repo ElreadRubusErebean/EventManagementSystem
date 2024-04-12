@@ -8,5 +8,15 @@ namespace EventManagmentSystem.Controllers
         {
             return View();
         }
+
+        public IActionResult Admin_EventOverview()
+        {
+            return View();
+        }
+
+        public IActionResult Admin_UserOverview()
+        {
+            return View();
+        }
     }
 }

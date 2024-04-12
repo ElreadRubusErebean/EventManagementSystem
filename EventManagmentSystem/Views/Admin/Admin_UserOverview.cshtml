@@ -1,0 +1,30 @@
+﻿<h3>Adminübersicht</h3>
+
+<div id="adminViewSwitcher" class="justify-content-evenly">
+    <a asp-area="" asp-controller="Admin" asp-action="Admin_EventOverview" class="btn-primary">Eventübersicht</a>
+    <a asp-area="" asp-controller="Admin" asp-action="Admin" class="btn-primary">Mein Konto</a>
+</div>
+
+<h4>Nutzer Übersicht</h4>
+<table>
+    <thead>
+        <th>UserID</th>
+        <th id="firstname">Vorname</th>
+        <th id="lastname">Nachname</th>
+        <th id="email">E-Mail</th>
+        <th id="adminStatus">is Admin</th>
+        <th id="userName">Nutzername</th>
+        <th id="deleteAcc">Account löschen</th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>ID</td>
+            <td>FIRST</td>
+            <td>LAST</td>
+            <td>MAIL</td>
+            <td>TRUE</td>
+            <td>NAME</td>
+            <td><button id="deleteAccBtn">Konto löschen</button></td>
+        </tr>
+    </tbody>
+</table>

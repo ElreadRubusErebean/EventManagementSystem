@@ -8,5 +8,10 @@ namespace EventManagmentSystem.Controllers
         {
             return View();
         }
+
+        public IActionResult Buyer_EventOverview()
+        {
+            return View();
+        }
     }
 }
