@@ -32,18 +32,6 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Payment" asp-action="Payment">Payment</a>
                         </li>
-
-                        <!--users-->
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Admin" asp-action="Admin">Adminübersicht</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Seller" asp-action="Seller">Sellerübersicht</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Bayer" asp-action="Profile">Buyerübersicht</a>
-                        </li>
-                
                     </ul>
                     <form class="form-inline my-2 my-lg-0 d-flex">
                         <input class="form-control mr-2" type="search" placeholder="Suchen.." aria-label="Suche" style="margin-right: 0.5rem !important;">
@@ -60,13 +48,22 @@
                                         <a asp-controller="Admin" asp-action="Admin" class="btn btn-outline-secondary" type="submit" style="margin-right: -1rem !important;">Admin</a>
                                     </a>
                                 </a>
-                            } else
+                            }
+                            else if (Context.Session.GetString("UserRole").Equals("Seller", StringComparison.OrdinalIgnoreCase))
                             {
-                                 <a class="nav-item">
+                                <a class="nav-item">
                                     <a class="nav-link text-dark">
-                                        <button class="btn btn-outline-secondary" type="submit" style="margin-right: -1rem !important;">@Context.Session.GetString("UserRole")</button>
+                                        <a asp-controller="Seller" asp-action="Seller" class="btn btn-outline-secondary" type="submit" style="margin-right: -1rem !important;">Seller</a>
                                     </a>
-                                 </a>
+                                </a>
+                            }
+                            else
+                            {
+                                <a class="nav-item">
+                                    <a class="nav-link text-dark">
+                                        <a asp-controller="Buyer" asp-action="Profile" class="btn btn-outline-secondary" type="submit" style="margin-right: -1rem !important;">Buyer</a>
+                                    </a>
+                                </a>
                             }
                             <a class="nav-item">
                                 <form method="post" asp-controller="Login" asp-action="Logout">

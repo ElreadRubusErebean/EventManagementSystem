@@ -14,7 +14,7 @@ namespace EventManagmentSystem.Services
             _context = context;
         }
 
-        //To do Get User Email
+        //To do Get User Email....
 
         //Methode um User zu speichern
         public bool TryRegisterUser(RegistrationViewModel model, out string errorMessage)
@@ -58,22 +58,25 @@ namespace EventManagmentSystem.Services
             return true;
         }
 
-        //Login Todo
+
         public (bool Success, string errorMessage, User user) TryLoginUser(LoginViewModel model)
         {
+            //check ob User vorhanden ist
             var existingUser = _context.Users.FirstOrDefault(u => u.Email == model.Email);
             if (existingUser == null)
             {
 
                 return (false, "Email oder Passwort ist falsch", null);
             }
-            //passwort und salt hashen.
+            //passwort und salt hashen. damit wir das Passwort mit dem in der Db vergleichen können
             string hashedPassword = Convert.ToBase64String(KeyDerivation.Pbkdf2(
                 password: model.Password,
                 salt: Convert.FromBase64String(existingUser.Salt),
                 prf: KeyDerivationPrf.HMACSHA256,
                 iterationCount: 10000,
                 numBytesRequested: 256 / 8));
+
+            //check ob das Passwort stimmt
 
             if (existingUser.Password != hashedPassword)
             {
@@ -87,6 +90,14 @@ namespace EventManagmentSystem.Services
         public async Task<List<User>> GetAllUsersAsync()
         {
             return await _context.Users.ToListAsync();
+        }
+
+        //Methode zum zeigen die daten eines users für sein Profil
+        //ich verwende hier async und await damit die Methode asynchron ausgeführt wird
+        //im Controller so aufgerufen: var user = await _userService.GetUserAsync(userId);
+        public async Task<User> GetUserAsync(int userId)
+        {
+            return await _context.Users.FirstOrDefaultAsync(u => u.UserId == userId);
         }
     }
 }
