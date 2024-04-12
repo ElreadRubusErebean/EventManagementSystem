@@ -1,4 +1,5 @@
 using EventManagmentSystem.DAL;
+using EventManagmentSystem.Models;
 using EventManagmentSystem.Models.DbModel;
 using Microsoft.AspNetCore.Connections;
 using Microsoft.Extensions.Options;
@@ -19,8 +20,9 @@ options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnectio
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-//Ich füge hier die Services hinzu, damit ich sie in den Controllern verwenden kann
+//Ich fÃ¼ge hier die Services hinzu, damit ich sie in den Controllern verwenden kann
 builder.Services.AddScoped<UserService>();
+builder.Services.AddScoped<EventService>();
 
 builder.Services.AddControllersWithViews();
 builder.Services.AddHttpContextAccessor();
