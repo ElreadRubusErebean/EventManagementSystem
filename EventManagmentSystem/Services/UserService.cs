@@ -4,17 +4,23 @@ using EventManagmentSystem.Models.ViewModel;
 using Microsoft.AspNetCore.Cryptography.KeyDerivation;
 using Microsoft.EntityFrameworkCore;
 using System.Security.Cryptography;
+using Microsoft.AspNetCore.Http;
+using System.Security.Claims;
+
 namespace EventManagmentSystem.Services
 {
     public class UserService 
     {
+        //IHttContextAccessor wird benötigt um auf die Userdaten zuzugreifen
+        private readonly IHttpContextAccessor _httpContextAccessor;
+        //DbContext wird benötigt um auf die Datenbank zuzugreifen
         private readonly EventDbContext _context;
-        public UserService(EventDbContext context)
+
+        public UserService(EventDbContext context, IHttpContextAccessor httpContextAccessor)
         {
             _context = context;
+            _httpContextAccessor = httpContextAccessor;
         }
-
-        //To do Get User Email....
 
         //Methode um User zu speichern
         public bool TryRegisterUser(RegistrationViewModel model, out string errorMessage)
@@ -58,7 +64,7 @@ namespace EventManagmentSystem.Services
             return true;
         }
 
-
+        //Login Methode
         public (bool Success, string errorMessage, User user) TryLoginUser(LoginViewModel model)
         {
             //check ob User vorhanden ist
@@ -92,13 +98,38 @@ namespace EventManagmentSystem.Services
             return await _context.Users.ToListAsync();
         }
 
-        //Methode zum zeigen die daten eines users für sein Profil
+        //Methode zum zeigen die daten eines users für sein Profil (EditProfile)
         //ich verwende hier async und await damit die Methode asynchron ausgeführt wird
         //im Controller so aufgerufen: var user = await _userService.GetUserAsync(userId);
         public async Task<User> GetUserAsync(int userId)
         {
             return await _context.Users.FirstOrDefaultAsync(u => u.UserId == userId);
         }
+        public bool IsAdmin()
+        {
+            var isAdmin = _httpContextAccessor.HttpContext.Session.GetString("Admin");
+            if (isAdmin != null)
+            {
+                if (bool.TryParse(isAdmin, out bool isAdminBool))
+                {
+                    return isAdminBool;
+                }
+            }
+
+            // 
+            var user = _httpContextAccessor.HttpContext.User;
+            var userIdClaim = user.FindFirst(ClaimTypes.NameIdentifier);
+            if (userIdClaim != null && int.TryParse(userIdClaim.Value, out int userIdInt))
+            {
+                var userInDb = _context.Users.FirstOrDefault(u => u.UserId == userIdInt);
+                return userInDb != null && userInDb.IsAdmin;
+            }
+
+            return false;
+        }
+
+
+
     }
 }
 

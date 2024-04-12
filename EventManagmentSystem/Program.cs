@@ -22,13 +22,12 @@ builder.Services.AddControllersWithViews();
 //Ich füge hier die Services hinzu, damit ich sie in den Controllern verwenden kann
 builder.Services.AddScoped<UserService>();
 
+builder.Services.AddControllersWithViews();
+builder.Services.AddHttpContextAccessor();
+
 //Session
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
        .AddCookie();
-
-
-
-builder.Services.AddControllersWithViews();
 
 builder.Services.AddSession(options =>
 {
@@ -57,7 +56,7 @@ app.UseRouting();
 app.UseSession();
 
 app.UseAuthorization();
-
+app.UseAuthentication();
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");

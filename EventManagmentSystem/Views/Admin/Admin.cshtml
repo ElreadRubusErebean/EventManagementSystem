@@ -2,6 +2,8 @@
 <PageTitle>Adminübersicht</PageTitle>
 
 <h3>Adminübersicht</h3>
+@if (Model.Users != null && Model.Users.Any())
+{
 <table>
     <thead>
         <tr>
@@ -33,4 +35,12 @@
         }
     </tbody>
 </table>
-
+}
+else
+{
+    <tbody>
+        <tr>
+            <td colspan="9" class="text-center">Keine Benutzer gefunden.</td>
+        </tr>
+    </tbody>
+}

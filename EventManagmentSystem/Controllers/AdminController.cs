@@ -1,4 +1,5 @@
-﻿using EventManagmentSystem.Models.ViewModel;
+﻿using EventManagmentSystem.Models.DbModel;
+using EventManagmentSystem.Models.ViewModel;
 using EventManagmentSystem.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -16,12 +17,26 @@ namespace EventManagmentSystem.Controllers
         [HttpGet]
         public async Task<IActionResult> Admin()
         {
-            var users = await _userService.GetAllUsersAsync();
-            var model = new AdminViewModel
+            //check ob der user admin ist
+            //ich verwende hier die Methode IsAdmin() aus dem UserService
+            if (!_userService.IsAdmin())
             {
-                Users = users
-            };
-            return View(model);
+                TempData["ErrorMessage"] = "Sie haben nicht die erforderlichen Berechtigungen";
+                return RedirectToAction("Index", "Home");
+            }
+            //wenn der User Admin ist, dann alle User anzeigen
+            //die methode GetAllUsersAsync() ist asynchron und ist in UserService definiert
+            var users = await _userService.GetAllUsersAsync();
+            if (users == null)//
+            {
+                // wenn keine Benutzer abgerufen werden können
+                users = new List<User>();
+            }
+            var model = new AdminViewModel
+                {
+                    Users = users
+                };
+                return View(model);
         }
 
 

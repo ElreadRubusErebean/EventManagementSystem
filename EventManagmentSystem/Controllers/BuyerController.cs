@@ -16,11 +16,11 @@ namespace EventManagmentSystem.Controllers
         [HttpGet]
         public async Task<IActionResult> Profile()
         {
-            // Benutzer-ID aus den Claims des aktuell angemeldeten Benutzers extrahieren
+            // Benutzer-ID 
             var userIdString = HttpContext.Session.GetString("UserID");
             if (!int.TryParse(userIdString, out var userId))
             {
-                // Fehlgeschlagene Konvertierung oder Benutzer nicht gefunden; entsprechend handeln
+                //wenn die Benutzer-ID nicht vorhanden ist, wird der Benutzer auf die Startseite umgeleitet
                 return NotFound();
             }
 

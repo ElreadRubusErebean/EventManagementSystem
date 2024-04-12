@@ -38,10 +38,6 @@ namespace EventManagmentSystem.Controllers
                 //Userrolle anzeigen ob seller oder normaluser
                 HttpContext.Session.SetString("UserRole", User.Role.ToString());
 
-
-                //to Do: Userrolle anzeigen ob seller oder normaluser
-               // HttpContext.Session.SetString("UserRole", User.IsAdmin ? "Admin" : "User");
-
                 return RedirectToAction("Index", "Home");
             }
             else
@@ -54,8 +50,8 @@ namespace EventManagmentSystem.Controllers
         [HttpPost]
         public async Task<IActionResult> Logout()
         {
-            HttpContext.Session.Clear(); // This will clear the session
-            return RedirectToAction("Index", "Home"); // Redirect to the home page
+            HttpContext.Session.Clear(); // Das Sessionobjekt wird geleert
+            return RedirectToAction("Index", "Home"); // Zurück zur Startseite
         }
 
 
