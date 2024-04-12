@@ -361,3 +361,6 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+
+# App settings for development environment
+#/EventManagmentSystem/appsettings.Development.json

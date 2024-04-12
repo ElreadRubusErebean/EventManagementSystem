@@ -2,7 +2,7 @@
 
 namespace EventManagmentSystem.Controllers
 {
-    public class BayerController : Controller
+    public class BuyerController : Controller
     {
         public IActionResult Profile()
         {
