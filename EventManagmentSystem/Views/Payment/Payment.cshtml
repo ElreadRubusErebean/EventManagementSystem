@@ -6,28 +6,28 @@
 <form asp-controller="Payment" asp-action="Payment" method="post">
     <div class="form-group">
         <label asp-for="IBAN">IBAN:</label>
-        <input asp-for="IBAN"type="text" class="form-control" id="iban" required>
+        <input asp-for="IBAN" type="text" class="form-control" id="iban" required>
     </div>
 
     <br />
 
     <div class="form-group">
-        <label for="owner">Kartenbesitzer*in:</label>
-        <input type="text" class="form-control" id="owner" required>
+        <label asp-for="CardOwner">Kartenbesitzer*in:</label>
+        <input asp-for="CardOwner" type="text" class="form-control" id="owner" required>
     </div>
 
     <br />
 
     <div class="form-group">
-        <label for="expireDate">Ablaufdatum:</label>
-        <input type="date" class="form-control" id="expireDate" required>
+        <label asp-for="ExpiredDateTime">Ablaufdatum:</label>
+        <input asp-for="ExpiredDateTime" type="date" class="form-control" id="expireDate" required>
     </div>
 
     <br />
 
     <div class="form-group">
-        <label for="securityNumber">Sicherheitsnummer:</label>
-        <input type="number" class="form-control" id="securityNumber" max="999" required>
+        <label asp-for="SecurityNumber">Sicherheitsnummer:</label>
+        <input asp-for="SecurityNumber"  type="number" class="form-control" id="securityNumber" max="999" required>
     </div>
 
     <br />
