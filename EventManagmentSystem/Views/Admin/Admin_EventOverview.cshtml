@@ -1,4 +1,4 @@
-﻿<div id="events">
+﻿<!-- model EventManagmentSystem.Models.ViewModel.AdminViewModel-->
     <h3>Adminübersicht</h3>
 
     <div id="adminViewSwitcher" class="justify-content-evenly">
@@ -7,6 +7,7 @@
     </div>
 
     <h4>Event Übersicht</h4>
+@if (Model.Events != null && Model.Events.Any()) {
     <table>
         <thead>
             <th>Event ID</th>
@@ -17,14 +18,30 @@
             <th id="deleteEvent">Event löschen</th>
             </thead>
             <tbody>
-                <tr>
-                    <td>ID</td>
-                    <td>TITEL</td>
-                    <td>A</td>
-                    <td>ORT</td>
-                    <td>01.01.1970</td>
-                    <td><button id="deleteEventBtn">Event löschen</button></td>
-                </tr>
+            @foreach (var user in Model.Events)
+            {
+                    <tr>
+                        <td>@event.EventId</td>
+                        <td>@event.Title</td>
+                        <td>@event.Description</td>
+                        <td>@event.Location</td>
+                        <td>@event.Date</td>
+
+                        <td>
+                            <form action="@Url.Action()" method="post">
+                                <button type="submit" class="btn btn-danger" onclick="">Event Löschen</button>
+                            </form>
+                        </td>
+                    </tr>
+                }
             </tbody>
     </table>
-</div>
+}
+else
+{
+<tbody>
+    <tr>
+        <td colspan="9" class="text-center">Keine Events gefunden.</td>
+    </tr>
+</tbody>
+}
