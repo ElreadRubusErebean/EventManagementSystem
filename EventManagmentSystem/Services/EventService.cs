@@ -1,5 +1,5 @@
 ﻿using EventManagmentSystem.DAL;
-using EventManagmentSystem.Models;
+using EventManagmentSystem.Models.DbModel;
 
 namespace EventManagmentSystem.Services;
 

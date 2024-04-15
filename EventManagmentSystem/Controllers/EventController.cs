@@ -1,4 +1,4 @@
-﻿using EventManagmentSystem.Models;
+﻿using EventManagmentSystem.Models.DbModel;
 using EventManagmentSystem.Services;
 using Microsoft.AspNetCore.Mvc;
 
