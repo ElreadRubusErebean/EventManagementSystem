@@ -1,30 +1,55 @@
-﻿<h3>Adminübersicht</h3>
+﻿<!--model EventManagmentSystem.Models.ViewModel.AdminViewModel-->
+<h3>Adminübersicht</h3>
 
 <div id="adminViewSwitcher" class="justify-content-evenly">
     <a asp-area="" asp-controller="Admin" asp-action="Admin_EventOverview" class="btn-primary">Eventübersicht</a>
     <a asp-area="" asp-controller="Admin" asp-action="Admin" class="btn-primary">Mein Konto</a>
 </div>
 
-<h4>Nutzer Übersicht</h4>
-<table>
-    <thead>
-        <th>UserID</th>
-        <th id="firstname">Vorname</th>
-        <th id="lastname">Nachname</th>
-        <th id="email">E-Mail</th>
-        <th id="adminStatus">is Admin</th>
-        <th id="userName">Nutzername</th>
-        <th id="deleteAcc">Account löschen</th>
-    </thead>
+<h3>Adminübersicht</h3>
+@if (Model.Users != null && Model.Users.Any())
+{
+    <table>
+        <thead>
+            <tr>
+                <th>UserID</th>
+                <th>Vorname</th>
+                <th>Nachname</th>
+                <th>Email</th>
+                <th>Admin Status</th>
+                <th>UserName</th>
+                <th></th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var user in Model.Users)
+            {
+                <tr>
+                    <td>@user.UserId</td>
+                    <td>@user.FirstName</td>
+                    <td>@user.LastName</td>
+                    <td>@user.Email</td>
+                    <td>@user.IsAdmin</td>
+                    <td>@user.UserName</td>
+                    <!--hier sollen die Methoden aufgerufen werden -->
+                    <td><a href="@Url.Action("Edit", "Admin", new { id = @user.UserId })">Edit</a></td>
+                    <td>
+                        <form action="@Url.Action("DeleteUser", "Admin", new { userId = user.UserId })" method="post">
+                            <button type="submit" class="btn btn-danger" onclick="return confirm('Sind Sie sicher, dass Sie diesen Benutzer löschen möchten?');">Löschen</button>
+                        </form>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
     <tbody>
         <tr>
-            <td>ID</td>
-            <td>FIRST</td>
-            <td>LAST</td>
-            <td>MAIL</td>
-            <td>TRUE</td>
-            <td>NAME</td>
-            <td><button id="deleteAccBtn">Konto löschen</button></td>
+            <td colspan="9" class="text-center">Keine Benutzer gefunden.</td>
         </tr>
     </tbody>
-</table>
+}
