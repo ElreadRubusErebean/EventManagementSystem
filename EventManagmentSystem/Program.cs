@@ -6,9 +6,6 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.Extensions.Configuration;
 using EventManagmentSystem.Services;
-using EventManagmentSystem.Filter;
-
-
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -25,9 +22,6 @@ builder.Services.AddScoped<UserService>();
 
 builder.Services.AddControllersWithViews();
 builder.Services.AddHttpContextAccessor();
-
-builder.Services.AddScoped<UserAuthorizationFilter>();
-builder.Services.AddScoped<AdminAuthorizationFilter>();
 
 //Session
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
