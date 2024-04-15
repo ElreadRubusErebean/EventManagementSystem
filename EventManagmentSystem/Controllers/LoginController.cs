@@ -8,7 +8,7 @@ using EventManagmentSystem.Enums;
 
 namespace EventManagmentSystem.Controllers
 {
-    public class LoginController : Controller
+    public class LoginController : ValidationController
     {
         private readonly UserService _userService;
 
@@ -26,6 +26,7 @@ namespace EventManagmentSystem.Controllers
         {
             if (!ModelState.IsValid)
             {
+                SetErrorMessage("Email oder Passwort sit falsch");
                 return View(model);
             }
 
@@ -38,11 +39,12 @@ namespace EventManagmentSystem.Controllers
                 //Userrolle anzeigen ob seller oder normaluser
                 HttpContext.Session.SetString("UserRole", User.Role.ToString());
 
+                SetSuccessMessage("Sie haben sich erfolgreich angemeldet.");
                 return RedirectToAction("Index", "Home");
             }
             else
             {
-                ModelState.AddModelError(string.Empty, ErrorMessage);
+                SetErrorMessage(ErrorMessage);
                 return View(model);
             }
         }
@@ -51,6 +53,7 @@ namespace EventManagmentSystem.Controllers
         public async Task<IActionResult> Logout()
         {
             HttpContext.Session.Clear(); // Das Sessionobjekt wird geleert
+            SetSuccessMessage("Sie haben sich erfolgreich abemeldet.");
             return RedirectToAction("Index", "Home"); // Zurück zur Startseite
         }
 
