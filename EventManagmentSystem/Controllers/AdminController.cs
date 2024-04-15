@@ -38,7 +38,24 @@ namespace EventManagmentSystem.Controllers
                 };
                 return View(model);
         }
-
-
+        //Methode zum löschen eines Benutzers
+        [HttpPost]
+        public async Task<IActionResult> DeleteUser(int userId)
+        {
+            //check ob der user admin ist
+            if (!_userService.IsAdmin())
+            {
+                TempData["ErrorMessage"] = "Sie haben nicht die erforderlichen Berechtigungen";
+                return RedirectToAction("Index", "Home");
+            }
+            //löschen des Benutzers
+            //die Methode DeleteUserAsync() ist asynchron und ist in UserService definiert
+            var success = await _userService.DeleteUserAsync(userId);
+            if (!success)
+            {
+                TempData["ErrorMessage"] = "Benutzer konnte nicht gelöscht werden";
+            }
+            return RedirectToAction("Admin");
+        }
     }
 }

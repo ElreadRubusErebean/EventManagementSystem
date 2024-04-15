@@ -33,4 +33,9 @@
         </section>
     </div>
     <button id="addEventBtn">Event hinzufügen</button>
+    <!-- Formular zum Löschen des eigenen Kontos -->
+    <form method="post" action="@Url.Action("DeleteKonto", "Seller")"
+          onsubmit="return confirm('Sind Sie sicher, dass Sie Ihr Konto slöschen möchten? Dieser Vorgang kann nicht rückgängig gemacht werden.');">
+        <button type="submit" class="btn btn-danger">Konto löschen</button>
+    </form>
 </main>

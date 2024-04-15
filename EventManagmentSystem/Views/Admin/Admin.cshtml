@@ -30,7 +30,11 @@
                 <td>@user.UserName</td>
                 <!--hier sollen die Methoden aufgerufen werden -->
                 <td><a href="@Url.Action("Edit", "Admin", new { id = @user.UserId })">Edit</a></td>
-                <td><a  href="@Url.Action("Delete", "Admin", new { id = @user.UserId })">Delete</a></td>
+                    <td>
+                        <form action="@Url.Action("DeleteUser", "Admin", new { userId = user.UserId })" method="post">
+                            <button type="submit" class="btn btn-danger" onclick="return confirm('Sind Sie sicher, dass Sie diesen Benutzer löschen möchten?');">Löschen</button>
+                        </form>
+                     </td>
             </tr>
         }
     </tbody>
