@@ -18,14 +18,5 @@
     </div>
 }
 
-@{
-    var errorMessage = TempData["ErrorMessage"] as string;
-}
-
-@if (!string.IsNullOrEmpty(errorMessage))
-{
-    <div class="alert alert-warning">@errorMessage</div>
-}
-
 
 
