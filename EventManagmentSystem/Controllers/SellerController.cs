@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace EventManagmentSystem.Controllers
 {
-    public class SellerController : Controller
+    public class SellerController : ValidationController
     {
         private readonly UserService _userService;
 
@@ -41,11 +41,12 @@ namespace EventManagmentSystem.Controllers
             if (!success)
             {
                 // Benutzer konnte nicht gelöscht werden
-                TempData["ErrorMessage"] = "Benutzer konnte nicht gelöscht werden";
+                SetErrorMessage("Benutzer konnte nicht gelöscht werden");
             }
 
             // Benutzer abmelden
             HttpContext.Session.Clear();
+            SetSuccessMessage("Konto ist erfolgreich gelöscht");
             return RedirectToAction("Index", "Home");
         }
     }

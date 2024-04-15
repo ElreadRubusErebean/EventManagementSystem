@@ -53,7 +53,7 @@ namespace EventManagmentSystem.Controllers
         public async Task<IActionResult> Logout()
         {
             HttpContext.Session.Clear(); // Das Sessionobjekt wird geleert
-            SetSuccessMessage("Sie haben sich erfolgreich abemeldet.");
+            SetSuccessMessage("Sie haben sich erfolgreich abemeldet.");//Diese eird im Home Index angezeigt
             return RedirectToAction("Index", "Home"); // Zurück zur Startseite
         }
 
