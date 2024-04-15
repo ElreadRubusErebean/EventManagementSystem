@@ -1,4 +1,21 @@
 ﻿@model EventManagmentSystem.Models.ViewModel.UserViewModel;
+@{
+    ViewData["Title"] = "Profile";
+}
+
+@if (TempData["ErrorMessage"] != null)
+{
+    <div class="alert alert-danger">
+        @TempData["ErrorMessage"]
+    </div>
+}
+
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success">
+        @TempData["SuccessMessage"]
+    </div>
+}
 
 <div class="profile-header">
     <h4>Benutzerdaten</h4>
@@ -23,4 +40,5 @@
           onsubmit="return confirm('Sind Sie sicher, dass Sie Ihr Konto slöschen möchten? Dieser Vorgang kann nicht rückgängig gemacht werden.');">
         <button type="submit" class="btn btn-danger">Konto löschen</button>
     </form>
+    <a href="@Url.Action("UpdateProfile", "Buyer")">Edit</a>
 </div>

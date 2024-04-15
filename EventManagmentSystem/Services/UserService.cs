@@ -132,6 +132,24 @@ namespace EventManagmentSystem.Services
             return true;
         }
 
+        //Methode zum updaten des Benutzerkontos
+        public async Task<bool> UpdateUserAsync(User user)
+        {
+            var existingUser = await _context.Users.FirstOrDefaultAsync(u => u.UserId == user.UserId);
+            if (existingUser == null)
+            {
+                return false;
+            }
+
+            existingUser.FirstName = user.FirstName;
+            existingUser.LastName = user.LastName;
+            existingUser.UserName = user.UserName;
+            existingUser.Email = user.Email;
+            existingUser.Role = user.Role;
+            await _context.SaveChangesAsync();
+            return true;
+        }
+
 
     }
 }
