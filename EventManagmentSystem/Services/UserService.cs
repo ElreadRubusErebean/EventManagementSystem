@@ -115,19 +115,22 @@ namespace EventManagmentSystem.Services
                     return isAdminBool;
                 }
             }
-
-            // 
-            var user = _httpContextAccessor.HttpContext.User;
-            var userIdClaim = user.FindFirst(ClaimTypes.NameIdentifier);
-            if (userIdClaim != null && int.TryParse(userIdClaim.Value, out int userIdInt))
-            {
-                var userInDb = _context.Users.FirstOrDefault(u => u.UserId == userIdInt);
-                return userInDb != null && userInDb.IsAdmin;
-            }
-
             return false;
         }
 
+        //Methode zum löschen des Benutzerkontos
+        public async Task<bool> DeleteUserAsync(int userId)
+        {
+            var user = await _context.Users.FirstOrDefaultAsync(u => u.UserId == userId);
+            if (user == null)
+            {
+                return false;
+            }
+
+            _context.Users.Remove(user);
+            await _context.SaveChangesAsync();
+            return true;
+        }
 
 
     }
