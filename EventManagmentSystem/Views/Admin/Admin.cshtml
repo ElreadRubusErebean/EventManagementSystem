@@ -1,5 +1,4 @@
-﻿<!--model EventManagmentSystem.Models.ViewModel.AdminViewModel-->
-<h3>Adminübersicht</h3>
+﻿<h3>Adminübersicht</h3>
 
     <div id="adminViewSwitcher" class="justify-content-evenly">
         <a asp-area="" asp-controller="Admin" asp-action="Admin_EventOverview" class="btn-primary">Eventübersicht</a>
@@ -22,10 +21,7 @@
             <div id="adminConfigBtns" class="justify-content-evenly">
                 <button id="logoutBtn" class="btn-primary">logout</button>
                 <button id="changeDetailsBtn" class="btn-primary">edit</button>
-
-                    <form action="@Url.Action()" method="post">
-                        <button type="submit" class="btn btn-danger" onclick="">Account Löschen</button>
-                    </form>
+                <button id="deleteAccBtn" class="btn-primary">Konto löschen</button>
             </div>
            
         </div>
