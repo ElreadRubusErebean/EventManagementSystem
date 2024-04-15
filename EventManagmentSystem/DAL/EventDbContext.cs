@@ -10,9 +10,7 @@ namespace EventManagmentSystem.DAL
 
         { }
         public DbSet<User> Users { get; set; }
-<<<<<<< HEAD
         public DbSet<Event> Events { get; set; }
-=======
         // public DbSet<Event> Events { get; set; }
 
         //Das brauchen wir später wegen der Beziehung zu der Event-Tabelle und Bookingtable
@@ -26,6 +24,5 @@ namespace EventManagmentSystem.DAL
                 .OnDelete(DeleteBehavior.Cascade);  // Setzt die Löschkaskade
         }
        */
->>>>>>> KontoVerwaltung
     }
 }
