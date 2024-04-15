@@ -1,42 +1,58 @@
-﻿
+﻿@model EventManagmentSystem.Models.ViewModel.EventViewModel
 
-<h3>Neues Event erstellen</h3>
+@{
+    ViewData["Title"] = "Create Event";
+}
 
-<br />
-
-@using (Html.BeginForm("CreateEvent", "Event", FormMethod.Post))
+@if (TempData["ErrorMessage"] != null)
 {
-    <div class="form-group">
-        <label for="title">Event Titel:</label>
-        @Html.TextBox("title", null, new{@class= "form-control", required="true", id="title"})
+    <div class="alert alert-danger">
+        @TempData["ErrorMessage"]
     </div>
+}
 
-    <br />
+<h1>Create Event</h1>
 
-    <div class="form-group">
-        <label for="description">Beschreibung:</label>
-        @Html.TextArea("description",null,new{@class="form-control", rows="5", id="description", required="true"})
-    </div>
-
-    <br />
+<form asp-action="Create" asp-controller="Event" method="post">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
     <div class="form-group">
-        <label for="date">
-            Datum und Uhrzeit auswählen:
-            @Html.TextBox("date", null, new{@class="form-control", type="datetime-local", id="date", required="true"})
-        </label>
+        <label asp-for="Title" class="control-label"></label>
+        <input asp-for="Title" class="form-control" />
+        <span asp-validation-for="Title" class="text-danger"></span>
     </div>
-
-    <br />
 
     <div class="form-group">
-        <label for="amountOfTickets">
-            Anzahl der Tickets:
-            @Html.TextBox("amountOfTickets", 1, new{@class="form-control", type="number", id="amountOfTickets",min="1", step="1", required="true"})
-        </label>
+        <label asp-for="Description" class="control-label"></label>
+        <textarea asp-for="Description" class="form-control"></textarea>
+        <span asp-validation-for="Description" class="text-danger"></span>
     </div>
 
-    <br />
+    <div class="form-group">
+        <label asp-for="Date" class="control-label"></label>
+        <input asp-for="Date" class="form-control" type="datetime-local" />
+        <span asp-validation-for="Date" class="text-danger"></span>
+    </div>
 
-    <button id="createEvent" type="submit" class="btn btn-primary" asp-action="CreateEvent">Event erstellen</button>
+    <div class="form-group">
+        <label asp-for="Price" class="control-label"></label>
+        <input asp-for="Price" class="form-control" type="number" step="0.01" />
+        <span asp-validation-for="Price" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="AmountOfTickets" class="control-label"></label>
+        <input asp-for="AmountOfTickets" class="form-control" type="number" />
+        <span asp-validation-for="AmountOfTickets" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <input type="submit" value="Create" class="btn btn-primary" />
+    </div>
+</form>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
 }

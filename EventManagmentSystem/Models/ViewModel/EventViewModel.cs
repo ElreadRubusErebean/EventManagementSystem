@@ -16,6 +16,5 @@ namespace EventManagmentSystem.Models.ViewModel
 
         public int AmountOfTickets { get; set; } //Gesamtanzahl
 
-        public int NumberOfSoldTickets { get; set; }
     }
 }

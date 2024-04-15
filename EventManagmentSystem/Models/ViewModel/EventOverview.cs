@@ -1,6 +1,6 @@
 ﻿using EventManagmentSystem.Models.DbModel;
 
-namespace EventManagmentSystem.Models;
+namespace EventManagmentSystem.Models.ViewModel;
 
 public class EventOverview
 {

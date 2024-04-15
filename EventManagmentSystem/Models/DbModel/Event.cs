@@ -23,7 +23,7 @@ public class Event
     public double Price { get; set; } //keine Unterscheidung für Plätze 
 
     [DefaultValue(EventStateEnum.ForSale)]
-    public EventStateEnum State { get; set; }
+    public EventStateEnum State { get; set; } = EventStateEnum.ForSale;
 
     [Required(ErrorMessage = "Please select an amount of tickets.")]
     public int AmountOfTickets { get; set; } //Gesamtanzahl
