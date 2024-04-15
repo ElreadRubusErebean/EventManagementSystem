@@ -76,6 +76,9 @@ namespace EventManagmentSystem.Controllers
                 SetSuccessMessage("Event erfolgreich erstellt");
                 return RedirectToAction("Index", "Home");
             }
+            //Tod Do Fehlermeldung
+            //Check ob der User angemeldet ist
+            //wenn nicht Benachrichtigung anzeigen und auf die Login Seite weiterleiten
             else
             {
                 SetErrorMessage("Event konnte nicht erstellt werden");
