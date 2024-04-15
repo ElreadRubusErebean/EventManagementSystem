@@ -13,10 +13,17 @@ namespace EventManagmentSystem.Controllers
         {
             _eventService = eventService;
         }
-        
-        public IActionResult EventOverview()
+
+        public async Task<IActionResult> EventOverview()
         {
-            return View();
+            //Die Methode aus dem Service aufrufen
+            var events = await _eventService.GetAllEventsAsync();
+            var viewModel = new EventOverview
+            {
+                //Die Liste von Events in das ViewModel übergeben
+                ListOfEvents = events
+            };
+            return View(viewModel);
         }
 
         public IActionResult EventCreate()

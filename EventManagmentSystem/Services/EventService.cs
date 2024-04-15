@@ -40,4 +40,10 @@ public class EventService
 
         return true;
     }
+
+    //Events list anzeigen
+    public async Task<List<Event>> GetAllEventsAsync()
+    {
+        return await _context.Events.ToListAsync();
+    }
 }
