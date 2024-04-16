@@ -10,6 +10,11 @@ namespace EventManagmentSystem.Controllers
         [HttpGet]
         public IActionResult Payment()
         {
+            ViewBag.IbanError = false;
+            ViewBag.CardOwnerError = false;
+            ViewBag.ExpireDateError = false;
+            ViewBag.SafetyNumberError = false;
+
             return View();
         }
 
@@ -19,29 +24,34 @@ namespace EventManagmentSystem.Controllers
             PaymentCheckerService paymentCheckerService = new PaymentCheckerService();
             bool isErrorInInput = false;
 
-            // ToDo: Hier müssen die Anmerkungen für die View generiert werden
-
+            // Aufruf der Checks für die Korrektheit der Daten => bei Fehler werden Fehlernachrichten erstellt
             if (!paymentCheckerService.CheckThatIbanIsInLegitimateForm(model.IBAN))
             {
                 SetErrorMessageWithMessageType("IbanMessage", "Die Iban entspricht nicht den gültigen Standarts!");
+                ViewBag.IbanError = true;
                 isErrorInInput = true;
             }
 
             if (!paymentCheckerService.CheckThatCardOwnerIsInLegitimateForm(model.CardOwner))
             {
                 SetErrorMessageWithMessageType("CardOwnerMessage", "Sie müssen Vor- und Nachname eingeben!");
+                ViewBag.CardOwnerError = true;
                 isErrorInInput = true;
             }
 
             if (!paymentCheckerService.CheckExpireDate(model.ExpiredDateTime))
             {
-                SetErrorMessageWithMessageType("ExpireDateMessage", "Das angegebene Ablaufdatum ist entweder ein unmögliches Datum oder bereits verstrichen!");
+                SetErrorMessageWithMessageType("ExpireDateMessage", 
+                    "Das angegebene Ablaufdatum ist entweder ein unmögliches Datum oder bereits verstrichen!");
+                ViewBag.ExpireDateError = true;
                 isErrorInInput = true;
             }
 
             if (!paymentCheckerService.CheckThatSafetyNumberIsInLegitimateForm(model.SecurityNumber))
             {
-                SetErrorMessageWithMessageType("SafetyNumberMessage", "Ihre Sicherheitsnummer muss drei Stellen haben mit jeweils Zahlen zwischen 0 - 9!");
+                SetErrorMessageWithMessageType("SafetyNumberMessage", 
+                    "Ihre Sicherheitsnummer muss drei Stellen haben mit jeweils Zahlen zwischen 0 - 9!");
+                ViewBag.SafetyNumberError = true;
                 isErrorInInput = true;
             }
 
@@ -64,7 +74,7 @@ namespace EventManagmentSystem.Controllers
 
         public bool SendDataToServer()
         {
-
+            return true;
         }
     }
 }
