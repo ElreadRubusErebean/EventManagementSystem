@@ -19,27 +19,29 @@ namespace EventManagmentSystem.Controllers
             PaymentCheckerService paymentCheckerService = new PaymentCheckerService();
             bool isErrorInInput = false;
 
-            SetErrorMessage(null);
-
             // ToDo: Hier müssen die Anmerkungen für die View generiert werden
 
             if (!paymentCheckerService.CheckThatIbanIsInLegitimateForm(model.IBAN))
             {
+                SetErrorMessageWithMessageType("IbanMessage", "Die Iban entspricht nicht den gültigen Standarts!");
                 isErrorInInput = true;
             }
 
             if (!paymentCheckerService.CheckThatCardOwnerIsInLegitimateForm(model.CardOwner))
             {
+                SetErrorMessageWithMessageType("CardOwnerMessage", "Sie müssen Vor- und Nachname eingeben!");
                 isErrorInInput = true;
             }
 
             if (!paymentCheckerService.CheckExpireDate(model.ExpiredDateTime))
             {
+                SetErrorMessageWithMessageType("ExpireDateMessage", "Das angegebene Ablaufdatum ist entweder ein unmögliches Datum oder bereits verstrichen!");
                 isErrorInInput = true;
             }
 
             if (!paymentCheckerService.CheckThatSafetyNumberIsInLegitimateForm(model.SecurityNumber))
             {
+                SetErrorMessageWithMessageType("SafetyNumberMessage", "Ihre Sicherheitsnummer muss drei Stellen haben mit jeweils Zahlen zwischen 0 - 9!");
                 isErrorInInput = true;
             }
 
@@ -50,8 +52,19 @@ namespace EventManagmentSystem.Controllers
                 return View(model);
             }
 
+            // Daten werden an den Server gesendet
             // ToDo: Der Sende-Aufruf an die DB fehlt
+            if (!SendDataToServer())
+            {
+                SetErrorMessage("Die Daten konnten nicht an den Server gesendet werden");
+            }
+
             return View(model);
+        }
+
+        public bool SendDataToServer()
+        {
+
         }
     }
 }

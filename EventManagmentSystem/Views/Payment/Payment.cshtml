@@ -14,6 +14,8 @@
     <div class="form-group">
         <label asp-for="IBAN">IBAN:</label>
         <input asp-for="IBAN" type="text" class="form-control" id="iban" required>
+        
+        @TempData["IbanMessage"]
     </div>
 
     <br />
@@ -21,6 +23,8 @@
     <div class="form-group">
         <label asp-for="CardOwner">Kartenbesitzer*in:</label>
         <input asp-for="CardOwner" type="text" class="form-control" id="owner" required>
+        
+        @TempData["CardOwnerMessage"]
     </div>
 
     <br />
@@ -28,6 +32,8 @@
     <div class="form-group">
         <label asp-for="ExpiredDateTime">Ablaufdatum:</label>
         <input asp-for="ExpiredDateTime" type="date" class="form-control" id="expireDate" required>
+        
+        @TempData["ExpireDateMessage"]
     </div>
 
     <br />
@@ -35,6 +41,8 @@
     <div class="form-group">
         <label asp-for="SecurityNumber">Sicherheitsnummer:</label>
         <input asp-for="SecurityNumber"  type="number" class="form-control" id="securityNumber" max="999" required>
+        
+        @TempData["SafetyNumberMessage"]
     </div>
 
     <br />

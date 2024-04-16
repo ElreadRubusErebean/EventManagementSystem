@@ -16,11 +16,13 @@ namespace EventManagmentSystem.Services
                 return false;
             }
 
+            // Sind die ersten beiden Stellen der IBAN Buchstaben?
             if (!(char.IsLetter(characterList[0]) && char.IsLetter(characterList[1])))
             {
                 return false;
             }
 
+            // Sind alle Stellen in der IBAN, bis auf die ersten beiden Zahlen?
             foreach (char character in characterList.Skip(2))
             {
                 if (!(character >= '0' && character <= '9'))
@@ -29,9 +31,9 @@ namespace EventManagmentSystem.Services
                 }
             }
 
-            // Check That TestDigit is correct
             int checkDigit = 0;
 
+            // Umbau der IBAN so, dass die Prüfziffer errechnet werden kann
             for (int index = 0; index <= 3; index++)
             {
                 if (index <= 1)
@@ -62,11 +64,13 @@ namespace EventManagmentSystem.Services
             characterList.Add(Convert.ToChar("0"));
             characterList.Add(Convert.ToChar("0"));
 
+            // Ausrechnen der Prüfziffer
             string resultString = new string(characterList.ToArray());
             BigInteger result = BigInteger.Parse(resultString);
             result = (result % 97);
             result = 98 - result;
 
+            // Ist errechnete Prüfziffer gleich der tatsächlichen Prüfziffer
             if (result != checkDigit)
             {
                 return false;
@@ -110,6 +114,7 @@ namespace EventManagmentSystem.Services
 
         public bool CheckExpireDate(DateTime expireDateTime)
         {
+            // wird die maximale Anzahl an Tagen im Monat nicht überschritten?
             switch (expireDateTime.Month)
             {
                 case 1 or 3 or 5 or 7 or 8 or 10 or 12:
@@ -134,6 +139,7 @@ namespace EventManagmentSystem.Services
                     return false;
             }
 
+            // ist das angegebene Datum in der Vergangenheit?
             if (expireDateTime.ToUniversalTime() <= DateTime.Now.ToUniversalTime())
             {
                 return false;
