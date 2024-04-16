@@ -76,7 +76,7 @@ namespace EventManagmentSystem.Controllers
                 SetSuccessMessage("Event erfolgreich erstellt");
                 return RedirectToAction("Index", "Home");
             }
-            //Tod Do Fehlermeldung
+            //ToDo: Fehlermeldung
             //Check ob der User angemeldet ist
             //wenn nicht Benachrichtigung anzeigen und auf die Login Seite weiterleiten
             else
@@ -87,7 +87,7 @@ namespace EventManagmentSystem.Controllers
 
         }
         //Methode um UserId aus dem Session zu holen
-        //To Do diese Methode muss ausgelagert werden in einem Controller damit wir diese Methode in allen Controllern verwenden können
+        //ToDo: diese Methode muss ausgelagert werden in einem Controller damit wir diese Methode in allen Controllern verwenden können
         private int GetUserId()
         {
             var userId = Convert.ToInt32(HttpContext.Session.GetString("UserID"));
