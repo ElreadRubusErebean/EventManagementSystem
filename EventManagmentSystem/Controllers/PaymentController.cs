@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace EventManagmentSystem.Controllers
 {
-    public class PaymentController : Controller
+    public class PaymentController : ValidationController
     {
         [HttpGet]
         public IActionResult Payment()
@@ -18,6 +18,8 @@ namespace EventManagmentSystem.Controllers
         {
             PaymentCheckerService paymentCheckerService = new PaymentCheckerService();
             bool isErrorInInput = false;
+
+            SetErrorMessage(null);
 
             // ToDo: Hier müssen die Anmerkungen für die View generiert werden
 
@@ -36,7 +38,7 @@ namespace EventManagmentSystem.Controllers
                 isErrorInInput = true;
             }
 
-            if (paymentCheckerService.CheckThatSafetyNumberIsInLegitimateForm(model.SecurityNumber))
+            if (!paymentCheckerService.CheckThatSafetyNumberIsInLegitimateForm(model.SecurityNumber))
             {
                 isErrorInInput = true;
             }
@@ -44,6 +46,7 @@ namespace EventManagmentSystem.Controllers
             // Wenn eine Eingabe nicht korrekt war
             if (isErrorInInput)
             {
+                SetErrorMessage("In Ihren Angaben befinden sich mögliche Fehler. Überprüfen Sie diese noch einmal!");
                 return View(model);
             }
 

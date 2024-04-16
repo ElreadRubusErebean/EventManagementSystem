@@ -59,13 +59,13 @@ namespace EventManagmentSystem.Services
                 characterList.RemoveAt(0);
             }
 
-            string nullExtension = "00";
             characterList.Add(Convert.ToChar("0"));
             characterList.Add(Convert.ToChar("0"));
 
             string resultString = new string(characterList.ToArray());
             BigInteger result = BigInteger.Parse(resultString);
-            result = 98 - (result % 97);
+            result = (result % 97);
+            result = 98 - result;
 
             if (result != checkDigit)
             {
@@ -87,10 +87,10 @@ namespace EventManagmentSystem.Services
 
             foreach (var character in name.ToCharArray())
             {
-                if (character.Equals(" "))
+                if (character.Equals(' '))
                 {
                     numberOfBlanks++;
-                    break;
+                    continue;
                 }
 
                 if (!char.IsLetter(character))
@@ -110,18 +110,42 @@ namespace EventManagmentSystem.Services
 
         public bool CheckExpireDate(DateTime expireDateTime)
         {
-            if (expireDateTime.ToUniversalTime() <= DateTime.Now.ToUniversalTime())
+            switch (expireDateTime.Month)
             {
-                return true;
+                case 1 or 3 or 5 or 7 or 8 or 10 or 12:
+                    if (expireDateTime.Day > 31)
+                    {
+                        return false;
+                    }
+                    break;
+                case 4 or 6 or 9 or 11:
+                    if (expireDateTime.Day > 30)
+                    {
+                        return false;
+                    }
+                    break;
+                case 2:
+                    if (expireDateTime.Day > 29)
+                    {
+                        return false;
+                    }
+                    break;
+                default:
+                    return false;
             }
 
-            return false;
+            if (expireDateTime.ToUniversalTime() <= DateTime.Now.ToUniversalTime())
+            {
+                return false;
+            }
+
+            return true;
         }
 
         public bool CheckThatSafetyNumberIsInLegitimateForm(int securityNumber)
         {
-            // Zahl Dreistellig und zwischen 0 und 999
-            if (!(securityNumber < 000 || securityNumber > 999 || securityNumber.ToString().Length != 3 || securityNumber.Equals(null)))
+            // Zahl ist dreistellig und liegt zwischen 0 und 999
+            if (securityNumber < 000 || securityNumber > 999 || securityNumber.ToString().Length != 3 || securityNumber.Equals(null))
             {
                 return false;
             }
