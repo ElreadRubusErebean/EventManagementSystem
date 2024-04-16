@@ -46,7 +46,7 @@ namespace EventManagmentSystem.Controllers
 
         //Methode zum löschen des Benutzerkontos
         //Ich verwende hier die Mthode DeleteUserAsync() aus dem UserService
-        //vorher muss aber festgestellt dass der Benutzer der angemeldet ist, der Benutzer ist, der sein Konto löschen möchte
+        //vorher muss aber festgestellt werden, dass der Benutzer der angemeldet ist auch der Benutzer ist, der sein Konto löschen möchte
         [HttpPost]
         public async Task<IActionResult> DeleteKonto()
         {
@@ -101,7 +101,7 @@ namespace EventManagmentSystem.Controllers
                 return NotFound();
             }
 
-            // Modell für die View vorbereiten
+            // Model für die View vorbereiten
             var model = new UserViewModel
             {
                 Email = user.Email,
