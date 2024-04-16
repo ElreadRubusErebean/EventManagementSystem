@@ -22,20 +22,17 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-controller="Event" asp-action="EventOverview">Eventübersicht</a>
-                        </li>
+                        <!--To Do vlt. die Methode Event erstellen ausblenden und nur für Seller anschalten-->
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Event" asp-action="EventCreate">Event erstellen</a>
                         </li>
                         <li class="nav-item">
                             <!-- Hier wird ein Parameter benötigt, um ein spezifisches Event anzuzeigen -->
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Event" asp-action="Event" asp-route-id="EVENT_ID">Event anzeigen</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Event" asp-action="EventOverview" asp-route-id="EVENT_ID">Event-Übersicht</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Payment" asp-action="Payment">Payment</a>
                         </li>
-                
                     </ul>
                     <form class="form-inline my-2 my-lg-0 d-flex">
                         <input class="form-control mr-2" type="search" placeholder="Suchen.." aria-label="Suche" style="margin-right: 0.5rem !important;">
@@ -44,12 +41,31 @@
                     <div class="btn-group">
                         @if (Context.Session.GetString("UserID") != null)
                         {
-                            <a class="nav-item">
-                                <a class="nav-link text-dark">
-                                    <button class="btn btn-outline-secondary" type="submit" style="margin-right: -1rem !important;">Rolle: @Context.Session.GetString("UserRole")</button>
+                            <!--Hier wird geprüft ob der User ein Admin ist wenn ja, weird der link zum admin Bereich angeschaltet-->
+                            @if (Context.Session.GetString("Admin").Equals("True", StringComparison.OrdinalIgnoreCase))
+                            {
+                                <a class="nav-item">
+                                    <a class="nav-link text-dark">
+                                        <a asp-controller="Admin" asp-action="Admin" class="btn btn-outline-secondary" type="submit" style="margin-right: -1rem !important;">Admin</a>
+                                    </a>
                                 </a>
-                            </a>
-
+                            }
+                            else if (Context.Session.GetString("UserRole").Equals("Seller", StringComparison.OrdinalIgnoreCase))
+                            {
+                                <a class="nav-item">
+                                    <a class="nav-link text-dark">
+                                        <a asp-controller="Seller" asp-action="Seller" class="btn btn-outline-secondary" type="submit" style="margin-right: -1rem !important;">Seller</a>
+                                    </a>
+                                </a>
+                            }
+                            else
+                            {
+                                <a class="nav-item">
+                                    <a class="nav-link text-dark">
+                                        <a asp-controller="Buyer" asp-action="Profile" class="btn btn-outline-secondary" type="submit" style="margin-right: -1rem !important;">Buyer</a>
+                                    </a>
+                                </a>
+                            }
                             <a class="nav-item">
                                 <form method="post" asp-controller="Login" asp-action="Logout">
                                     <a class="nav-link text-dark">
@@ -91,4 +107,3 @@
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
-

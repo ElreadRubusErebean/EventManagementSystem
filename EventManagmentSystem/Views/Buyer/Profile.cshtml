@@ -1,0 +1,44 @@
+﻿@model EventManagmentSystem.Models.ViewModel.UserViewModel;
+@{
+    ViewData["Title"] = "Profile";
+}
+
+@if (TempData["ErrorMessage"] != null)
+{
+    <div class="alert alert-danger">
+        @TempData["ErrorMessage"]
+    </div>
+}
+
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success">
+        @TempData["SuccessMessage"]
+    </div>
+}
+
+<div class="profile-header">
+    <h4>Benutzerdaten</h4>
+    <hr />
+    <dl class="row">
+        <dt>E-Mail</dt>
+        <dd>@Model.Email</dd>
+
+        <dt>Firstname</dt>
+        <dd>@Model.FirstName</dd>
+
+        <dt>Lastname</dt>
+        <dd>@Model.LastName</dd>
+
+        <dt>Username</dt>
+        <dd>@Model.UserName</dd>
+        <!-- Weitere Benutzerinformationen hier -->
+    </dl>
+
+    <!-- Formular zum Löschen des eigenen Kontos -->
+    <form method="post" action="@Url.Action("DeleteKonto", "Buyer")"
+          onsubmit="return confirm('Sind Sie sicher, dass Sie Ihr Konto slöschen möchten? Dieser Vorgang kann nicht rückgängig gemacht werden.');">
+        <button type="submit" class="btn btn-danger">Konto löschen</button>
+    </form>
+    <a href="@Url.Action("UpdateProfile", "Buyer")">Edit</a>
+</div>

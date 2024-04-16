@@ -1,0 +1,25 @@
+﻿@model EventManagmentSystem.Models.ViewModel.UserViewModel;
+
+<div class="profile-header">
+    <h4>Benutzerdaten</h4>
+    <hr />
+    <form asp-action="UpdateProfile" method="post">
+        <div class="form-group">
+            <label for="Email">E-Mail</label>
+            <input type="email" class="form-control" id="Email" name="Email" value="@Model.Email">
+            <span asp-validation-for="Email" class="text-danger"></span>
+            <label for="FirstName">Vorname</label>
+            <input type="text" class="form-control" id="FirstName" name="FirstName" value="@Model.FirstName">
+            <label for="FirstName">NachName</label>
+            <input type="text" class="form-control" id="LastName" name="LastName" value="@Model.LastName">
+            <label for="FirstName">Nutzer Name</label>
+            <input type="text" class="form-control" id="UserName" name="UserName" value="@Model.UserName">
+        </div>
+        <button type="submit" class="btn btn-primary">Änderungen speichern</button>
+    </form>
+
+    <!-- Formular zum Löschen des eigenen Kontos -->
+    <form method="post" action="@Url.Action("UpdateProfile", "Buyer")>
+        <button type="submit" class="btn btn-danger">Speichern</button>
+    </form>
+</div>

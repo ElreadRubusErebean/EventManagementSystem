@@ -19,7 +19,8 @@ namespace EventManagmentSystem.Controllers
             PaymentCheckerService paymentCheckerService = new PaymentCheckerService();
             bool isErrorInInput = false;
 
-            // ToDo: Hier muss noch Code rein
+            // ToDo: Hier müssen die Anmerkungen für die View generiert werden
+
             if (!paymentCheckerService.CheckThatIbanIsInLegitimateForm(model.IBAN))
             {
                 isErrorInInput = true;
@@ -46,7 +47,7 @@ namespace EventManagmentSystem.Controllers
                 return View(model);
             }
 
-            // ToDo: Hier muss noch der Sende-Aufruf hin
+            // ToDo: Der Sende-Aufruf an die DB fehlt
             return View(model);
         }
     }

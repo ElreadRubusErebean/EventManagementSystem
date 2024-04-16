@@ -39,6 +39,6 @@ namespace EventManagmentSystem.Models.DbModel
 
         public string Salt { get; set; }
 
-        // public ICollection<Events> Event { get; set; }
+        public ICollection<Event> Events { get; set; }
     }
 }

@@ -8,7 +8,7 @@ using EventManagmentSystem.Enums;
 
 namespace EventManagmentSystem.Controllers
 {
-    public class LoginController : Controller
+    public class LoginController : ValidationController
     {
         private readonly UserService _userService;
 
@@ -26,6 +26,7 @@ namespace EventManagmentSystem.Controllers
         {
             if (!ModelState.IsValid)
             {
+                SetErrorMessage("Email oder Passwort sit falsch");
                 return View(model);
             }
 
@@ -34,18 +35,16 @@ namespace EventManagmentSystem.Controllers
             {
                 HttpContext.Session.SetString("UserID", User.UserId.ToString());
                 HttpContext.Session.SetString("UserEmail", User.Email);
+                HttpContext.Session.SetString("Admin", User.IsAdmin.ToString());
                 //Userrolle anzeigen ob seller oder normaluser
                 HttpContext.Session.SetString("UserRole", User.Role.ToString());
 
-
-                //to Do: Userrolle anzeigen ob seller oder normaluser
-               // HttpContext.Session.SetString("UserRole", User.IsAdmin ? "Admin" : "User");
-
+                SetSuccessMessage("Sie haben sich erfolgreich angemeldet.");
                 return RedirectToAction("Index", "Home");
             }
             else
             {
-                ModelState.AddModelError(string.Empty, ErrorMessage);
+                SetErrorMessage(ErrorMessage);
                 return View(model);
             }
         }
@@ -53,8 +52,9 @@ namespace EventManagmentSystem.Controllers
         [HttpPost]
         public async Task<IActionResult> Logout()
         {
-            HttpContext.Session.Clear(); // This will clear the session
-            return RedirectToAction("Index", "Home"); // Redirect to the home page
+            HttpContext.Session.Clear(); // Das Sessionobjekt wird geleert
+            SetSuccessMessage("Sie haben sich erfolgreich abemeldet.");//Diese eird im Home Index angezeigt
+            return RedirectToAction("Index", "Home"); // Zurück zur Startseite
         }
 
 

@@ -1,85 +1,18 @@
-﻿
-<h3>Übersicht aller Events:</h3>
+﻿@model EventManagmentSystem.Models.ViewModel.EventOverview
 
-<br />
+@{
+    ViewData["Title"] = "Event Overview";
+}
 
-<table class="table">
-    <tr>
-        <th>Titel</th>
-        <th>Beschreibung</th>
-        <th>Ort</th>
-        <th>Datum</th>
-    </tr>
-    <tr>
-        <td>Event 1</td>
-        <td>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore </td>
-        <td>Dresden</td>
-        <td>01.05.2024</td>
-    </tr>
-    <tr>
-        <td>Event 2</td>
-        <td>Hier könnte eine Eventbeschreibung stehen</td>
-        <td>Dresden</td>
-        <td>04.05.2024</td>
-    </tr>
-    <tr>
-        <td>Event 3</td>
-        <td>Hier könnte eine Eventbeschreibung stehen</td>
-        <td>Dresden</td>
-        <td>05.05.2024</td>
-    </tr>
-    <tr>
-        <td>Event 4</td>
-        <td>Hier könnte eine Eventbeschreibung stehen</td>
-        <td>Dresden</td>
-        <td>10.05.2024</td>
-    </tr>
-    <tr>
-        <td>Event 5</td>
-        <td>Hier könnte eine Eventbeschreibung stehen</td>
-        <td>Dresden</td>
-        <td>13.05.2024</td>
-    </tr>
-    <tr>
-        <td>Event 6</td>
-        <td>Hier könnte eine Eventbeschreibung stehen</td>
-        <td>Dresden</td>
-        <td>21.05.2024</td>
-    </tr>
-    <tr>
-        <td>Event 7</td>
-        <td>Hier könnte eine Eventbeschreibung stehen</td>
-        <td>Dresden</td>
-        <td>25.05.2024</td>
-    </tr>
-    <tr>
-        <td>Event 8</td>
-        <td>Hier könnte eine Eventbeschreibung stehen</td>
-        <td>Dresden</td>
-        <td>26.05.2024</td>
-    </tr>
-    <tr>
-        <td>Event 9</td>
-        <td>Hier könnte eine Eventbeschreibung stehen</td>
-        <td>Dresden</td>
-        <td>28.05.2024</td>
-    </tr>
-    <tr>
-        <td>Event 10</td>
-        <td>Hier könnte eine Eventbeschreibung stehen</td>
-        <td>Dresden</td>
-        <td>29.05.2024</td>
-    </tr>
-    <tr>
-        <td>Event 11</td>
-        <td>Hier könnte eine Eventbeschreibung stehen</td>
-        <td>Dresden</td>
-        <td>30.05.2024</td>
-    </tr>
-    <tr>
-        <td>Event 12</td>
-        <td>Hier könnte eine Eventbeschreibung stehen</td>
-        <td>Dresden</td>
-        <td>31.05.2024</td>
-    </tr>
-</table>
+<h1>Event Overview</h1>
+
+<ul>
+    @foreach (var eventItem in Model.ListOfEvents)
+    {
+        <li>
+            <strong>@eventItem.Title</strong> - @eventItem.Date.ToString("dd/MM/yyyy")
+            <p>@eventItem.Description</p>
+            <p>@eventItem.UserId</p>
+        </li>
+    }
+</ul>
