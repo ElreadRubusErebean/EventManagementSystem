@@ -20,7 +20,8 @@ public class Event
     public DateTime Date { get; set; }
 
     [Required(ErrorMessage = "Please enter a price.")]
-    public double Price { get; set; } //keine Unterscheidung für Plätze 
+    [DataType(DataType.Currency)]
+    public decimal Price { get; set; } //keine Unterscheidung für Plätze 
 
     [DefaultValue(EventStateEnum.ForSale)]
     public EventStateEnum State { get; set; } = EventStateEnum.ForSale;
