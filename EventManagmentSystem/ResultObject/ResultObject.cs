@@ -1,4 +1,4 @@
-﻿namespace EventManagmentSystem;
+﻿namespace EventManagmentSystem.ResultObject;
 
 public class ResultObject<T>
 {

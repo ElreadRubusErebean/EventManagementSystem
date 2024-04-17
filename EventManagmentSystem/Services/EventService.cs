@@ -2,6 +2,7 @@
 using EventManagmentSystem.Enums;
 using EventManagmentSystem.Models.DbModel;
 using EventManagmentSystem.Models.ViewModel;
+using EventManagmentSystem.ResultObject;
 using Microsoft.EntityFrameworkCore;
 
 namespace EventManagmentSystem.Services;
