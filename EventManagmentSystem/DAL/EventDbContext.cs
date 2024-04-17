@@ -10,10 +10,22 @@ namespace EventManagmentSystem.DAL
         { }
         public DbSet<User> Users { get; set; }
         public DbSet<Event> Events { get; set; }
-        //Das brauchen wir später wegen der Beziehung zu der Event-Tabelle und Bookingtable
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            base.OnModelCreating(modelBuilder);
+            // User zu Booking
+            modelBuilder.Entity<User>()
+                .HasMany(u => u.Bookings)
+                .WithOne(b => b.User)
+                .HasForeignKey(b => b.UserId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            // Event zu Booking
+            modelBuilder.Entity<Event>()
+                .HasMany(e => e.Bookings)
+                .WithOne(b => b.Event)
+                .HasForeignKey(b => b.EventId)
+                .OnDelete(DeleteBehavior.Restrict);
         }
+
     }
 }

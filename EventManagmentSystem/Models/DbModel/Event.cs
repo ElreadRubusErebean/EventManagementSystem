@@ -35,6 +35,13 @@ public class Event
     public User User { get; set; }
     public int UserId { get; set; }
 
+    public virtual ICollection<Booking> Bookings { get; set; }
+
+    public Event()
+    {
+        Bookings = new HashSet<Booking>();
+    }
+
 
 }
 
