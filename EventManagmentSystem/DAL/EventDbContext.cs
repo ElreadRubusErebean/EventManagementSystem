@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using EventManagmentSystem.Models.DbModel;
+using EventManagmentSystem.Models;
 
 namespace EventManagmentSystem.DAL
 {
@@ -10,6 +11,8 @@ namespace EventManagmentSystem.DAL
         { }
         public DbSet<User> Users { get; set; }
         public DbSet<Event> Events { get; set; }
+
+        public DbSet<Booking> Bookings { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             // User zu Booking
