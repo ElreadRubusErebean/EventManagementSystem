@@ -38,6 +38,7 @@ public class EventService
         return await _context.Events.ToListAsync();
     }
 
+    //holt Event aus Db mittels ID/primary key
     public async Task<ResultObject<Event>> GetEventByIdAsync(int id)
     {
         var eventById = await _context.Events.FindAsync(id);

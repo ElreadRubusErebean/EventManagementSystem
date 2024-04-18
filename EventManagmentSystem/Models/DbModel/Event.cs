@@ -1,6 +1,8 @@
 ﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.Data.Common;
 using EventManagmentSystem.Enums;
+using Microsoft.EntityFrameworkCore;
 
 namespace EventManagmentSystem.Models.DbModel;
 
@@ -21,6 +23,7 @@ public class Event
 
     [Required(ErrorMessage = "Please enter a price.")]
     [DataType(DataType.Currency)]
+    [Precision(10,2)]
     public decimal Price { get; set; } //keine Unterscheidung für Plätze 
 
     [DefaultValue(EventStateEnum.ForSale)]

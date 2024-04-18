@@ -49,7 +49,7 @@ namespace EventManagmentSystem.Controllers
                 return View(viewModel);
             }
             SetErrorMessage(resultEvent.Message);
-            return View("Error");
+            return RedirectToAction("EventOverview","Event");
         }
         
 
