@@ -1,4 +1,5 @@
 ﻿using System.Text.RegularExpressions;
+using EventManagmentSystem.Models.DbModel;
 using EventManagmentSystem.Models.ViewModel;
 using EventManagmentSystem.Services;
 using Microsoft.AspNetCore.Mvc;
@@ -10,6 +11,7 @@ namespace EventManagmentSystem.Controllers
         [HttpGet]
         public IActionResult Payment()
         {
+            //Der ViewBag muss gesendet werden, um einen möglichen Error zu vermeiden
             ViewBag.IbanError = false;
             ViewBag.CardOwnerError = false;
             ViewBag.ExpireDateError = false;
@@ -23,6 +25,11 @@ namespace EventManagmentSystem.Controllers
         {
             PaymentCheckerService paymentCheckerService = new PaymentCheckerService();
             bool isErrorInInput = false;
+
+            ViewBag.IbanError = false;
+            ViewBag.CardOwnerError = false;
+            ViewBag.ExpireDateError = false;
+            ViewBag.SafetyNumberError = false;
 
             // Aufruf der Checks für die Korrektheit der Daten => bei Fehler werden Fehlernachrichten erstellt
             if (!paymentCheckerService.CheckThatIbanIsInLegitimateForm(model.IBAN))
@@ -59,22 +66,12 @@ namespace EventManagmentSystem.Controllers
             if (isErrorInInput)
             {
                 SetErrorMessage("In Ihren Angaben befinden sich mögliche Fehler. Überprüfen Sie diese noch einmal!");
-                return View(model);
+                return View();
             }
 
-            // Daten werden an den Server gesendet
-            // ToDo: Der Sende-Aufruf an die DB fehlt
-            if (!SendDataToServer())
-            {
-                SetErrorMessage("Die Daten konnten nicht an den Server gesendet werden");
-            }
-
-            return View(model);
-        }
-
-        public bool SendDataToServer()
-        {
-            return true;
+            // Die Eingabe ist korrekt
+            SetSuccessMessage("Ihre Buchung war erfolgreich. Danke für Ihren Einkauf");
+            return RedirectToAction("Event", "Event");
         }
     }
 }

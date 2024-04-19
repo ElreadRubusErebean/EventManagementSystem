@@ -81,7 +81,7 @@ namespace EventManagmentSystem.Services
 
         public bool CheckThatCardOwnerIsInLegitimateForm(string name)
         {
-            // Bsp.: "A B" => A = Vorname, B = Nachname => mit Leerzeichen drei Buchstaben nötig
+            // Bsp.: "A B" => A = Vorname, B = Nachname => mit Leerzeichen drei Zeichen nötig
             if (name.ToCharArray().ToList().Count < 3)
             {
                 return false;
