@@ -17,6 +17,56 @@ html {
   min-height: 100%;
 }
 
+.navbar {
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.5) 10%, rgba(255, 255, 255, 0) 100%) !important; /* Anpassen für gewünschte Farbe und Transparenz */
+    border-bottom: none !important; /* Entfernt den unteren Rand, falls vorhanden */
+    backdrop-filter: blur(5px);
+    color: white;
+}
+            
 body {
-  margin-bottom: 60px;
+    display: flex;
+    flex-direction: column;     /* Stapelt die Inhalte vertikal */
+    justify-content: center;
+    margin-bottom: 60px;
+    background-color: black;
+    background-image: url("/images/background.jpg");
+    background-size: cover;
+}
+
+.roundEdges {
+    color: white;
+    border: 1px solid #93B1A6;
+    border-color: #93B1A6;
+    width: 90%;
+    height: auto;
+    background-color: rgba(24, 61, 61, 0.8);    /* Farbe mit Alpha-Wert für Transparenz */
+    border-radius: 10px;
+    backdrop-filter: blur(10px);
+    padding: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    -webkit-backdrop-filter: blur(10px);        /* Für Safari-Browser */
+}
+
+.roundEdges input, .roundEdges textarea, .roundEdges select {
+    background-color: #93B1A6;      /* Hintergrundfarbe für Input- und Textfelder */
+    color: black;                   /* Schriftfarbe innerhalb der Inputfelder Weiß */
+}
+
+.roundEdges input::placeholder, .roundEdges textarea::placeholder {
+    color: black;                   /* Farbe des Platzhaltertextes */
+    opacity: 1;                     /* Stellt sicher, dass der Platzhalter vollständig sichtbar ist */
+}
+
+.form-control {
+    background-color: #93B1A6;      /* Setzt die Hintergrundfarbe des Input-Feldes */
+    color: white;                   /* Setzt die Textfarbe auf Weiß für bessere Lesbarkeit */
+    border-color: black;
+}
+
+.form-control:focus {
+    background-color: #93B1A6;      /* Setzt die Hintergrundfarbe zurück auf Weiß */
+    border-color: black;            /* Setzt die Farbe der Umrandung */
+    box-shadow: 0 0 0 0.2rem rgba(38, 143, 255, 0.25); /* Setzt den Schatten um das Element (Bootstrap-Stil für Fokus) */
 }

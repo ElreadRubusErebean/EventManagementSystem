@@ -10,10 +10,9 @@
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-white border-bottom box-shadow mb-3">
             <div class="container-fluid">
                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">
-                    <img src="~/images/newlogo.png" alt="EventManagementSystem Logo" style="height: 60px; border-radius:20px;">
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
@@ -22,20 +21,20 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                            <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-controller="Event" asp-action="EventOverview">Eventübersicht</a>
+                            <a class="nav-link text-light" asp-controller="Event" asp-action="EventOverview">Eventübersicht</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Event" asp-action="EventCreate">Event erstellen</a>
+                            <a class="nav-link text-light" asp-area="" asp-controller="Event" asp-action="EventCreate">Event erstellen</a>
                         </li>
                         <li class="nav-item">
                             <!-- Hier wird ein Parameter benötigt, um ein spezifisches Event anzuzeigen -->
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Event" asp-action="Event" asp-route-id="EVENT_ID">Event anzeigen</a>
+                            <a class="nav-link text-light" asp-area="" asp-controller="Event" asp-action="Event" asp-route-id="EVENT_ID">Event anzeigen</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Payment" asp-action="Payment">Payment</a>
+                            <a class="nav-link text-light" asp-area="" asp-controller="Payment" asp-action="Payment">Payment</a>
                         </li>
                     </ul>
                     <form class="form-inline my-2 my-lg-0 d-flex">
@@ -54,7 +53,7 @@
             </div>
         </nav>
     </header>
-    <div class="container">
+    <div class="roundEdges">
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
