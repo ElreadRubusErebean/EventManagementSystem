@@ -31,13 +31,14 @@ html {
 #searchBtn {
     margin-right: 1rem;
     color: white;
-    background-color: #0F4C4C;
+    border-color: #93B1A6;
 }
 
     #searchBtn:hover {
         margin-right: 1rem;
-        background-color: #125D5D;
-        border-color: #125D5D;
+        color: #183D3D;
+        border-color: #183D3D;
+        background-color: #93B1A6;
     }
 
 body {
@@ -65,15 +66,12 @@ body {
     -webkit-backdrop-filter: blur(10px); /* Für Safari-Browser */
 }
 
-.roundEdges input,
-.roundEdges textarea,
-.roundEdges select {
+.roundEdges input, .roundEdges textarea, .roundEdges select {
     background-color: #93B1A6;      /* Hintergrundfarbe für Input- und Textfelder */
     color: black;                   /* Schriftfarbe innerhalb der Inputfelder Schwarz */
 }
 
-.roundEdges input::placeholder,
-.roundEdges textarea::placeholder {
+.roundEdges input::placeholder, .roundEdges textarea::placeholder {
     color: black;                   /* Farbe des Platzhaltertextes Schwarz */
     opacity: 1;                     /* Stellt sicher, dass der Platzhalter vollständig sichtbar ist */
 }
@@ -97,16 +95,17 @@ body {
     background-color: #183D3D;
 }
 
-    .btn-outline-primary:hover {
-        color: white;
-        background-color: #125D5D;
-        border-color: #125D5D;
-    }
+.btn-outline-primary:hover {
+    color: white;
+    background-color: #125D5D;
+    border-color: #125D5D;
+}
 
 .btn-primary {
     color: white;
     border: none;
     background-color: #183D3D;
+    //border-radius: 15%/50%; /*horizontale Rundung: 15%, vertikale: 50%*/
 }
 
     .btn-primary:hover {
@@ -120,8 +119,6 @@ body {
 
 .card {
     margin: auto;
-    background-color: rgba(4, 21, 21, 0.6);
-    border-color: rgba(4, 21, 21);
 }
 
 .carousel-item {
@@ -133,8 +130,4 @@ body {
 .carousel-item-prev {
     display: flex;
     justify-content: space-evenly;
-}
-
-.table{
-    color: white;
 }
