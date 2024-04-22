@@ -43,8 +43,9 @@ namespace EventManagmentSystem.Migrations
                     b.Property<int>("NumberOfSoldTickets")
                         .HasColumnType("int");
 
-                    b.Property<double>("Price")
-                        .HasColumnType("float");
+                    b.Property<decimal>("Price")
+                        .HasPrecision(10, 2)
+                        .HasColumnType("decimal(10,2)");
 
                     b.Property<int>("State")
                         .HasColumnType("int");

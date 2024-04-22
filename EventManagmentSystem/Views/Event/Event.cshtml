@@ -1,44 +1,47 @@
-﻿
+﻿@model EventManagmentSystem.Models.ViewModel.EventViewModel
 
-<h3>"Eventüberschrift"</h3>
-
-<br />
+@{
+    ViewData["Title"] = "Event";
+}
 
 <div class="form-group">
 	<label for="title">Event Titel:</label>
-	<input type="text" class="form-control" id="title" required>
+	<textarea id="title">@Model.Title</textarea>
 </div>
 
 <br />
 
 <div class="form-group">
 	<label for="description">Beschreibung:</label>
-	<textarea class="form-control" rows="5" id="description" required></textarea>
+	<textarea  id="description">@Model.Description</textarea>
 </div>
 
 <br />
 
 <div class="form-group">
-    <label for="date">
-        Datum und Uhrzeit auswählen:
-        <input type="datetime-local" class="form-control" id="date" required>
-    </label>
+    <label for="date">Datum und Uhrzeit:</label>
+    <textarea type="datetime-local" id="date">@Model.Date</textarea>  
 </div>
 
 <br />
 
 <div class="form-group">
-	<label for="title">Tickets verkauft:</label>
-	<input type="number" class="form-control" id="numberOfSoldTickets" required>
+	<label for="price">Preis:</label>
+	<textarea type="number" id="price">@Model.Price €</textarea> 
 </div>
 
 <br />
 
 <div class="form-group">
 	<label for="title">Tickets verfügbar:</label>
-	<input type="number" class="form-control" id="numberOfSoldTickets" required>
+	<textarea type="number" id="amountOfTickets">@Model.AmountOfTickets</textarea> 
+</div>
+
+<div>
+	<label for="state">Status:</label>
+	<textarea id="state">@Model.State</textarea>
 </div>
 
 <br />
 
-<button id="changeData" type="submit" class="btn btn-primary">Update</button>
+<button id="buy" type="submit" class="btn btn-primary">Kaufen</button>

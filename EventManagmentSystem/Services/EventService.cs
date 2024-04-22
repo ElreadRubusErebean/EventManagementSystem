@@ -2,6 +2,7 @@
 using EventManagmentSystem.Enums;
 using EventManagmentSystem.Models.DbModel;
 using EventManagmentSystem.Models.ViewModel;
+using EventManagmentSystem.ResultObject;
 using Microsoft.EntityFrameworkCore;
 
 namespace EventManagmentSystem.Services;
@@ -14,17 +15,7 @@ public class EventService
     {
         _context = context;
     }
-
-    /*
-    public void CreateEvent(Event eventModel)
-    {
-        using (_context)
-        {
-            _context.Add(eventModel);
-            _context.SaveChanges();
-        }
-    }
-    */
+    
 
     public async Task<bool> CreateEventAsync(Event eventModel, int userId)
     {
@@ -45,5 +36,17 @@ public class EventService
     public async Task<List<Event>> GetAllEventsAsync()
     {
         return await _context.Events.ToListAsync();
+    }
+
+    //holt Event aus Db mittels ID/primary key
+    public async Task<ResultObject<Event>> GetEventByIdAsync(int id)
+    {
+        var eventById = await _context.Events.FindAsync(id);
+        if (eventById==null)
+        {
+            return new ResultObject<Event>().Failure("Event konnte nicht gefunden werden");
+        }
+        
+        return new ResultObject<Event>().Success(eventById);
     }
 }

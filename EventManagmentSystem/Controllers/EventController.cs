@@ -31,20 +31,27 @@ namespace EventManagmentSystem.Controllers
             return View();
         }
 
-        public IActionResult Event(int id)
+        public async Task<IActionResult> Event(int id)
         {
-            // Logik für die Anzeige eines spezifischen Events
-            // Zum Beispiel das Laden des Events aus einer Datenbank
-            return View();
+            var resultEvent = await _eventService.GetEventByIdAsync(id);
+            if (resultEvent.IsSuccess)
+            {
+                var viewModel = new EventViewModel()
+                {
+                    Title = resultEvent.Value.Title,
+                    Description = resultEvent.Value.Description,
+                    Date = resultEvent.Value.Date,
+                    Price = resultEvent.Value.Price,
+                    AmountOfTickets = resultEvent.Value.AmountOfTickets,
+                    State = resultEvent.Value.State
+                };
+            
+                return View(viewModel);
+            }
+            SetErrorMessage(resultEvent.Message);
+            return RedirectToAction("EventOverview","Event");
         }
-
-        /*
-        public void CreateEvent(Event eventModel)
-        {
-            _eventService.CreateEvent(eventModel);
-            //return SellerView wo man herkommt
-        }
-        */
+        
 
         [HttpPost]
         public async Task<IActionResult> Create(EventViewModel eventModel)

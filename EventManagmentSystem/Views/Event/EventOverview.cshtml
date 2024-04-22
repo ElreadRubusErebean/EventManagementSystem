@@ -9,10 +9,10 @@
 <ul>
     @foreach (var eventItem in Model.ListOfEvents)
     {
-        <li>
+        <a asp-action="Event" asp-controller="Event" asp-route-id="@eventItem.EventId">
             <strong>@eventItem.Title</strong> - @eventItem.Date.ToString("dd/MM/yyyy")
             <p>@eventItem.Description</p>
-            <p>@eventItem.UserId</p>
-        </li>
+            <p>@eventItem.Price €</p>
+        </a>
     }
 </ul>
