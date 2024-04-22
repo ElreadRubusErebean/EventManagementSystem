@@ -9,18 +9,10 @@
 <ul>
     @foreach (var eventItem in Model.ListOfEvents)
     {
-        <li>
+        <a asp-action="Event" asp-controller="Event" asp-route-id="@eventItem.EventId">
             <strong>@eventItem.Title</strong> - @eventItem.Date.ToString("dd/MM/yyyy")
             <p>@eventItem.Description</p>
             <p>@eventItem.UserId</p>
-
-            <form asp-controller="Booking" asp-action="Book" method="post">
-                <input type="hidden" name="eventId" value="@eventItem.EventId" />
-                <input type="hidden" name="userId" value="@User.Identity.Name" />
-                <label for="numberOfTickets">Anzahl der Tickets:</label>
-                <input type="number" id="numberOfTickets" name="numberOfTickets" min="1" required>
-                <button type="submit">Tickets buchen</button>
-            </form>
         </li>
     }
 </ul>

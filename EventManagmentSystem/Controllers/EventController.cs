@@ -31,20 +31,27 @@ namespace EventManagmentSystem.Controllers
             return View();
         }
 
-        public IActionResult Event(int id)
+        public async Task<IActionResult> Event(int id)
         {
-            // Logik für die Anzeige eines spezifischen Events
-            // Zum Beispiel das Laden des Events aus einer Datenbank
-            return View();
+            var resultEvent = await _eventService.GetEventByIdAsync(id);
+            if (resultEvent.IsSuccess)
+            {
+                var viewModel = new EventViewModel()
+                {
+                    Title = resultEvent.Value.Title,
+                    Description = resultEvent.Value.Description,
+                    Date = resultEvent.Value.Date,
+                    Price = resultEvent.Value.Price,
+                    AmountOfTickets = resultEvent.Value.AmountOfTickets,
+                    State = resultEvent.Value.State
+                };
+            
+                return View(viewModel);
+            }
+            SetErrorMessage(resultEvent.Message);
+            return RedirectToAction("EventOverview","Event");
         }
-
-        /*
-        public void CreateEvent(Event eventModel)
-        {
-            _eventService.CreateEvent(eventModel);
-            //return SellerView wo man herkommt
-        }
-        */
+        
 
         [HttpPost]
         public async Task<IActionResult> Create(EventViewModel eventModel)
@@ -76,7 +83,7 @@ namespace EventManagmentSystem.Controllers
                 SetSuccessMessage("Event erfolgreich erstellt");
                 return RedirectToAction("Index", "Home");
             }
-            //Tod Do Fehlermeldung
+            //ToDo: Fehlermeldung
             //Check ob der User angemeldet ist
             //wenn nicht Benachrichtigung anzeigen und auf die Login Seite weiterleiten
             else
@@ -87,7 +94,7 @@ namespace EventManagmentSystem.Controllers
 
         }
         //Methode um UserId aus dem Session zu holen
-        //To Do diese Methode muss ausgelagert werden in einem Controller damit wir diese Methode in allen Controllern verwenden können
+        //ToDo: diese Methode muss ausgelagert werden in einem Controller damit wir diese Methode in allen Controllern verwenden können
         private int GetUserId()
         {
             var userId = Convert.ToInt32(HttpContext.Session.GetString("UserID"));
