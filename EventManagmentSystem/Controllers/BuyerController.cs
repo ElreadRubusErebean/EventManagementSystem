@@ -50,6 +50,8 @@ namespace EventManagmentSystem.Controllers
         [HttpPost]
         public async Task<IActionResult> DeleteKonto()
         {
+            //check ob user Booking hat oder nicht
+            //wenn ja rufe cancelBooking() aus dem UserService auf
             // Benutzer-ID 
             var userIdString = HttpContext.Session.GetString("UserID");
             if (!int.TryParse(userIdString, out var userId))

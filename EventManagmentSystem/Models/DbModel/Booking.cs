@@ -19,5 +19,9 @@ namespace EventManagmentSystem.Models
 
         public int EventId { get; set; }
         public Event Event { get; set; }
+
+        //anzahl gekauften Tickets
+        public int AmountOfTickets { get; set; }
+
     }
 }
