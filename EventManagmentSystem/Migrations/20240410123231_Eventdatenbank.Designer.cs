@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EventManagmentSystem.Migrations
 {
     [DbContext(typeof(EventDbContext))]
-    [Migration("20240408130358_Create")]
-    partial class Create
+    [Migration("20240410123231_Eventdatenbank")]
+    partial class Eventdatenbank
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -50,6 +50,9 @@ namespace EventManagmentSystem.Migrations
                     b.Property<string>("Password")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Role")
+                        .HasColumnType("int");
 
                     b.Property<string>("Salt")
                         .IsRequired()

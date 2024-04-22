@@ -1,35 +1,66 @@
-﻿
+﻿@model EventManagmentSystem.Models.ViewModel.PaymentViewModel
+
+<br />
 
 <h3>Checkout</h3>
 
 <br />
 
-<div class="form-group">
-    <label for="iban">IBAN:</label>
-    <input type="text" class="form-control" id="iban" required>
-</div>
+@if (TempData["ErrorMessage"] != null)
+{
+    <div class="alert alert-danger">
+        @TempData["ErrorMessage"]
+    </div>
+}
 
-<br />
+<form asp-controller="Payment" asp-action="Payment" method="post">
+    <div class="form-group">
+        <label asp-for="IBAN">IBAN:</label>
+        <input asp-for="IBAN" 
+               type="text" 
+               class="form-control @(ViewBag.IbanError ? "border-danger" : String.Empty)" 
+               id="iban" required>
 
-<div class="form-group">
-    <label for="owner">Kartenbesitzer*in:</label>
-    <input type="text" class="form-control" id="owner" required>
-</div>
+        @TempData["IbanMessage"]
+    </div>
 
-<br />
+    <br />
 
-<div class="form-group">
-    <label for="expireDate">Ablaufdatum:</label>
-    <input type="date" class="form-control" id="expireDate" required>
-</div>
+    <div class="form-group">
+        <label asp-for="CardOwner">Kartenbesitzer*in:</label>
+        <input asp-for="CardOwner" 
+               type="text" 
+               class="form-control @(ViewBag.CardOwnerError ? "border-danger" : String.Empty)" 
+               id="owner" required>
+        
+        @TempData["CardOwnerMessage"]
+    </div>
 
-<br />
+    <br />
 
-<div class="form-group">
-    <label for="securityNumber">Sicherheitsnummer:</label>
-    <input type="number" class="form-control" id="securityNumber" max="999" required>
-</div>
+    <div class="form-group">
+        <label asp-for="ExpiredDateTime">Ablaufdatum:</label>
+        <input asp-for="ExpiredDateTime" 
+               type="date" 
+               class="form-control @(ViewBag.ExpireDateError ? "border-danger" : String.Empty)" 
+               id="expireDate" required>
+        
+        @TempData["ExpireDateMessage"]
+    </div>
 
-<br />
+    <br />
 
-<button id="checkout" type="submit" class="btn btn-primary">Bezahlen</button>
+    <div class="form-group">
+        <label asp-for="SecurityNumber">Sicherheitsnummer:</label>
+        <input asp-for="SecurityNumber" 
+               type="number" 
+               class="form-control @(ViewBag.SafetyNumberError ? "border-danger" : String.Empty)" 
+               id="securityNumber" max="999" required>
+        
+        @TempData["SafetyNumberMessage"]
+    </div>
+
+    <br />
+
+    <button id="checkout" type="submit" class="btn btn-primary">Bezahlen</button>
+</form>
