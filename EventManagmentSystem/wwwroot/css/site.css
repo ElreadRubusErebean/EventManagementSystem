@@ -17,16 +17,33 @@ html {
   min-height: 100%;
 }
 
+.spacingLine-light {
+    border: 1px solid #93B1A6;
+}
+
 .navbar {
     background: linear-gradient(to bottom, rgba(0, 0, 0, 0.5) 10%, rgba(255, 255, 255, 0) 100%) !important; /* Anpassen für gewünschte Farbe und Transparenz */
     border-bottom: none !important; /* Entfernt den unteren Rand, falls vorhanden */
     backdrop-filter: blur(10px);
     color: white;
 }
-            
+
+#searchBtn {
+    margin-right: 1rem;
+    color: white;
+    border-color: #93B1A6;
+}
+
+    #searchBtn:hover {
+        margin-right: 1rem;
+        color: #183D3D;
+        border-color: #183D3D;
+        background-color: #93B1A6;
+    }
+
 body {
     display: flex;
-    flex-direction: column;         /* Stapelt die Inhalte vertikal */
+    flex-direction: column; /* Stapelt die Inhalte vertikal */
     justify-content: center;
     margin-bottom: 60px;
     background-color: black;
@@ -83,3 +100,17 @@ body {
     background-color: #125D5D;
     border-color: #125D5D;
 }
+
+.btn-primary {
+    color: white;
+    border: none;
+    background-color: #5C8374;
+    border-radius: 15%/50%; /*horizontale Rundung: 15%, vertikale: 50%*/
+}
+
+    .btn-primary:hover {
+        color: white;
+        border: none;
+        background-color: #93B1A6;
+        border-color: #93B1A6;
+    }
