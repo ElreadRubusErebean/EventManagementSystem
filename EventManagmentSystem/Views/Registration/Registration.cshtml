@@ -1,58 +1,51 @@
-﻿
+﻿@model EventManagmentSystem.Models.ViewModel.RegistrationViewModel
 <h3>Registrieren</h3>
 
 <hr class="spacingLine-light" />
 
-<form>
+<form asp-controller="Registration" asp-action="Registration" method="post">
 
     <div class="form-group">
-        <label for="forname">Vorname</label>
-        <input type="text" class="form-control" id="forname" required>
+        <label asp-for="FirstName">Vorname</label>
+        <input asp-for="FirstName" type="text" class="form-control" id="forname" required>
     </div>
 
     <br />
 
     <div class="form-group">
-        <label for="name">Nachname</label>
-        <input type="text" class="form-control" id="name" required>
+        <label asp-for="LastName">Nachname</label>
+        <input asp-for="LastName" type="text" class="form-control" id="name" required>
     </div>
 
     <br />
 
     <div class="form-group">
-        <label for="forname">E-Mail Adresse</label>
-        <input type="email" class="form-control" id="email" aria-describedby="emailHelp" required>
+        <label asp-for="Email">E-Mail Adresse</label>
+        <input asp-for="Email" type="email" class="form-control" id="email" aria-describedby="emailHelp" required>
         <small id="emailHelp" class="form-text text-muted">Wir werden Ihre E-Mail Adresse niemals an Dritte weitergeben.</small>
     </div>
 
     <br />
 
     <div class="form-group">
-        <label for="username">Benutzername</label>
-        <input type="text" class="form-control" id="username" required>
+        <label asp-for="UserName">Benutzername</label>
+        <input asp-for="UserName" type="text" class="form-control" id="username" required>
     </div>
 
     <br />
 
     <div class="form-group">
-        <label for="password">Passwort</label>
-        <input type="password" class="form-control" id="password" required>
+        <label asp-for="Password">Passwort</label>
+        <input  asp-for="Password" type="password" class="form-control" id="password" required>
     </div>
 
     <br />
 
     <div class="form-group">
-        <label for="password2">Passwort bestätigen</label>
-        <input type="password" class="form-control" id="password2" required>
-    </div>
-
-    <br />
-
-    <div class="form-group">
-        <label for="role">Rolle</label>
-        <select class="form-control" id="role" required>
-            <option>Käufer</option>
-            <option>Verkäufer</option>
+        <label asp-for="Role">Rolle</label>
+        <select asp-for="Role" class="form-control" id="role" required>
+            <option value="NormalUser">Käufer</option>
+            <option value="Seller">Verkäufer</option>
         </select>
     </div>
 
