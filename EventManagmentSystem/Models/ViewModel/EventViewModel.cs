@@ -15,6 +15,7 @@ namespace EventManagmentSystem.Models.ViewModel
         public EventStateEnum State { get; set; }
 
         public int AmountOfTickets { get; set; } //Gesamtanzahl
+        public int EventId { get; set; }
 
     }
 }
