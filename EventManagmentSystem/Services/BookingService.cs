@@ -70,5 +70,20 @@ namespace EventManagmentSystem.Services
 
         }
 
+        //Buchungen anzeigen für User
+        /*
+         * UserId holen
+         * alle Buchungen für den User holen
+         * Buchungen zurückgeben
+       */
+        public async Task<List<Booking>> GetUserBookingsAsync(int userId)
+        {
+            return await _context.Bookings
+                .Where(b => b.UserId == userId)
+                .ToListAsync();
+        }
+
+
+
     }
 }

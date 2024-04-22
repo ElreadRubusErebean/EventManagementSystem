@@ -1,0 +1,19 @@
+﻿@model EventManagmentSystem.Models.ViewModel.UserBookingsViewModel;
+
+<h4>Buchungen</h4>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Event</th>
+            <th>Anzahl der Tickets</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var booking in Model.Bookings)
+        {
+            <tr>
+                <td>@booking.AmountOfTickets</td>
+            </tr>
+        }
+    </tbody>
+</table>

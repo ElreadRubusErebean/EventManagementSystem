@@ -1,4 +1,5 @@
-﻿using EventManagmentSystem.Services;
+﻿using EventManagmentSystem.Models.ViewModel;
+using EventManagmentSystem.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EventManagmentSystem.Controllers
@@ -15,7 +16,7 @@ namespace EventManagmentSystem.Controllers
         [HttpPost]
         public async Task<IActionResult> Book(int eventId, int numberOfTickets)
         {
-            // Die Benutzer-ID aus der Sitzung abrufen oder aus einem anderen Ort, z. B. dem Anmeldeprozess
+            // Die Benutzer-ID aus der Sitzung abrufen
             var userId = Convert.ToInt32(HttpContext.Session.GetString("UserID"));
 
             // Buchung durchführen
@@ -34,6 +35,23 @@ namespace EventManagmentSystem.Controllers
                 return RedirectToAction("Index", "Home");
             }
         }
+
+        public async Task<IActionResult> UserBookings()
+        {
+            // Benutzer-ID aus der Sitzung oder einem anderen Ort abrufen
+            var userId = Convert.ToInt32(HttpContext.Session.GetString("UserID"));
+
+            // Buchungen des Benutzers abrufen
+            var bookings = await _bookingService.GetUserBookingsAsync(userId);
+
+            var viewModel = new UserBookingsViewModel
+            {
+                Bookings = bookings
+            };
+
+            return View(viewModel);
+        }
+
 
 
     }
