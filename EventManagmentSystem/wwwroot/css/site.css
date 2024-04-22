@@ -104,14 +104,14 @@ body {
 .btn-primary {
     color: white;
     border: none;
-    background-color: #5C8374;
-    border-radius: 15%/50%; /*horizontale Rundung: 15%, vertikale: 50%*/
+    background-color: #183D3D;
+    //border-radius: 15%/50%; /*horizontale Rundung: 15%, vertikale: 50%*/
 }
 
     .btn-primary:hover {
         color: white;
         border: none;
-        background-color: #93B1A6;
+        background-color: #125D5D;
         border-color: #93B1A6;
     }
 
@@ -125,9 +125,9 @@ body {
     float: left;
 }
 
-    .carousel-item.active,
-    .carousel-item-next,
-    .carousel-item-prev {
-        display: flex;
-        justify-content: space-evenly;
-    }
+.carousel-item.active,
+.carousel-item-next,
+.carousel-item-prev {
+    display: flex;
+    justify-content: space-evenly;
+}
