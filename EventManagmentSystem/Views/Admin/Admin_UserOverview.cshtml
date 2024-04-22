@@ -1,5 +1,4 @@
-﻿<!--model EventManagmentSystem.Models.ViewModel.AdminViewModel-->
-<h3>Adminübersicht</h3>
+﻿<h3>Adminübersicht</h3>
 
 <div id="adminViewSwitcher" class="justify-content-evenly">
     <a asp-area="" asp-controller="Admin" asp-action="Admin_EventOverview" class="btn-primary">Eventübersicht</a>
@@ -7,8 +6,6 @@
 </div>
 
 <h3>Adminübersicht</h3>
-@if (Model.Users != null && Model.Users.Any())
-{
     <table>
         <thead>
             <tr>
@@ -24,32 +21,20 @@
             </tr>
         </thead>
         <tbody>
-            @foreach (var user in Model.Users)
-            {
                 <tr>
-                    <td>@user.UserId</td>
-                    <td>@user.FirstName</td>
-                    <td>@user.LastName</td>
-                    <td>@user.Email</td>
-                    <td>@user.IsAdmin</td>
-                    <td>@user.UserName</td>
-                    <!--hier sollen die Methoden aufgerufen werden -->
-                    <td><a href="@Url.Action("Edit", "Admin", new { id = @user.UserId })">Edit</a></td>
+                    <td>UserId</td>
+                    <td>FirstName</td>
+                    <td>LastName</td>
+                    <td>Email</td>
+                    <td>IsAdmin</td>
+                    <td>UserName</td>
+
+                    <td><a href="#">Edit</a></td>
                     <td>
-                        <form action="@Url.Action("DeleteUser", "Admin", new { userId = user.UserId })" method="post">
+                        <form>
                             <button type="submit" class="btn btn-danger" onclick="return confirm('Sind Sie sicher, dass Sie diesen Benutzer löschen möchten?');">Löschen</button>
                         </form>
                     </td>
                 </tr>
-            }
         </tbody>
     </table>
-}
-else
-{
-    <tbody>
-        <tr>
-            <td colspan="9" class="text-center">Keine Benutzer gefunden.</td>
-        </tr>
-    </tbody>
-}
