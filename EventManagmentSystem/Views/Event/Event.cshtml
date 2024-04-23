@@ -31,13 +31,30 @@
         <textarea type="number" id="price">@Model.Price €</textarea>
     </div>
 
+    <!--Tickets Anzahl-->
+    <div class="form-group">
+        <label for="tickets">Tickets:</label>
+        <textarea id="tickets">@Model.AmountOfTickets</textarea>
+    </div>
+
     <br />
-    <br />
-    <form asp-controller="Booking" asp-action="Book" method="post">
-        <input type="hidden" name="eventId" value="@Model.EventId" />
-        <input type="hidden" name="userId" value="@User.Identity.Name" />
-        <label for="numberOfTickets">Anzahl der Tickets:</label>
-        <input type="number" id="numberOfTickets" name="numberOfTickets" min="1" required>
-        <button type="submit">Tickets buchen</button>
-    </form>
+</form>
+<script>
+    function validateNumberOfTickets() {
+        var availableTickets = @Model.AmountOfTickets;
+        var numberOfTickets = parseInt(document.getElementById("numberOfTickets").value);
+
+        if (numberOfTickets > availableTickets) {
+            alert("Die Anzahl der angeforderten Tickets darf nicht größer sein als die verfügbare Anzahl von Tickets.");
+            return false;
+        }
+        return true;
+    }
+</script>
+<form asp-controller="Payment" asp-action="Payment" method="get" onsubmit="return validateNumberOfTickets()">
+    <!-- Formularfelder für Event-Details und Anzahl der Tickets -->
+    <input type="hidden" name="eventId" value="@Model.EventId" />
+    <label for="numberOfTickets">Anzahl der Tickets:</label>
+    <input type="number" id="numberOfTickets" name="numberOfTickets" min="1" required>
+    <button type="submit">Tickets buchen</button>
 </form>

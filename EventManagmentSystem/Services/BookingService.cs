@@ -1,6 +1,7 @@
 ﻿using EventManagmentSystem.DAL;
 using EventManagmentSystem.Enums;
 using EventManagmentSystem.Models;
+using EventManagmentSystem.Models.ViewModel;
 using Microsoft.EntityFrameworkCore;
 
 namespace EventManagmentSystem.Services
@@ -69,6 +70,36 @@ namespace EventManagmentSystem.Services
         {
 
         }
+
+        //Buchungen anzeigen für User
+        /*
+         * UserId holen
+         * alle Buchungen für den User holen
+         * Buchungen zurückgeben
+       */
+        public async Task<List<BookingWithEventDetails>> GetUserBookingsAsync(int userId)
+        {
+            ///Erstmal Die Buchungen des Benutzers abrufen
+            ///Dann die Event-Details für jede Buchung abrufen
+            ///Die Include-Methode ermöglicht es, die Navigationseigenschaften der Buchung zu verwenden, um die Event-Daten abzurufen
+
+            var bookingsWithEvents = await _context.Bookings
+                .Include(b => b.Event)
+                .Where(b => b.UserId == userId)
+                ///Hier wird die Buchung in ein BookingWithEventDetails-Objekt umgewandelt, das sowohl die Buchung als auch die Event-Daten enthält
+                .Select(b => new BookingWithEventDetails
+                {
+                    Booking = b,
+                    /// Navigationsbeziehung nutzen, um Event-Daten einzubeziehen
+                    Event = b.Event 
+                })
+                .ToListAsync();
+
+            return bookingsWithEvents;
+        }
+
+
+
 
     }
 }
