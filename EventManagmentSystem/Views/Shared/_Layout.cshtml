@@ -23,17 +23,12 @@
                         <li class="nav-item">
                             <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
-                        <!--To Do vlt. die Methode Event erstellen ausblenden und nur für Seller anschalten-->
-                        <li class="nav-item">
-                            <a class="nav-link text-light" asp-controller="Event" asp-action="EventOverview">Eventübersicht</a>
-                        </li>
                         <li class="nav-item">
                             <a class="nav-link text-light" asp-area="" asp-controller="Event" asp-action="EventCreate">Event erstellen</a>
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Event" asp-action="EventCreate">Event erstellen</a>
                         </li>
                         <li class="nav-item">
                             <!-- Hier wird ein Parameter benötigt, um ein spezifisches Event anzuzeigen -->
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Event" asp-action="EventOverview" asp-route-id="EVENT_ID">Event-Übersicht</a>
+                            <a class="nav-link text-light" asp-area="" asp-controller="Event" asp-action="EventOverview" asp-route-id="EVENT_ID">Event-Übersicht</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-light" asp-area="" asp-controller="Payment" asp-action="Payment">Payment</a>
@@ -88,16 +83,10 @@
                             </a>
                             <a class="nav-item">
                                 <a class="nav-link text-dark" asp-area="" asp-controller="Registration" asp-action="Registration">
-                                    <button class="btn btn-outline-success" style="margin-right: -1rem !important;margin-left: -1rem !important;">Registrieren</button>
+                                    <button class="btn btn-outline-primary" style="margin-right: -1rem !important;margin-left: -1rem !important;">Registrieren</button>
                                 </a>
                             </a>
                         }
-                        <a class="nav-link text-dark" asp-area="" asp-controller="Login" asp-action="Login">
-                            <button class="btn btn-outline-primary" style="">Login</button>
-                        </a>
-                        <a class="nav-link text-dark" asp-area="" asp-controller="Registration" asp-action="Registration">
-                            <button class="btn btn-outline-primary" style="margin-right: -1rem !important;margin-left: -1rem !important;">Registrieren</button>
-                        </a>
                     </div>
                 </div>
             </div>
