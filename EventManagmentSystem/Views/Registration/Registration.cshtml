@@ -1,7 +1,7 @@
 ﻿@model EventManagmentSystem.Models.ViewModel.RegistrationViewModel
 <h3>Registrieren</h3>
 
-<br />
+<hr class="spacingLine-light" />
 
 <form asp-controller="Registration" asp-action="Registration" method="post">
 
@@ -51,6 +51,8 @@
 
     <br />
 
-    <button id="registrieren" type="submit" class="btn btn-primary">Registrieren</button>
+    <div class="d-flex justify-content-end">
+        <button id="registrieren" type="submit" class="btn btn-primary" style="">Registrieren</button>
+    </div>
 
 </form>

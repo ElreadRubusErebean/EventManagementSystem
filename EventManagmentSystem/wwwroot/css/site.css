@@ -17,6 +17,124 @@ html {
   min-height: 100%;
 }
 
+.spacingLine-light {
+    border: 1px solid #93B1A6;
+}
+
+.navbar {
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.5) 10%, rgba(255, 255, 255, 0) 100%) !important; /* Anpassen für gewünschte Farbe und Transparenz */
+    border-bottom: none !important; /* Entfernt den unteren Rand, falls vorhanden */
+    backdrop-filter: blur(10px);
+    color: white;
+}
+
+#searchBtn {
+    margin-right: 1rem;
+    color: white;
+    background-color: #0F4C4C;
+}
+
+    #searchBtn:hover {
+        margin-right: 1rem;
+        background-color: #125D5D;
+        border-color: #125D5D;
+    }
+
 body {
-  margin-bottom: 60px;
+    display: flex;
+    flex-direction: column; /* Stapelt die Inhalte vertikal */
+    justify-content: center;
+    margin-bottom: 60px;
+    background-color: black;
+    background-image: url("/images/background.jpg");
+    background-size: cover;
+}
+
+.roundEdges {
+    color: white;
+    border: 1px solid #93B1A6;
+    border-color: #93B1A6;
+    width: 80%;
+    height: auto;
+    background-color: rgba(24, 61, 61, 0.6); /* Farbe mit Alpha-Wert für Transparenz */
+    border-radius: 10px;
+    backdrop-filter: blur(10px);
+    padding: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    -webkit-backdrop-filter: blur(10px); /* Für Safari-Browser */
+}
+
+.roundEdges input,
+.roundEdges textarea,
+.roundEdges select {
+    background-color: #93B1A6;      /* Hintergrundfarbe für Input- und Textfelder */
+    color: black;                   /* Schriftfarbe innerhalb der Inputfelder Schwarz */
+}
+
+.roundEdges input::placeholder,
+.roundEdges textarea::placeholder {
+    color: black;                   /* Farbe des Platzhaltertextes Schwarz */
+    opacity: 1;                     /* Stellt sicher, dass der Platzhalter vollständig sichtbar ist */
+}
+
+.form-control {
+    background-color: #93B1A6;
+    color: white;
+    border-color: black;
+    transition: background-color 0.5s ease, border-color 0.5s ease, box-shadow 0.5s ease; /* Übergangseffekt */
+}
+
+.form-control:focus {
+    background-color: white;
+    border-color: black;
+    box-shadow: 0 0 0 0.2rem rgba(38, 143, 255, 0.25); /* Setzt den Schatten um das Element (Bootstrap-Stil für Fokus) */
+}
+
+.btn-outline-primary {
+    color: white;
+    border-color: #183D3D;
+    background-color: #183D3D;
+}
+
+    .btn-outline-primary:hover {
+        color: white;
+        background-color: #125D5D;
+        border-color: #125D5D;
+    }
+
+.btn-primary {
+    color: white;
+    border: none;
+    background-color: #183D3D;
+}
+
+    .btn-primary:hover {
+        color: white;
+        border: none;
+        background-color: #125D5D;
+        border-color: #93B1A6;
+    }
+
+/*test*/
+
+.card {
+    margin: auto;
+    background-color: rgba(4, 21, 21, 0.6);
+    border-color: rgba(4, 21, 21);
+}
+
+.carousel-item {
+    float: left;
+}
+
+.carousel-item.active,
+.carousel-item-next,
+.carousel-item-prev {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.table{
+    color: white;
 }
