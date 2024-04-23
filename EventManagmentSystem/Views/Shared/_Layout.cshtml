@@ -10,9 +10,10 @@
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-white border-bottom box-shadow mb-3">
             <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">EventManagementSystem</a>
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">
+                </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -20,23 +21,22 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                            <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
-                        <!--To Do vlt. die Methode Event erstellen ausblenden und nur für Seller anschalten-->
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Event" asp-action="EventCreate">Event erstellen</a>
+                            <a class="nav-link text-light" asp-area="" asp-controller="Event" asp-action="EventCreate">Event erstellen</a>
                         </li>
                         <li class="nav-item">
                             <!-- Hier wird ein Parameter benötigt, um ein spezifisches Event anzuzeigen -->
                             <a class="nav-link text-dark" asp-area="" asp-controller="Event" asp-action="EventOverview">Event-Übersicht</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Payment" asp-action="Payment">Payment</a>
+                            <a class="nav-link text-light" asp-area="" asp-controller="Payment" asp-action="Payment">Payment</a>
                         </li>
                     </ul>
                     <form class="form-inline my-2 my-lg-0 d-flex">
                         <input class="form-control mr-2" type="search" placeholder="Suchen.." aria-label="Suche" style="margin-right: 0.5rem !important;">
-                        <button class="btn btn-outline-success my-2 my-sm-0" type="submit" style="margin-right: 1rem !important;">Suchen</button>
+                        <button class="btn my-2 my-sm-0" id="searchBtn" type="submit">Suchen</button>
                     </form>
                     <div class="btn-group">
                         @if (Context.Session.GetString("UserID") != null)
@@ -83,7 +83,7 @@
                             </a>
                             <a class="nav-item">
                                 <a class="nav-link text-dark" asp-area="" asp-controller="Registration" asp-action="Registration">
-                                    <button class="btn btn-outline-success" style="margin-right: -1rem !important;margin-left: -1rem !important;">Registrieren</button>
+                                    <button class="btn btn-outline-primary" style="margin-right: -1rem !important;margin-left: -1rem !important;">Registrieren</button>
                                 </a>
                             </a>
                         }
@@ -92,7 +92,7 @@
             </div>
         </nav>
     </header>
-    <div class="container">
+    <div class="roundEdges">
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
