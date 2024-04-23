@@ -28,16 +28,45 @@ html {
     color: white;
 }
 
+.nav-link{
+    margin: 5px;
+    padding: 0px;
+}
+
 #searchBtn {
-    margin-right: 1rem;
+    margin-left: 0.5rem;
     color: white;
     background-color: #0F4C4C;
 }
 
     #searchBtn:hover {
-        margin-right: 1rem;
         background-color: #125D5D;
         border-color: #125D5D;
+    }
+
+.btn-outline-warning {
+    background-color: #5C0E0E;
+    border-color: #FF0000;
+    color: #FF5733;
+}
+
+    .btn-outline-warning:hover {
+        background-color: #8B0000;
+        color: #FF5733;
+        border-color: #FF0000;
+    }
+
+.btn-outline-secondary {
+    background-color: #040D12;
+    border: 1px solid #93B1A6;
+    border-color: #93B1A6;
+    color: #93B1A6;
+}
+
+    .btn-outline-secondary:hover {
+        background-color: #040D12;
+        color: #AEC8BD;
+        border-color: #AEC8BD;
     }
 
 body {

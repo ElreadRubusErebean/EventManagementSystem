@@ -19,7 +19,7 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
+                    <ul class="navbar-nav mr-auto">
                         <li class="nav-item">
                             <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
@@ -27,63 +27,58 @@
                             <a class="nav-link text-light" asp-area="" asp-controller="Event" asp-action="EventCreate">Event erstellen</a>
                         </li>
                         <li class="nav-item">
-                            <!-- Hier wird ein Parameter benötigt, um ein spezifisches Event anzuzeigen -->
                             <a class="nav-link text-light" asp-area="" asp-controller="Event" asp-action="EventOverview">Event-Übersicht</a>
                         </li>
                     </ul>
-                    <form class="form-inline my-2 my-lg-0 d-flex">
-                        <input class="form-control mr-2" type="search" placeholder="Suchen.." aria-label="Suche" style="margin-right: 0.5rem !important;">
+
+                    <form class="form-inline my-2 my-lg-0 d-flex w-50">
+                        <input class="form-control flex-grow-1 mr-2" type="search" placeholder="Suchen.." aria-label="Suche">
                         <button class="btn my-2 my-sm-0" id="searchBtn" type="submit">Suchen</button>
                     </form>
-                    <div class="btn-group">
-                        @if (Context.Session.GetString("UserID") != null)
-                        {
-                            <!--Hier wird geprüft ob der User ein Admin ist wenn ja, weird der link zum admin Bereich angeschaltet-->
-                            @if (Context.Session.GetString("Admin").Equals("True", StringComparison.OrdinalIgnoreCase))
+
+                    <div class="ml-auto">
+                        <div class="btn-group">
+                            @if (Context.Session.GetString("UserID") != null)
                             {
-                                <a class="nav-item">
-                                    <a class="nav-link text-dark">
-                                        <a asp-controller="Admin" asp-action="Admin" class="btn btn-outline-secondary" type="submit" style="margin-right: -1rem !important;">Admin</a>
+                                <!--Hier wird geprüft ob der User ein Admin ist wenn ja, weird der link zum admin Bereich angeschaltet-->
+                                @if (Context.Session.GetString("Admin").Equals("True", StringComparison.OrdinalIgnoreCase))
+                                {
+                                    <a class="nav-link text-light" asp-controller="Admin" asp-action="Admin" type="submit">
+                                        <button class="btn btn-outline-secondary" type="submit" type="">Admin</button>
                                     </a>
-                                </a>
-                            }
-                            else if (Context.Session.GetString("UserRole").Equals("Seller", StringComparison.OrdinalIgnoreCase))
-                            {
-                                <a class="nav-item">
-                                    <a class="nav-link text-dark">
-                                        <a asp-controller="Seller" asp-action="Seller" class="btn btn-outline-secondary" type="submit" style="margin-right: -1rem !important;">Seller</a>
+                                }
+                                else if (Context.Session.GetString("UserRole").Equals("Seller", StringComparison.OrdinalIgnoreCase))
+                                {
+                                    <a class="nav-link" asp-controller="Seller" asp-action="Seller">
+                                        <button class="btn btn-outline-secondary" type="submit">Seller</button>
                                     </a>
+                                }
+                                else
+                                {
+                                    <a class="nav-link text-light" asp-controller="Buyer" asp-action="Profile">
+                                        <button class="btn btn-outline-secondary" type="submit">Buyer</button>
+                                    </a>
+                                }
+                                <a class="nav-link text-light">
+                                    <form method="post" asp-controller="Login" asp-action="Logout">
+                                        <button class="btn btn-outline-warning" type="submit">Logout</button>
+                                    </form>
                                 </a>
                             }
                             else
                             {
                                 <a class="nav-item">
-                                    <a class="nav-link text-dark">
-                                        <a asp-controller="Buyer" asp-action="Profile" class="btn btn-outline-secondary" type="submit" style="margin-right: -1rem !important;">Buyer</a>
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Login" asp-action="Login">
+                                        <button class="btn btn-outline-primary" style="">Login</button>
+                                    </a>
+                                </a>
+                                <a class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Registration" asp-action="Registration">
+                                        <button class="btn btn-outline-primary">Registrieren</button>
                                     </a>
                                 </a>
                             }
-                            <a class="nav-item">
-                                <form method="post" asp-controller="Login" asp-action="Logout">
-                                    <a class="nav-link text-dark">
-                                        <button class="btn btn-outline-warning" type="submit" type="">Logout</button>
-                                    </a>
-                                </form>
-                            </a>
-                        }
-                        else
-                        {
-                            <a class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Login" asp-action="Login">
-                                    <button class="btn btn-outline-primary" style="">Login</button>
-                                </a>
-                            </a>
-                            <a class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Registration" asp-action="Registration">
-                                    <button class="btn btn-outline-primary" style="margin-right: -1rem !important;margin-left: -1rem !important;">Registrieren</button>
-                                </a>
-                            </a>
-                        }
+                        </div>
                     </div>
                 </div>
             </div>
