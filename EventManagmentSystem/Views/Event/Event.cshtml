@@ -3,42 +3,38 @@
 @{
     ViewData["Title"] = "Event";
 }
-<h1>Event Übersicht</h1>
+<h1>@Model.Title</h1>
+<hr class="spacingLine-light" />
+
 <form method="post" action="/Booking/Book">
     <div class="form-group">
-        <label for="title">Event Titel:</label>
-        <textarea id="title">@Model.Title</textarea>
+        <label for="title" id="title">Titel des Events</label>
+        <p class="event-title" id="description">@Model.Title</p>
     </div>
-
     <br />
-
     <div class="form-group">
-        <label for="description">Beschreibung:</label>
-        <textarea id="description">@Model.Description</textarea>
+        <label for="description">Beschreibung des Events</label>
+        <p class="event-description" id="description">@Model.Description</p>
     </div>
-
     <br />
-
     <div class="form-group">
-        <label for="date">Datum und Uhrzeit:</label>
-        <textarea type="datetime-local" id="date">@Model.Date</textarea>
+        <label for="date">Datum und Uhrzeit</label>
+        <p class="event-date" id="date">@Model.Date</p>
     </div>
-
     <br />
-
     <div class="form-group">
-        <label for="price">Preis:</label>
-        <textarea type="number" id="price">@Model.Price €</textarea>
+        <label for="price">Preis</label>
+        <p class="event-price" id="price">@Model.Price €</p>
     </div>
-
+    <br />
     <!--Tickets Anzahl-->
     <div class="form-group">
-        <label for="tickets">Tickets:</label>
-        <textarea id="tickets">@Model.AmountOfTickets</textarea>
+        <label for="tickets">Anzahl der verfügbaren Tickets</label>
+        <p class="event-tickets" id="tickets">@Model.AmountOfTickets</p>
     </div>
-
     <br />
 </form>
+
 <script>
     function validateNumberOfTickets() {
         var availableTickets = @Model.AmountOfTickets;
@@ -54,7 +50,7 @@
 <form asp-controller="Payment" asp-action="Payment" method="get" onsubmit="return validateNumberOfTickets()">
     <!-- Formularfelder für Event-Details und Anzahl der Tickets -->
     <input type="hidden" name="eventId" value="@Model.EventId" />
-    <label for="numberOfTickets">Anzahl der Tickets:</label>
-    <input type="number" id="numberOfTickets" name="numberOfTickets" min="1" required>
-    <button type="submit">Tickets buchen</button>
+    <label for="numberOfTickets">Wie viele Tickets?</label>
+    <input class="form-control" type="number" id="numberOfTickets" name="numberOfTickets" min="1" style="width: 5%; margin-bottom: 10px; margin-top: 10px;" required>
+    <button type="submit" class="btn btn-outline-primary">Tickets buchen</button>
 </form>
