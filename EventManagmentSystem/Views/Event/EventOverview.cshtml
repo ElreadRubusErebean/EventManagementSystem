@@ -1,41 +1,24 @@
-﻿
-<h3>Übersicht aller Events:</h3>
+﻿@model EventManagmentSystem.Models.ViewModel.EventOverview
 
-<br />
+@{
+    ViewData["Title"] = "Event Overview";
+}
 
-<table class="table">
-    <tr>
-        <th>Titel</th>
-        <th>Beschreibung</th>
-        <th>Ort</th>
-        <th>Datum</th>
-    </tr>
-    <tr>
-        <td>Event 1</td>
-        <td>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore </td>
-        <td>Dresden</td>
-        <td>01.05.2024</td>
-    </tr>
-    <tr>
-        <td>Event 2</td>
-        <td>Hier könnte eine Eventbeschreibung stehen</td>
-        <td>Dresden</td>
-        <td>04.05.2024</td>
-    </tr>
-    <tr>
-        <td>Event 3</td>
-        <td>Hier könnte eine Eventbeschreibung stehen</td>
-        <td>Dresden</td>
-        <td>05.05.2024</td>
-    </tr>
-    <tr>
-        <td>Event 4</td>
-        <td>Hier könnte eine Eventbeschreibung stehen</td>
-        <td>Dresden</td>
-        <td>10.05.2024</td>
-    </tr>
-    <tr>
-        <td>Event 5</td>
+<h1>Event Overview</h1>
+<hr class="spacingLine-light" />
+
+<ul>
+    @foreach (var eventItem in Model.ListOfEvents)
+    {
+        <li>
+            <a asp-action="Event" asp-controller="Event" asp-route-id="@eventItem.EventId">
+                <strong>@eventItem.Title</strong> - @eventItem.Date.ToString("dd/MM/yyyy")
+                <p>@eventItem.Description</p>
+                <p>@eventItem.Price €</p>
+            </a>
+        </li>
+    }
+</ul>
         <td>Hier könnte eine Eventbeschreibung stehen</td>
         <td>Dresden</td>
         <td>13.05.2024</td>

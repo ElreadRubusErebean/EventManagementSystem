@@ -1,23 +1,41 @@
-<h3>Mein Konto</h3>
-
 <a asp-area="" asp-controller="Seller" asp-action="Seller_EventOverview" class="btn-primary">Meine Events</a>
 
-<h4>Meine Daten</h4>
+<h3>Mein Konto</h3>
+
+<main>
+<button id="changeViewBtn">zu EVENTS/DATEN wechseln</button>
     <div id="persData" class="form-group">
             <label for="firstName">Vorname:</label>
             <input name="firstName" type="text" class="accDetailInputs" required/>
-            <br />
             <label for="lastName">Nachname</label>
             <input name="lastName" type="text" class="accDetailInputs" required/>
-            <br/>
+
             <label for="email">E-Mail Adresse:</label>
             <input name="email" type="email" class="accDetailInputs" required/>
-            <br/>
             <label for="password">Passwort</label>
             <input name="password" type="password" class="accDetailInputs" required/>
 
             <br/>
             <button id="changeDetailsBtn" class="btn-primary">Daten bearbeiten</button>
-            <button id="deleteAccBtn" class="btn-primary">Konto l�schen</button>
+            <button id="deleteAccBtn" class="btn-primary">Konto löschen</button>
             <button id="logoutBtn" class="btn-primary">logout</button>
     </div>
+ <!--Eventlist-->       
+    <div id="bookedEvents">
+    <!--code: foreach Event create vvv -->
+        <section>
+            <p>TITEL</p>
+            <p>BESCHREIBUNG</p>
+            <p>ORT</p>
+            <p>DATUM</p>
+            <!--get parentelement by name?-->
+            <button id="deleteEventBtn">Event löschen</button>
+        </section>
+    </div>
+    <button id="addEventBtn">Event hinzufügen</button>
+    <!-- Formular zum Löschen des eigenen Kontos -->
+    <form method="post" action="@Url.Action("DeleteKonto", "Seller")"
+          onsubmit="return confirm('Sind Sie sicher, dass Sie Ihr Konto slöschen möchten? Dieser Vorgang kann nicht rückgängig gemacht werden.');">
+        <button type="submit" class="btn btn-danger">Konto löschen</button>
+    </form>
+</main>

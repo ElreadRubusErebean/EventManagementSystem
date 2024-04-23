@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EventManagmentSystem.Migrations
 {
     [DbContext(typeof(EventDbContext))]
-    [Migration("20240411081703_RomanDB")]
-    partial class RomanDB
+    [Migration("20240410123231_Eventdatenbank")]
+    partial class Eventdatenbank
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

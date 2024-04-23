@@ -1,7 +1,25 @@
 ﻿@model EventManagmentSystem.Models.ViewModel.LoginViewModel
+@{
+    ViewData["Title"] = "Login";
+}
+
 <h3>Login</h3>
 
+@if (TempData["ErrorMessage"] != null)
+{
+    <div class="alert alert-danger">
+        @TempData["ErrorMessage"]
+    </div>
+}
+
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success">
+        @TempData["SuccessMessage"]
+    </div>
+}
 <br />
+<hr class="spacingLine-light"/>
 
 <form asp-action ="Login" method="post">
     <div class="form-group">

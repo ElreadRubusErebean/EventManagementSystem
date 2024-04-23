@@ -13,6 +13,8 @@ Abdul Hadi AlQawas,Carolin Feurich, Roman Kosovtsev, Jennifer Schön und Yannick
 
 Dokumentation für dieses Projekt finden Sie hier: [Google Docs](https://docs.google.com/document/d/1dvAZjHOX3Jc-2bVEI-lzGPPl5FUN-PChL9QjNTp43Xo/edit?usp=sharing)
 
+Dokument zum Vermerken von Änderungswünschen: [Google Docs](https://docs.google.com/document/d/1xLHEQCvM5F307nuTzwwLtv-PhNp3Nhn9RlOVhgtx1xA/edit?usp=sharing)
+
 Design-Planung für dieses Projekt finden Sie hier: [Figma](https://www.figma.com/team_invite/redeem/RQD2Pc5UUmaQnnjADXB8BA)
 
 

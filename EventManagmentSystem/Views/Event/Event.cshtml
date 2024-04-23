@@ -1,44 +1,43 @@
-﻿
+﻿@model EventManagmentSystem.Models.ViewModel.EventViewModel
 
-<h3>"Eventüberschrift"</h3>
+@{
+    ViewData["Title"] = "Event";
+}
+<h1>Event Übersicht</h1>
+<form method="post" action="/Booking/Book">
+    <div class="form-group">
+        <label for="title">Event Titel:</label>
+        <textarea id="title">@Model.Title</textarea>
+    </div>
 
-<br />
+    <br />
 
-<div class="form-group">
-	<label for="title">Event Titel:</label>
-	<input type="text" class="form-control" id="title" required>
-</div>
+    <div class="form-group">
+        <label for="description">Beschreibung:</label>
+        <textarea id="description">@Model.Description</textarea>
+    </div>
 
-<br />
+    <br />
 
-<div class="form-group">
-	<label for="description">Beschreibung:</label>
-	<textarea class="form-control" rows="5" id="description" required></textarea>
-</div>
+    <div class="form-group">
+        <label for="date">Datum und Uhrzeit:</label>
+        <textarea type="datetime-local" id="date">@Model.Date</textarea>
+    </div>
 
-<br />
+    <br />
 
-<div class="form-group">
-    <label for="date">
-        Datum und Uhrzeit auswählen:
-        <input type="datetime-local" class="form-control" id="date" required>
-    </label>
-</div>
+    <div class="form-group">
+        <label for="price">Preis:</label>
+        <textarea type="number" id="price">@Model.Price €</textarea>
+    </div>
 
-<br />
-
-<div class="form-group">
-	<label for="title">Tickets verkauft:</label>
-	<input type="number" class="form-control" id="numberOfSoldTickets" required>
-</div>
-
-<br />
-
-<div class="form-group">
-	<label for="title">Tickets verfügbar:</label>
-	<input type="number" class="form-control" id="numberOfSoldTickets" required>
-</div>
-
-<br />
-
-<button id="changeData" type="submit" class="btn btn-primary">Update</button>
+    <br />
+    <br />
+    <form asp-controller="Booking" asp-action="Book" method="post">
+        <input type="hidden" name="eventId" value="@Model.EventId" />
+        <input type="hidden" name="userId" value="@User.Identity.Name" />
+        <label for="numberOfTickets">Anzahl der Tickets:</label>
+        <input type="number" id="numberOfTickets" name="numberOfTickets" min="1" required>
+        <button type="submit">Tickets buchen</button>
+    </form>
+</form>

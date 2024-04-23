@@ -39,6 +39,14 @@ namespace EventManagmentSystem.Models.DbModel
 
         public string Salt { get; set; }
 
-        // public ICollection<Events> Event { get; set; }
+        public ICollection<Event> Events { get; set; }
+
+        public virtual ICollection<Booking> Bookings { get; set; }
+
+        public User()
+        {
+            Events = new HashSet<Event>();
+            Bookings = new HashSet<Booking>();
+        }
     }
 }
