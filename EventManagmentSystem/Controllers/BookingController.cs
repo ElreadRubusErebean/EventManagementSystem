@@ -38,19 +38,17 @@ namespace EventManagmentSystem.Controllers
 
         public async Task<IActionResult> UserBookings()
         {
-            // Benutzer-ID aus der Sitzung oder einem anderen Ort abrufen
             var userId = Convert.ToInt32(HttpContext.Session.GetString("UserID"));
-
-            // Buchungen des Benutzers abrufen
-            var bookings = await _bookingService.GetUserBookingsAsync(userId);
+            var bookingsWithDetails = await _bookingService.GetUserBookingsAsync(userId);
 
             var viewModel = new UserBookingsViewModel
             {
-                Bookings = bookings
+                Bookings = bookingsWithDetails
             };
 
             return View(viewModel);
         }
+
 
 
 
