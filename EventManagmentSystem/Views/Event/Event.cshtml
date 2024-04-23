@@ -3,49 +3,41 @@
 @{
     ViewData["Title"] = "Event";
 }
+<h1>Event Übersicht</h1>
+<form method="post" action="/Booking/Book">
+    <div class="form-group">
+        <label for="title">Event Titel:</label>
+        <textarea id="title">@Model.Title</textarea>
+    </div>
 
-<h3>"Eventüberschrift"</h3>
+    <br />
 
-<br />
+    <div class="form-group">
+        <label for="description">Beschreibung:</label>
+        <textarea id="description">@Model.Description</textarea>
+    </div>
 
-<div class="form-group">
-	<label for="title">Event Titel:</label>
-	<textarea id="title">@Model.Title</textarea>
-</div>
+    <br />
 
-<br />
+    <div class="form-group">
+        <label for="date">Datum und Uhrzeit:</label>
+        <textarea type="datetime-local" id="date">@Model.Date</textarea>
+    </div>
 
-<div class="form-group">
-	<label for="description">Beschreibung:</label>
-	<textarea  id="description">@Model.Description</textarea>
-</div>
+    <br />
 
-<br />
+    <div class="form-group">
+        <label for="price">Preis:</label>
+        <textarea type="number" id="price">@Model.Price €</textarea>
+    </div>
 
-<div class="form-group">
-    <label for="date">Datum und Uhrzeit:</label>
-    <textarea type="datetime-local" id="date">@Model.Date</textarea>  
-</div>
-
-<br />
-
-<div class="form-group">
-	<label for="price">Preis:</label>
-	<textarea type="number" id="price">@Model.Price €</textarea> 
-</div>
-
-<br />
-
-<div class="form-group">
-	<label for="title">Tickets verfügbar:</label>
-	<textarea type="number" id="amountOfTickets">@Model.AmountOfTickets</textarea> 
-</div>
-
-<div>
-	<label for="state">Status:</label>
-	<textarea id="state">@Model.State</textarea>
-</div>
-
-<br />
-
-<button id="buy" type="submit" class="btn btn-primary">Kaufen</button>
+    <br />
+    <br />
+    <form asp-controller="Booking" asp-action="Book" method="post">
+        <input type="hidden" name="eventId" value="@Model.EventId" />
+        <input type="hidden" name="userId" value="@User.Identity.Name" />
+        <label for="numberOfTickets">Anzahl der Tickets:</label>
+        <input type="number" id="numberOfTickets" name="numberOfTickets" min="1" required>
+        <button type="submit">Tickets buchen</button>
+    </form>
+</form>

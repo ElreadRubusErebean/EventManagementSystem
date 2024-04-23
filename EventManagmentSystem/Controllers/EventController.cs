@@ -38,6 +38,7 @@ namespace EventManagmentSystem.Controllers
             {
                 var viewModel = new EventViewModel()
                 {
+                    EventId = resultEvent.Value.EventId,
                     Title = resultEvent.Value.Title,
                     Description = resultEvent.Value.Description,
                     Date = resultEvent.Value.Date,
