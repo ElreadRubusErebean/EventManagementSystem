@@ -14,5 +14,9 @@ namespace EventManagmentSystem.Controllers
             TempData["ErrorMessage"] = message;
         }
 
+        protected void SetErrorMessageWithMessageType(string messageType, string message)
+        {
+            TempData[messageType] = message;
+        }
     }
 }
