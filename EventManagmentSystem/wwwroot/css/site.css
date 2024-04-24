@@ -28,16 +28,79 @@ html {
     color: white;
 }
 
+.nav-link{
+    margin: 5px;
+    padding: 0px;
+}
+
 #searchBtn {
-    margin-right: 1rem;
+    margin-left: 0.5rem;
     color: white;
     background-color: #0F4C4C;
 }
 
     #searchBtn:hover {
-        margin-right: 1rem;
         background-color: #125D5D;
         border-color: #125D5D;
+    }
+
+.btn-outline-warning {
+    background-color: #5C0E0E;
+    border-color: #FF0000;
+    color: #FF5733;
+}
+
+    .btn-outline-warning:hover {
+        background-color: #8B0000;
+        color: #FF5733;
+        border-color: #FF0000;
+    }
+
+.btn-outline-buyer {
+    background-color: #040D12;
+    border: 1px solid #93B1A6;
+    color: #93B1A6;
+}
+
+    .btn-outline-buyer:hover {
+        background-color: #040D12;
+        color: #AEC8BD;
+        border-color: #AEC8BD;
+    }
+
+.btn-outline-admin {
+    background-color: #040D12;
+    border: 1px solid #FF5733;
+    color: #FF5733;
+}
+
+    .btn-outline-admin:hover {
+        background-color: #040D12;
+        border-color: #FF7F50;
+        color: #FF7F50;
+    }
+
+.btn-outline-seller {
+    background-color: #040D12;
+    border: 1px solid #FF7F50;
+    color: #FF7F50;
+}
+
+    .btn-outline-seller:hover {
+        background-color: #040D12;
+        border-color: #FFA07A;
+        color: #FFA07A;
+    }
+
+    .btn-outline-seller:focus,
+    .btn-outline-seller:active {
+        border-color: #FF7F50;
+        outline: none;
+    }
+
+    .btn:focus,
+    .btn:active {
+        box-shadow: none !important;
     }
 
 body {
