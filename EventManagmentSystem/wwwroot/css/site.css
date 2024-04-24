@@ -118,7 +118,6 @@ body {
 .roundEdges {
     color: white;
     border: 1px solid #93B1A6;
-    border-color: #93B1A6;
     width: 80%;
     height: auto;
     background-color: rgba(24, 61, 61, 0.6); /* Farbe mit Alpha-Wert für Transparenz */
@@ -181,8 +180,6 @@ body {
         border-color: #93B1A6;
     }
 
-/*test*/
-
 .card {
     margin: auto;
     background-color: rgba(4, 21, 21, 0.6);
@@ -201,5 +198,59 @@ body {
 }
 
 .table {
+    color: white;
+}
+
+.event-list {
+    list-style: none;
+    padding: 0;
+}
+
+.event-item {
+    background-color: rgba(4, 21, 21, 0.6);
+    border: 1px solid #93B1A6;
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+    .event-item:hover {
+        background-color: rgba(4, 21, 21, 0.9);
+        transform: scale(1.01);
+    }
+
+.event-link {
+    text-decoration: none;
+    color: white;
+    display: block;
+}
+
+.event-link:hover {
+    color: white;
+}
+
+.event-content {
+    display: flex;
+    flex-direction: column;
+}
+
+.event-title {
+    font-size: 1.25em;
+    color: white;
+    font-weight: bold;
+}
+
+.event-description {
+    font-style: italic;
+}
+
+.event-description,
+.event-price,
+.event-tickets,
+.event-date {
+    margin: 5px 0;
+    font-size: 1em;
     color: white;
 }
