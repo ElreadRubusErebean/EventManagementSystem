@@ -11,44 +11,44 @@
     </div>
 }
 
+<h1>Schritt für Schritt zum neuen Event</h1>
 <hr class="spacingLine-light" />
-<h1>Create Event</h1>
 
 <form asp-action="Create" asp-controller="Event" method="post">
     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
     <div class="form-group">
-        <label asp-for="Title" class="control-label"></label>
+        <label asp-for="Title" class="control-label">Titel des Events</label>
         <input asp-for="Title" class="form-control" />
         <span asp-validation-for="Title" class="text-danger"></span>
     </div>
-
+    <br />
     <div class="form-group">
-        <label asp-for="Description" class="control-label"></label>
+        <label asp-for="Description" class="control-label">Beschreibe, worum es in dem Event geht</label>
         <textarea asp-for="Description" class="form-control"></textarea>
         <span asp-validation-for="Description" class="text-danger"></span>
     </div>
-
+    <br />
     <div class="form-group">
-        <label asp-for="Date" class="control-label"></label>
+        <label asp-for="Date" class="control-label">Wähle das Datum und die Uhrzeit für das Event aus</label>
         <input asp-for="Date" class="form-control" type="datetime-local" />
         <span asp-validation-for="Date" class="text-danger"></span>
     </div>
-
+    <br />
     <div class="form-group">
-        <label asp-for="Price" class="control-label"></label>
+        <label asp-for="Price" class="control-label">Lege den Ticketpreis fest</label>
         <input asp-for="Price" class="form-control" type="number" step="0.01" />
         <span asp-validation-for="Price" class="text-danger"></span>
     </div>
-
+    <br />
     <div class="form-group">
-        <label asp-for="AmountOfTickets" class="control-label"></label>
+        <label asp-for="AmountOfTickets" class="control-label">Gib die Anzahl der verfügbaren Tickets an</label>
         <input asp-for="AmountOfTickets" class="form-control" type="number" />
         <span asp-validation-for="AmountOfTickets" class="text-danger"></span>
     </div>
-
+    <br />
     <div class="form-group">
-        <input type="submit" value="Create" class="btn btn-primary" />
+        <button type="submit" value="Create" class="btn btn-primary">Event erstellen</button>
     </div>
 </form>
 
