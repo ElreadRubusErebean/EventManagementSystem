@@ -25,6 +25,18 @@ namespace EventManagmentSystem.Controllers
             return View(viewModel);
         }
 
+        public async Task<IActionResult> CancelBooking(int bookingId)
+        {
+            // Aufruf der Stornierungsmethode aus dem Service
+            //Todo Überprüfen UserId und BookingId ob sie zusammengehören 
+            await _bookingService.Cancel(bookingId);
+
+            //Weiterleitung oder Aktualisierung der Ansicht
+            SetSuccessMessage("Buchung wurde erfolgreich storniert");
+            return RedirectToAction("Index", "Home");
+        }
+
+
 
 
 

@@ -6,41 +6,39 @@
 <h1>Mein Konto</h1>
 <hr class="spacingLine-light" />
 <main>
-    
-        <div class="d-flex justify-content-center">
-            <a asp-action="Seller" asp-controller="Seller" methode="Get" class="mx-2">
-                <button type="submit" class="btn btn-primary">Meine Daten</button>
-            </a>
-            <a asp-action="MyEvents" asp-controller="Seller" methode="Get">
-                <button type="submit" class="btn btn-primary">Meine Events</button>
-            </a>
-        </div>
-        <hr class="spacingLine-light" />
-        <div class="mx-auto">
-            <dl class="row">
-                <dt class="col-sm-2">E-Mail</dt>
-                <dd class="col-sm-9">@Model.Email</dd>
+  <div class="d-flex justify-content-center">
+      <a asp-action="Seller" asp-controller="Seller" methode="Get" class="mx-2">
+          <button type="submit" class="btn btn-primary">Meine Daten</button>
+      </a>
+      <a asp-action="MyEvents" asp-controller="Seller" methode="Get">
+          <button type="submit" class="btn btn-primary">Meine Events</button>
+      </a>
+  </div>
+  <hr class="spacingLine-light" />
+  <div class="mx-auto">
+      <dl class="row">
+          <dt class="col-sm-2">E-Mail</dt>
+          <dd class="col-sm-9">@Model.Email</dd>
 
-                <dt class="col-sm-2">Vorname</dt>
-                <dd class="col-sm-9">@Model.FirstName</dd>
+          <dt class="col-sm-2">Vorname</dt>
+          <dd class="col-sm-9">@Model.FirstName</dd>
 
-                <dt class="col-sm-2">Nachname</dt>
-                <dd class="col-sm-9">@Model.LastName</dd>
+          <dt class="col-sm-2">Nachname</dt>
+          <dd class="col-sm-9">@Model.LastName</dd>
 
-                <dt class="col-sm-2">Benutzername</dt>
-                <dd class="col-sm-9">@Model.UserName</dd>
-                <!-- Weitere Benutzerinformationen hier -->
-            </dl>
-        </div>
-    
-    <hr class="spacingLine-light" />
-    <div class="d-flex justify-content-center">
-    <!-- Formular zum Löschen des eigenen Kontos -->
-    <form method="post" action="@Url.Action("DeleteKonto", "Seller")"
-          onsubmit="return confirm('Sind Sie sicher, dass Sie Ihr Konto löschen möchten? Dieser Vorgang kann nicht rückgängig gemacht werden.');">
-          <a asp-action="MyEvents" asp-controller="Seller" methode="Get">
-            <button type="submit" class="btn btn-danger">Mein Konto löschen</button>
-          </a>
-    </form>
-    </div>    
+          <dt class="col-sm-2">Benutzername</dt>
+          <dd class="col-sm-9">@Model.UserName</dd>
+          <!-- Weitere Benutzerinformationen hier -->
+      </dl>
+  </div>
+  <hr class="spacingLine-light" />
+  <div class="d-flex justify-content-center">
+  <!-- Formular zum Lï¿½schen des eigenen Kontos -->
+  <form method="post" action="@Url.Action("DeleteKonto", "Seller")"
+        onsubmit="return confirm('Sind Sie sicher, dass Sie Ihr Konto lï¿½schen mï¿½chten? Dieser Vorgang kann nicht rï¿½ckgï¿½ngig gemacht werden.');">
+        <a asp-action="MyEvents" asp-controller="Seller" methode="Get">
+          <button type="submit" class="btn btn-danger">Mein Konto lï¿½schen</button>
+        </a>
+  </form>
+  </div>
 </main>

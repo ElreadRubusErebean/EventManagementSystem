@@ -20,6 +20,12 @@
                 <td>@item.Event.Date.ToString("dd.MM.yyyy HH:mm")</td>
                 <td>@item.Booking.AmountOfTickets</td>
                 <td>@item.Booking.BookingDate.ToString("dd.MM.yyyy HH:mm")</td>
+                <!--Button zum Stornieren-->
+                <td>
+                    <form method="post" action="@Url.Action("CancelBooking", "Booking")">
+                        <input type="hidden" name="bookingId" value="@item.Booking.BookingId" />
+                        <button type="submit" class="btn btn-danger">Stornieren</button>
+                    </form>
             </tr>
         }
     </tbody>

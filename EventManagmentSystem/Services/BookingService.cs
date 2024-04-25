@@ -63,13 +63,37 @@ namespace EventManagmentSystem.Services
          * check, ob Datum des Events noch nicht vorbei ist
          * Anzahl der Tickets zu AmountOfTickets addieren
          * Booking löschen
-         * Bestätigungsmail an User senden
          */
 
-        public void CancelBooking()
+        public async Task Cancel(int bookingId)
         {
+            var booking = await _context.Bookings
+                                        .Include(b => b.Event)
+                                        .FirstOrDefaultAsync(b => b.BookingId == bookingId);
 
+            if (booking == null)
+            {
+                // Buchung nicht gefunden
+                return;
+            }
+
+            // Überprüfen, ob das Eventdatum noch nicht vergangen ist
+            if (booking.Event.Date < DateTime.Now)
+            {
+                // Eventdatum ist bereits vergangen, Stornierung nicht möglich
+                //ToDo : Fehlermeldung anzeigen
+                return;
+            }
+
+            // Anzahl der Tickets zur Veranstaltung hinzufügen
+            booking.Event.AmountOfTickets += booking.AmountOfTickets;
+
+            // Buchung löschen
+            _context.Bookings.Remove(booking);
+
+            await _context.SaveChangesAsync();
         }
+
 
         //Buchungen anzeigen für User
         /*
