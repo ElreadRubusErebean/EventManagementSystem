@@ -1,0 +1,40 @@
+﻿<h3>Adminübersicht</h3>
+
+<div id="adminViewSwitcher" class="justify-content-evenly">
+    <a asp-area="" asp-controller="Admin" asp-action="Admin_EventOverview" class="btn-primary">Eventübersicht</a>
+    <a asp-area="" asp-controller="Admin" asp-action="Admin" class="btn-primary">Mein Konto</a>
+</div>
+
+<h3>Adminübersicht</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>UserID</th>
+                <th>Vorname</th>
+                <th>Nachname</th>
+                <th>Email</th>
+                <th>Admin Status</th>
+                <th>UserName</th>
+                <th></th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+                <tr>
+                    <td>UserId</td>
+                    <td>FirstName</td>
+                    <td>LastName</td>
+                    <td>Email</td>
+                    <td>IsAdmin</td>
+                    <td>UserName</td>
+
+                    <td><a href="#">Edit</a></td>
+                    <td>
+                        <form>
+                            <button type="submit" class="btn btn-danger" onclick="return confirm('Sind Sie sicher, dass Sie diesen Benutzer löschen möchten?');">Löschen</button>
+                        </form>
+                    </td>
+                </tr>
+        </tbody>
+    </table>
