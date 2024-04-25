@@ -1,6 +1,6 @@
 @model EventManagmentSystem.Models.ViewModel.UserViewModel;
 @{
-    ViewData["Title"] = "Profile";
+    ViewData["Title"] = "Seller";
 }
 
 <h3>Mein Konto</h3>
@@ -8,40 +8,30 @@
 <main>
     <div class="profile-header">
         <h4>Benutzerdaten</h4>
-        <hr />
+        <hr class="spacingLine-light" />
         <dl class="row">
-            <dt>E-Mail</dt>
-            <dd>@Model.Email</dd>
+            <dt class="col-sm-3">E-Mail</dt>
+            <dd class ="col-sm-9">@Model.Email</dd>
 
-            <dt>Vorname</dt>
-            <dd>@Model.FirstName</dd>
+            <dt class="col-sm-3">Vorname</dt>
+            <dd class="col-sm-9">@Model.FirstName</dd>
 
-            <dt>Nachname</dt>
-            <dd>@Model.LastName</dd>
+            <dt class="col-sm-3">Nachname</dt>
+            <dd class="col-sm-9">@Model.LastName</dd>
 
-            <dt>Benutzername</dt>
-            <dd>@Model.UserName</dd>
+            <dt class="col-sm-3">Benutzername</dt>
+            <dd class="col-sm-9">@Model.UserName</dd>
             <!-- Weitere Benutzerinformationen hier -->
         </dl>
     </div>
- <!--Eventlist-->       
-    <div id="bookedEvents">
-    <!--code: foreach Event create vvv -->
-        <section>
-            <p>TITEL</p>
-            <p>BESCHREIBUNG</p>
-            <p>ORT</p>
-            <p>DATUM</p>
-            <!--get parentelement by name?-->
-            <button id="deleteEventBtn">Event löschen</button>
-        </section>
-    </div>
+    <hr class="spacingLine-light" />
     <button id="addEventBtn">Event hinzufügen</button>
+
     <!-- Formular zum Löschen des eigenen Kontos -->
     <form method="post" action="@Url.Action("DeleteKonto", "Seller")"
-          onsubmit="return confirm('Sind Sie sicher, dass Sie Ihr Konto slöschen möchten? Dieser Vorgang kann nicht rückgängig gemacht werden.');">
-        <button type="submit" class="btn btn-danger">Konto löschen</button>
+          onsubmit="return confirm('Sind Sie sicher, dass Sie Ihr Konto löschen möchten? Dieser Vorgang kann nicht rückgängig gemacht werden.');">
     </form>
+
     <!--Link zu MyEvents Seite-->
     <a asp-action="MyEvents" asp-controller="Seller" methode="Get">Meine Events</a>
 </main>
