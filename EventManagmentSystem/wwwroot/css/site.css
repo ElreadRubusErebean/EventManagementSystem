@@ -28,16 +28,79 @@ html {
     color: white;
 }
 
+.nav-link{
+    margin: 5px;
+    padding: 0px;
+}
+
 #searchBtn {
-    margin-right: 1rem;
+    margin-left: 0.5rem;
     color: white;
     background-color: #0F4C4C;
 }
 
     #searchBtn:hover {
-        margin-right: 1rem;
         background-color: #125D5D;
         border-color: #125D5D;
+    }
+
+.btn-outline-warning {
+    background-color: #5C0E0E;
+    border-color: #FF0000;
+    color: #FF5733;
+}
+
+    .btn-outline-warning:hover {
+        background-color: #8B0000;
+        color: #FF5733;
+        border-color: #FF0000;
+    }
+
+.btn-outline-buyer {
+    background-color: #040D12;
+    border: 1px solid #93B1A6;
+    color: #93B1A6;
+}
+
+    .btn-outline-buyer:hover {
+        background-color: #040D12;
+        color: #AEC8BD;
+        border-color: #AEC8BD;
+    }
+
+.btn-outline-admin {
+    background-color: #040D12;
+    border: 1px solid #FF5733;
+    color: #FF5733;
+}
+
+    .btn-outline-admin:hover {
+        background-color: #040D12;
+        border-color: #FF7F50;
+        color: #FF7F50;
+    }
+
+.btn-outline-seller {
+    background-color: #040D12;
+    border: 1px solid #FF7F50;
+    color: #FF7F50;
+}
+
+    .btn-outline-seller:hover {
+        background-color: #040D12;
+        border-color: #FFA07A;
+        color: #FFA07A;
+    }
+
+    .btn-outline-seller:focus,
+    .btn-outline-seller:active {
+        border-color: #FF7F50;
+        outline: none;
+    }
+
+    .btn:focus,
+    .btn:active {
+        box-shadow: none !important;
     }
 
 body {
@@ -48,12 +111,13 @@ body {
     background-color: black;
     background-image: url("/images/background.jpg");
     background-size: cover;
+    margin: 0;
+    padding: 0;
 }
 
 .roundEdges {
     color: white;
     border: 1px solid #93B1A6;
-    border-color: #93B1A6;
     width: 80%;
     height: auto;
     background-color: rgba(24, 61, 61, 0.6); /* Farbe mit Alpha-Wert für Transparenz */
@@ -116,8 +180,6 @@ body {
         border-color: #93B1A6;
     }
 
-/*test*/
-
 .card {
     margin: auto;
     background-color: rgba(4, 21, 21, 0.6);
@@ -135,6 +197,60 @@ body {
     justify-content: space-evenly;
 }
 
-.table{
+.table {
+    color: white;
+}
+
+.event-list {
+    list-style: none;
+    padding: 0;
+}
+
+.event-item {
+    background-color: rgba(4, 21, 21, 0.6);
+    border: 1px solid #93B1A6;
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+    .event-item:hover {
+        background-color: rgba(4, 21, 21, 0.9);
+        transform: scale(1.01);
+    }
+
+.event-link {
+    text-decoration: none;
+    color: white;
+    display: block;
+}
+
+.event-link:hover {
+    color: white;
+}
+
+.event-content {
+    display: flex;
+    flex-direction: column;
+}
+
+.event-title {
+    font-size: 1.25em;
+    color: white;
+    font-weight: bold;
+}
+
+.event-description {
+    font-style: italic;
+}
+
+.event-description,
+.event-price,
+.event-tickets,
+.event-date {
+    margin: 5px 0;
+    font-size: 1em;
     color: white;
 }

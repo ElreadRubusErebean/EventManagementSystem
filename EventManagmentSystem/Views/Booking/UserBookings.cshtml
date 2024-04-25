@@ -1,0 +1,26 @@
+﻿@model EventManagmentSystem.Models.ViewModel.UserBookingsViewModel;
+
+<h4>Buchungen</h4>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Event-Titel</th>
+            <th>Event-Beschreibung</th>
+            <th>Event-Datum</th>
+            <th>Anzahl der Tickets</th>
+            <th>Gebuchtes Datum</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Bookings)
+        {
+            <tr>
+                <td>@item.Event.Title</td>
+                <td>@item.Event.Description</td>
+                <td>@item.Event.Date.ToString("dd.MM.yyyy HH:mm")</td>
+                <td>@item.Booking.AmountOfTickets</td>
+                <td>@item.Booking.BookingDate.ToString("dd.MM.yyyy HH:mm")</td>
+            </tr>
+        }
+    </tbody>
+</table>

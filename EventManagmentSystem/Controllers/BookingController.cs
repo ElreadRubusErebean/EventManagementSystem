@@ -1,4 +1,5 @@
-﻿using EventManagmentSystem.Services;
+﻿using EventManagmentSystem.Models.ViewModel;
+using EventManagmentSystem.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EventManagmentSystem.Controllers
@@ -11,29 +12,20 @@ namespace EventManagmentSystem.Controllers
         {
             _bookingService = bookingService;
         }
-
-        [HttpPost]
-        public async Task<IActionResult> Book(int eventId, int numberOfTickets)
+        public async Task<IActionResult> UserBookings()
         {
-            // Die Benutzer-ID aus der Sitzung abrufen oder aus einem anderen Ort, z. B. dem Anmeldeprozess
             var userId = Convert.ToInt32(HttpContext.Session.GetString("UserID"));
+            var bookingsWithDetails = await _bookingService.GetUserBookingsAsync(userId);
 
-            // Buchung durchführen
-            bool success = await _bookingService.CreateBooking(eventId, userId, numberOfTickets);
+            var viewModel = new UserBookingsViewModel
+            {
+                Bookings = bookingsWithDetails
+            };
 
-            // Wenn die Buchung erfolgreich war
-            if (success)
-            {
-                SetSuccessMessage("Booking successful.");
-                return RedirectToAction("Index", "Home");
-            }
-            // Wenn die Buchung fehlgeschlagen ist
-            else
-            {
-                SetErrorMessage("Booking failed.");
-                return RedirectToAction("Index", "Home");
-            }
+            return View(viewModel);
         }
+
+
 
 
     }
