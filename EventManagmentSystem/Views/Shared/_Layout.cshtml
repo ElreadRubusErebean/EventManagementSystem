@@ -23,16 +23,15 @@
                         <li class="nav-item">
                             <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
-                         @if (Context.Session.GetString("UserID") != null)
-                            {
-                        @if (Context.Session.GetString("UserRole").Equals("Seller"))
+                        @if (Context.Session.GetString("UserID") != null)
                         {
-                            <li class="nav-item">
-                                <a class="nav-link text-light" asp-area="" asp-controller="Event" asp-action="EventCreate">Event erstellen</a>
-                            </li>
-                            
-                        }
+                            @if (Context.Session.GetString("UserRole").Equals("Seller"))
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link text-light" asp-area="" asp-controller="Event" asp-action="EventCreate">Event erstellen</a>
+                                </li>
                             }
+                        }
                         <li class="nav-item">
                             <a class="nav-link text-light" asp-area="" asp-controller="Event" asp-action="EventOverview">Event-Übersicht</a>
                         </li>
@@ -94,15 +93,23 @@
 
     @{
         string selectBodyContainer = "";
-        if (ViewContext.RouteData.Values["controller"]?.ToString() == "Login" &&        /* Hier wird eine div class für @RenderBody() ausgewählt. */
-        ViewContext.RouteData.Values["action"]?.ToString() == "Login")
-        {
-            selectBodyContainer = "roundEdgesLogin";                                    /* Wenn die Login Seite aufgerufen wird, wird diese div class genommen */
-        }
+        string currentController = ViewContext.RouteData.Values["controller"]?.ToString();
+        string currentAction = ViewContext.RouteData.Values["action"]?.ToString();
+
+        if (currentController == "Login" && currentAction == "Login")
+            {
+                selectBodyContainer = "roundEdgesLogin";
+            }
+        else if ((currentController == "Seller" && currentAction == "Seller") ||
+        (currentController == "Buyer" && currentAction == "Profile") ||
+        (currentController == "Buyer" && currentAction == "UpdateProfile"))
+            {
+                selectBodyContainer = "roundEdgesSmall";
+            }
         else
-        {
-            selectBodyContainer = "roundEdges";                                         /* Alle anderen Seiten verwenden diese Standart class */
-        }
+            {
+                selectBodyContainer = "roundEdges";
+            }
     }
 
     <div class="@selectBodyContainer">                                                  
