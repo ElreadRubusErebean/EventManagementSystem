@@ -80,7 +80,7 @@ namespace EventManagmentSystem.Controllers
             return RedirectToAction("Index", "Home");
         }
 
-        // Profil bearbeiten
+        // Methode zum Updaten des Benutzerkontos
         [HttpGet]
         public async Task<IActionResult> UpdateProfile()
         {
@@ -111,6 +111,44 @@ namespace EventManagmentSystem.Controllers
             };
 
             return View(model);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> UpdateProfile(UserViewModel model)
+        {
+            // Benutzer-ID 
+            var userIdString = HttpContext.Session.GetString("UserID");
+            if (!int.TryParse(userIdString, out var userId))
+            {
+                //wenn die Benutzer-ID nicht vorhanden ist, wird der Benutzer auf die Startseite umgeleitet
+                return NotFound();
+            }
+
+            // Benutzerdaten asynchron mit der Benutzer-ID abrufen
+            var user = await _userService.GetUserAsync(userId);
+            if (user == null)
+            {
+                // Benutzer nicht gefunden
+                return NotFound();
+            }
+
+            // Benutzerdaten aktualisieren
+            user.FirstName = model.FirstName;
+            user.LastName = model.LastName;
+            user.UserName = model.UserName;
+            user.Email = model.Email;
+            // Benutzerdaten speichern
+            var success = await _userService.UpdateUserAsync(user);
+            if (!success)
+            {
+                SetErrorMessage("Benutzer konnte nicht aktualisiert werden");
+            }
+            else
+            {
+                SetSuccessMessage("Benutzerdaten erfolgreich aktualisiert");
+            }
+
+            return RedirectToAction("Seller");
         }
 
         /// <summary>
