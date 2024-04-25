@@ -121,14 +121,34 @@ namespace EventManagmentSystem.Services
         //Methode zum löschen des Benutzerkontos
         public async Task<bool> DeleteUserAsync(int userId)
         {
+            /// <summary>
+            /// To Do : wenn User noch offene Buchungen hat, dann werden diese einfach gelöscht
+            /// wenn User sein Konto löscht
+            /// </summary>            
             var user = await _context.Users.FirstOrDefaultAsync(u => u.UserId == userId);
             if (user == null)
             {
                 return false;
             }
 
+            //hier wird geprüft, ob der User noch offene Buchungen hat
+            var bookings = await _context.Bookings.Where(b => b.UserId == userId).ToListAsync();
+            foreach (var booking in bookings)
+            {
+                var ev = await _context.Events.FirstOrDefaultAsync(e => e.EventId == booking.EventId);
+                if (ev != null)
+                {
+                    //Anzahl der verfügbaren Tickets aktualisierens
+                    ev.AmountOfTickets += booking.AmountOfTickets;
+                }
+                _context.Bookings.Remove(booking);
+            }
+            await _context.SaveChangesAsync();
+
+            // Benutzer löschen
             _context.Users.Remove(user);
             await _context.SaveChangesAsync();
+
             return true;
         }
 
