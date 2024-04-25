@@ -80,6 +80,39 @@ namespace EventManagmentSystem.Controllers
             return RedirectToAction("Index", "Home");
         }
 
+        // Profil bearbeiten
+        [HttpGet]
+        public async Task<IActionResult> UpdateProfile()
+        {
+            // Benutzer-ID 
+            var userIdString = HttpContext.Session.GetString("UserID");
+            if (!int.TryParse(userIdString, out var userId))
+            {
+                // Wenn die Benutzer-ID nicht vorhanden ist, wird der Benutzer auf die Startseite umgeleitet
+                return NotFound();
+            }
+
+            // Ich rufe hier die Methode GetUserAsync() aus dem UserService auf
+            // Damit ich die Daten des Benutzers abrufen kann
+            var user = await _userService.GetUserAsync(userId);
+            if (user == null)
+            {
+                // Benutzer nicht gefunden
+                return NotFound();
+            }
+
+            // Model für die View vorbereiten
+            var model = new UserViewModel
+            {
+                Email = user.Email,
+                UserName = user.UserName,
+                FirstName = user.FirstName,
+                LastName = user.LastName,
+            };
+
+            return View(model);
+        }
+
         /// <summary>
         /// meine Events anzeigen
         /// </summary>
