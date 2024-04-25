@@ -18,12 +18,11 @@
         @TempData["SuccessMessage"]
     </div>
 }
-<br />
 <hr class="spacingLine-light"/>
 
 <form asp-action ="Login" method="post">
     <div class="form-group">
-        <label asp-for="Email">Email</label>
+        <label asp-for="Email">E-Mail Adresse</label>
         <input asp-for="Email" type="email" class="form-control" id="email" required>
     </div>
 
@@ -35,6 +34,6 @@
     </div>
 
     <br />
-
+    <hr class="spacingLine-light" />
     <button id="login" type="submit" class="btn btn-primary">Einloggen</button>
 </form>
