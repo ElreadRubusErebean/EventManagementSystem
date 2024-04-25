@@ -23,9 +23,16 @@
                         <li class="nav-item">
                             <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-light" asp-area="" asp-controller="Event" asp-action="EventCreate">Event erstellen</a>
-                        </li>
+                         @if (Context.Session.GetString("UserID") != null)
+                            {
+                        @if (Context.Session.GetString("UserRole").Equals("Seller"))
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-light" asp-area="" asp-controller="Event" asp-action="EventCreate">Event erstellen</a>
+                            </li>
+                            
+                        }
+                            }
                         <li class="nav-item">
                             <a class="nav-link text-light" asp-area="" asp-controller="Event" asp-action="EventOverview">Event-Übersicht</a>
                         </li>
@@ -84,8 +91,22 @@
             </div>
         </nav>
     </header>
-    <div class="roundEdges">
-        <main role="main" class="pb-3">
+
+    @{
+        string selectBodyContainer = "";
+        if (ViewContext.RouteData.Values["controller"]?.ToString() == "Login" &&        /* Hier wird eine div class für @RenderBody() ausgewählt. */
+        ViewContext.RouteData.Values["action"]?.ToString() == "Login")
+        {
+            selectBodyContainer = "roundEdgesLogin";                                    /* Wenn die Login Seite aufgerufen wird, wird diese div class genommen */
+        }
+        else
+        {
+            selectBodyContainer = "roundEdges";                                         /* Alle anderen Seiten verwenden diese Standart class */
+        }
+    }
+
+    <div class="@selectBodyContainer">                                                  
+        <main role="main" class="pb-0">
             @RenderBody()
         </main>
     </div>

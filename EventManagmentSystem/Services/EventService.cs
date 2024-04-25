@@ -49,4 +49,9 @@ public class EventService
         
         return new ResultObject<Event>().Success(eventById);
     }
+
+    public async Task<List<Event>> GetAllSellerEventsAsync(int userId)
+    {
+        return await _context.Events.Where(e => e.UserId == userId).ToListAsync();
+    }
 }
