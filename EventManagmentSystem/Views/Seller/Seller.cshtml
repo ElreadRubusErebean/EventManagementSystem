@@ -1,24 +1,28 @@
-<PageTitle>Mein Konto</PageTitle>
+@model EventManagmentSystem.Models.ViewModel.UserViewModel;
+@{
+    ViewData["Title"] = "Profile";
+}
 
 <h3>Mein Konto</h3>
 
 <main>
-<button id="changeViewBtn">zu EVENTS/DATEN wechseln</button>
-    <div id="persData" class="form-group">
-            <label for="firstName">Vorname:</label>
-            <input name="firstName" type="text" class="accDetailInputs" required/>
-            <label for="lastName">Nachname</label>
-            <input name="lastName" type="text" class="accDetailInputs" required/>
+    <div class="profile-header">
+        <h4>Benutzerdaten</h4>
+        <hr />
+        <dl class="row">
+            <dt>E-Mail</dt>
+            <dd>@Model.Email</dd>
 
-            <label for="email">E-Mail Adresse:</label>
-            <input name="email" type="email" class="accDetailInputs" required/>
-            <label for="password">Passwort</label>
-            <input name="password" type="password" class="accDetailInputs" required/>
+            <dt>Vorname</dt>
+            <dd>@Model.FirstName</dd>
 
-            <br/>
-            <button id="changeDetailsBtn">PLACEHOLDER</button>
-            <button id="deleteAccBtn">Konto löschen</button>
-            <button id="logoutBtn">logout</button>
+            <dt>Nachname</dt>
+            <dd>@Model.LastName</dd>
+
+            <dt>Benutzername</dt>
+            <dd>@Model.UserName</dd>
+            <!-- Weitere Benutzerinformationen hier -->
+        </dl>
     </div>
  <!--Eventlist-->       
     <div id="bookedEvents">
