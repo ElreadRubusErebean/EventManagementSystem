@@ -84,8 +84,22 @@
             </div>
         </nav>
     </header>
-    <div class="roundEdges">
-        <main role="main" class="pb-3">
+
+    @{
+        string selectBodyContainer = "";
+        if (ViewContext.RouteData.Values["controller"]?.ToString() == "Login" &&        /* Hier wird eine div class für @RenderBody() ausgewählt. */
+        ViewContext.RouteData.Values["action"]?.ToString() == "Login")
+        {
+            selectBodyContainer = "roundEdgesLogin";                                    /* Wenn die Login Seite aufgerufen wird, wird diese div class genommen */
+        }
+        else
+        {
+            selectBodyContainer = "roundEdges";                                         /* Alle anderen Seiten verwenden diese Standart class */
+        }
+    }
+
+    <div class="@selectBodyContainer">                                                  
+        <main role="main" class="pb-0">
             @RenderBody()
         </main>
     </div>
