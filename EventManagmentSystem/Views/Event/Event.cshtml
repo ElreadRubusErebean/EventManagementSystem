@@ -4,36 +4,28 @@
     ViewData["Title"] = "Event";
 }
 
-<h1>@Model.Title</h1>
-<hr class="spacingLine-light" />
-
 <form method="post" action="/Booking/Book">
-    <div class="form-group">
-        <label for="title" id="title">Titel des Events</label>
-        <p class="event-title" id="description">@Model.Title</p>
+    <div class="jumbotron">
+        <h1 class="display-4" id="description">@Model.Title</h1>
+        <hr class="my-4">
+        <p class="lead" id="description">@Model.Description</p>
+        <hr class="spacingLine-light" />
+        <div class="form-group">
+            <label for="date" style="font-weight: bold;">Datum und Uhrzeit</label>
+            <p class="event-date" id="date">@Model.Date</p>
+        </div>
+        <br />
+        <div class="form-group">
+            <label for="price" style="font-weight: bold;">Preis</label>
+            <p class="event-price" id="price">@Model.Price €</p>
+        </div>
+        <br />
+        <div class="form-group">
+            <label for="tickets" style="font-weight: bold;">Verfügbare Tickets</label>
+            <p class="event-tickets" id="tickets">@Model.AmountOfTickets</p>
+        </div>
+        <br />
     </div>
-    <br />
-    <div class="form-group">
-        <label for="description">Beschreibung des Events</label>
-        <p class="event-description" id="description">@Model.Description</p>
-    </div>
-    <br />
-    <div class="form-group">
-        <label for="date">Datum und Uhrzeit</label>
-        <p class="event-date" id="date">@Model.Date</p>
-    </div>
-    <br />
-    <div class="form-group">
-        <label for="price">Preis</label>
-        <p class="event-price" id="price">@Model.Price €</p>
-    </div>
-    <br />
-    <!--Tickets Anzahl-->
-    <div class="form-group">
-        <label for="tickets">Anzahl der verfügbaren Tickets</label>
-        <p class="event-tickets" id="tickets">@Model.AmountOfTickets</p>
-    </div>
-    <br />
 </form>
 
 <script>
@@ -48,6 +40,7 @@
         return true;
     }
 </script>
+
    @if (Context.Session.GetString("UserRole").Equals("NormalUser"))
     {
     <form asp-controller="Payment" asp-action="Payment" method="get" onsubmit="return validateNumberOfTickets()">
