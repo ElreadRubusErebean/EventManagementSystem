@@ -1,20 +1,16 @@
-﻿@model EventManagmentSystem.Models.ViewModel.EventOverview
-
-@{
-    ViewData["Title"] = "Event Overview";
-}
-
-<h1>Events</h1>
-<hr class="spacingLine-light" />
-
+﻿@model IEnumerable<EventManagmentSystem.Models.DbModel.Event>
+<!--Events des angemeldeten sellers-->
+<!--Hier kann der Seller seine Events sehens-->
+<h1>Meine Events</h1>
 <ul class="event-list">
-    @foreach (var eventItem in Model.ListOfEvents)
+    @foreach (var eventItem in Model)
     {
         <li class="event-item">
             <a class="event-link" asp-action="Event" asp-controller="Event" asp-route-id="@eventItem.EventId">
                 <div class="event-content">
                     <strong class="event-title">@eventItem.Title</strong>
-                    <p class="event-date">Findet am @eventItem.Date.ToString("dd/MM/yyyy") statt.</p>
+                    <p class="event-date
+                    ">Findet am @eventItem.Date.ToString("dd/MM/yyyy") statt.</p>
                     <p class="event-description">@eventItem.Description</p>
                     <p class="event-price">@eventItem.Price €</p>
                     <p class="event-tickets">@eventItem.AmountOfTickets Tickets sind noch verfügbar.</p>

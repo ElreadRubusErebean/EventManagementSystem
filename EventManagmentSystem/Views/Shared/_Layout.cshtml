@@ -23,9 +23,16 @@
                         <li class="nav-item">
                             <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-light" asp-area="" asp-controller="Event" asp-action="EventCreate">Event erstellen</a>
-                        </li>
+                         @if (Context.Session.GetString("UserID") != null)
+                            {
+                        @if (Context.Session.GetString("UserRole").Equals("Seller"))
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-light" asp-area="" asp-controller="Event" asp-action="EventCreate">Event erstellen</a>
+                            </li>
+                            
+                        }
+                            }
                         <li class="nav-item">
                             <a class="nav-link text-light" asp-area="" asp-controller="Event" asp-action="EventOverview">Event-Übersicht</a>
                         </li>
