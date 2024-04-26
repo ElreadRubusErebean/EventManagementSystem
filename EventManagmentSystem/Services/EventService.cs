@@ -54,4 +54,29 @@ public class EventService
     {
         return await _context.Events.Where(e => e.UserId == userId).ToListAsync();
     }
+    
+    public async Task<ResultObject<Event>> ChangeEventAsync(int eventId, EventViewModel eventViewModel)
+    {
+        var changingEvent = await GetEventByIdAsync(eventId);
+
+        //Check if event was found
+        if (!changingEvent.IsSuccess)
+        {
+            return new ResultObject<Event>().Failure("Event konnte nicht geändert werden.");
+        }
+
+        //Update Eventdata
+        changingEvent.Value.Title = eventViewModel.Title;
+        changingEvent.Value.Description = eventViewModel.Description;
+        changingEvent.Value.AmountOfTickets = eventViewModel.AmountOfTickets;
+        changingEvent.Value.Date = eventViewModel.Date;
+        changingEvent.Value.Price = eventViewModel.Price;
+        changingEvent.Value.State = eventViewModel.State;
+
+        _context.Events.Update(changingEvent.Value);
+
+        //save changes for the DB
+        await _context.SaveChangesAsync();
+        return new ResultObject<Event>().Success(changingEvent.Value);
+    }
 }

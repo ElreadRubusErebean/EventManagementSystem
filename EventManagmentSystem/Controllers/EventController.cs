@@ -3,6 +3,7 @@ using EventManagmentSystem.Models.DbModel;
 using EventManagmentSystem.Models.ViewModel;
 using EventManagmentSystem.Services;
 using Microsoft.AspNetCore.Mvc;
+using EventManagmentSystem.ResultObject;
 
 namespace EventManagmentSystem.Controllers
 {
@@ -94,6 +95,31 @@ namespace EventManagmentSystem.Controllers
             }
 
         }
+        
+        [HttpPost]
+        public async Task<IActionResult> ChangeEvent(int eventId, EventViewModel eventViewModel)
+        {
+            ResultObject<Event> result = await _eventService.ChangeEventAsync(eventId, eventViewModel);
+            
+            if (result.IsSuccess)
+            {
+                SetSuccessMessage("Event wurde geändert.");
+                var changedEventViewModel = new EventViewModel
+                {
+                    Title = result.Value.Title,
+                    Description = result.Value.Description,
+                    Date = result.Value.Date,
+                    Price = result.Value.Price,
+                    AmountOfTickets = result.Value.AmountOfTickets,
+                    State = result.Value.State
+                };
+                return View("Event",changedEventViewModel);
+            }
+            
+            SetErrorMessage("Event konnte nicht geändert werden.");
+            return View("Event", eventViewModel);
+        }
+        
         //Methode um UserId aus dem Session zu holen
         //ToDo: diese Methode muss ausgelagert werden in einem Controller damit wir diese Methode in allen Controllern verwenden können
         private int GetUserId()
