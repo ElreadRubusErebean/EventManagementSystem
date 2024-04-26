@@ -1,28 +1,12 @@
-﻿@model EventManagmentSystem.Models.ViewModel.EventViewModel
+@model EventManagmentSystem.Models.ViewModel.EventViewModel
 
 @{
     ViewData["Title"] = "Event";
 }
 
-<form method="post" action="/Booking/Book">
-        <h1 class="display-4" id="description">@Model.Title</h1>
-        <hr class="my-4">
-            <p class="lead" id="description" style="margin: 8px;">@Model.Description</p>
-        <hr class="spacingLine-light" />
-        <div class="form-group">
-            <label for="date" style="font-weight: bold; margin: 8px; margin-bottom: 0px;">Datum und Uhrzeit</label>
-            <p class="event-date" id="date" style="margin: 8px;">@Model.Date</p>
-        </div>
-        <div class="form-group">
-            <label for="price" style="font-weight: bold; margin: 8px; margin-bottom: 0px;">Preis</label>
-            <p class="event-price" id="price" style="margin: 8px;">@Model.Price €</p>
-        </div>
-        <div class="form-group">
-            <label for="tickets" style="font-weight: bold; margin: 8px; margin-bottom: 0px;">Verfügbare Tickets</label>
-            <p class="event-tickets" id="tickets" style="margin: 8px;">@Model.AmountOfTickets</p>
-        </div>
-</form>
+<h1>@Model.Title</h1>
 <hr class="spacingLine-light" />
+
 <script>
     function validateNumberOfTickets() {
         var availableTickets = @Model.AmountOfTickets;
@@ -35,38 +19,50 @@
         return true;
     }
 </script>
-
-   @if (Context.Session.GetString("UserRole").Equals("NormalUser"))
+<form method="post" action="/Booking/Book">
+    <div class="form-group">
+        <label for="title" id="title">Titel des Events</label>
+        <p class="event-title" id="description">@Model.Title</p>
+    </div>
+    <br />
+    <div class="form-group">
+        <label for="description">Beschreibung des Events</label>
+        <p class="event-description" id="description">@Model.Description</p>
+    </div>
+    <br />
+    <div class="form-group">
+        <label for="date">Datum und Uhrzeit</label>
+        <p class="event-date" id="date">@Model.Date</p>
+    </div>
+    <br />
+    <div class="form-group">
+        <label for="price">Preis</label>
+        <p class="event-price" id="price">@Model.Price €</p>
+    </div>
+    <br />
+    <!--Tickets Anzahl-->
+    <div class="form-group">
+        <label for="tickets">Anzahl der verfügbaren Tickets</label>
+        <p class="event-tickets" id="tickets">@Model.AmountOfTickets</p>
+    </div>
+    <br />
+</form>
+@if (Context.Session.GetString("UserID") != null)
+{
+    @if (Context.Session.GetString("UserRole").Equals("NormalUser"))
     {
-    <form asp-controller="Payment" asp-action="Payment" method="get" onsubmit="return validateNumberOfTickets()">
-        <!-- Formularfelder für Event-Details und Anzahl der Tickets -->
-        <input type="hidden" name="eventId" value="@Model.EventId" />
-        <label for="numberOfTickets" style="font-weight: bold; margin: 8px; margin-bottom: 0px;">Wie viele Tickets?</label>
-        <input class="form-control" type="number" id="numberOfTickets" name="numberOfTickets" min="1" style="width: 5%; margin: 8px;" required>
-        <hr class="spacingLine-light" />
-        <!--Wenn der user ein Seller ist soll das nicht angezeigt werden-->
-        <div class="d-flex justify-content-between">
-            <div class="p-2">
-                <button type="submit" class="btn btn-outline-primary">Tickets buchen</button>
-            </div>
-            <div class="p-2">
-                <button type="submit" class="btn btn-danger">Abbrechen</button>
-            </div>
-        </div>
-    </form>
+        <form asp-controller="Payment" asp-action="Payment" method="get" onsubmit="return validateNumberOfTickets()">
+            <!-- Formularfelder für Event-Details und Anzahl der Tickets -->
+            <input type="hidden" name="eventId" value="@Model.EventId" />
+            <label for="numberOfTickets">Wie viele Tickets?</label>
+            <input class="form-control" type="number" id="numberOfTickets" name="numberOfTickets" min="1" style="width: 5%; margin-bottom: 10px; margin-top: 10px;" required>
+            <!--Wenn der user ein Seller ist soll das nicht angezeigt werden-->
+            <button type="submit" class="btn btn-outline-primary">Tickets buchen</button>
+        </form>
     }
     else
     {
-        <div class="d-flex justify-content-between">
-            <div class="p-2">
-                <p>Als Verkäufer können Sie keine Tickets für Ihre eigenen Veranstaltungen kaufen.</p>
-            </div>
-            <div class="p-2">
-                <form method="post" action="@Url.Action("DeleteEvent", "Event")"
-                      onsubmit="return confirm('Event endgültig löschen?');">
-                    <button type="submit" class="btn btn-danger">Event löschen</button>
-                </form>
-            </div>
-        </div>
-
+        <p>Als Verkäufer können Sie keine Tickets für Ihre eigenen Veranstaltungen kaufen.</p>
     }
+}
+
