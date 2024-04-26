@@ -1,4 +1,5 @@
-﻿using EventManagmentSystem.Models.ViewModel;
+﻿using EventManagmentSystem.Enums;
+using EventManagmentSystem.Models.ViewModel;
 using EventManagmentSystem.Services;
 using Microsoft.AspNetCore.Mvc;
 
@@ -51,7 +52,7 @@ namespace EventManagmentSystem.Controllers
             return View();
          }
 
-        //Konto löschen
+        //Konto löschen seller
         [HttpPost]
         public async Task<IActionResult> DeleteKonto()
         {
@@ -59,24 +60,35 @@ namespace EventManagmentSystem.Controllers
             var userIdString = HttpContext.Session.GetString("UserID");
             if (!int.TryParse(userIdString, out var userId))
             {
-                //wenn die Benutzer-ID nicht vorhanden ist, wird der Benutzer auf die Startseite umgeleitet
+                // Wenn die Benutzer-ID nicht vorhanden ist, wird der Benutzer auf die Startseite umgeleitet
                 return NotFound();
             }
 
-            // Benutzerdaten asynchron mit der Benutzer-ID abrufens
+            // Benutzerdaten asynchron mit der Benutzer-ID abrufen
             var user = await _userService.GetUserAsync(userId);
             if (user == null)
             {
                 // Benutzer nicht gefunden
+                //ToDo : Fehlermeldung
                 return NotFound();
             }
 
-            // Benutzer löschen
-            var success = await _userService.DeleteUserAsync(userId);
+            // Benutzer löschen - abhängig davon, ob es sich um einen Verkäufer handelt oder nicht
+            bool success;
+            if (user.Role == UserRole.Seller)
+            {
+                success = await _userService.DeleteSellerAccountAsync(userId);
+            }
+            else
+            {
+                success = await _userService.DeleteUserAsync(userId);
+            }
+
             if (!success)
             {
                 // Benutzer konnte nicht gelöscht werden
                 SetErrorMessage("Benutzer konnte nicht gelöscht werden");
+                return RedirectToAction("Index", "Home");
             }
 
             // Benutzer abmelden
@@ -84,6 +96,7 @@ namespace EventManagmentSystem.Controllers
             SetSuccessMessage("Konto ist erfolgreich gelöscht");
             return RedirectToAction("Index", "Home");
         }
+
 
         // Methode zum Updaten des Benutzerkontos
         [HttpGet]
