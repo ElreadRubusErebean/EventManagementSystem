@@ -3,60 +3,42 @@
     ViewData["Title"] = "Seller";
 }
 
-@if (TempData["ErrorMessage"] != null)
-{
-    <div class="alert alert-danger">
-        @TempData["ErrorMessage"]
-    </div>
-}
-
-@if (TempData["SuccessMessage"] != null)
-{
-    <div class="alert alert-success">
-        @TempData["SuccessMessage"]
-    </div>
-}
-
 <h1>Mein Konto</h1>
 <hr class="spacingLine-light" />
 <main>
-    <div class="d-flex justify-content-center">
-        <a asp-action="Seller" asp-controller="Seller" methode="Get" class="mx-2">
-            <button type="submit" class="btn btn-primary">Meine Daten</button>
-        </a>
+  <div class="d-flex justify-content-center">
+      <a asp-action="Seller" asp-controller="Seller" methode="Get" class="mx-2">
+          <button type="submit" class="btn btn-primary">Meine Daten</button>
+      </a>
+      <a asp-action="MyEvents" asp-controller="Seller" methode="Get">
+          <button type="submit" class="btn btn-primary">Meine Events</button>
+      </a>
+  </div>
+  <hr class="spacingLine-light" />
+  <div class="mx-auto">
+      <dl class="row">
+          <dt class="col-sm-2">E-Mail</dt>
+          <dd class="col-sm-9">@Model.Email</dd>
+
+          <dt class="col-sm-2">Vorname</dt>
+          <dd class="col-sm-9">@Model.FirstName</dd>
+
+          <dt class="col-sm-2">Nachname</dt>
+          <dd class="col-sm-9">@Model.LastName</dd>
+
+          <dt class="col-sm-2">Benutzername</dt>
+          <dd class="col-sm-9">@Model.UserName</dd>
+          <!-- Weitere Benutzerinformationen hier -->
+      </dl>
+  </div>
+  <hr class="spacingLine-light" />
+  <div class="d-flex justify-content-center">
+  <!-- Formular zum L�schen des eigenen Kontos -->
+  <form method="post" action="@Url.Action("DeleteKonto", "Seller")"
+        onsubmit="return confirm('Sind Sie sicher, dass Sie Ihr Konto l�schen m�chten? Dieser Vorgang kann nicht r�ckg�ngig gemacht werden.');">
         <a asp-action="MyEvents" asp-controller="Seller" methode="Get">
-            <button type="submit" class="btn btn-primary">Meine Events</button>
+          <button type="submit" class="btn btn-danger">Mein Konto l�schen</button>
         </a>
-        <a href="@Url.Action("UpdateProfile", "Seller")" class="mx-2">
-            <button type="submit" class="btn btn-primary">Profil Bearbeiten</button>
-        </a>
-    </div>
-    <hr class="spacingLine-light" />
-    <div class="mx-auto">
-        <dl class="row">
-            <dt class="col-sm-2">E-Mail</dt>
-            <dd class="col-sm-9">@Model.Email</dd>
-
-            <dt class="col-sm-2">Vorname</dt>
-            <dd class="col-sm-9">@Model.FirstName</dd>
-
-            <dt class="col-sm-2">Nachname</dt>
-            <dd class="col-sm-9">@Model.LastName</dd>
-
-            <dt class="col-sm-2">Benutzername</dt>
-            <dd class="col-sm-9">@Model.UserName</dd>
-            <!-- Weitere Benutzerinformationen hier -->
-        </dl>
-    </div>
-    
-    <hr class="spacingLine-light" />
-    <div class="d-flex justify-content-center">
-    <!-- Formular zum L�schen des eigenen Kontos -->
-    <form method="post" action="@Url.Action("DeleteKonto", "Seller")"
-          onsubmit="return confirm('Sind Sie sicher, dass Sie Ihr Konto l�schen m�chten? Dieser Vorgang kann nicht r�ckg�ngig gemacht werden.');">
-          <a asp-action="MyEvents" asp-controller="Seller" methode="Get">
-            <button type="submit" class="btn btn-danger">Mein Konto l�schen</button>
-          </a>
-    </form>
-    </div>
+  </form>
+  </div>
 </main>
