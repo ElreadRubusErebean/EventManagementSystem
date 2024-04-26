@@ -23,8 +23,9 @@
             <a class="event-link" asp-action="Event" asp-controller="Event" asp-route-id="@eventItem.EventId">
                 <div class="event-content">
                     <strong class="event-title">@eventItem.Title</strong>
-                    <p class="event-date">Findet am @eventItem.Date.ToString("dd/MM/yyyy") statt.</p>
+                    <hr class="spacingLine-light" />
                     <p class="event-description">@eventItem.Description</p>
+                    <p class="event-date">Findet am @eventItem.Date.ToString("dd/MM/yyyy") statt.</p>
                     <p class="event-price">@eventItem.Price €</p>
                     <p class="event-tickets">@eventItem.AmountOfTickets Tickets sind noch verfügbar.</p>
                 </div>

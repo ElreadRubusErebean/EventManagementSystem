@@ -295,6 +295,6 @@ body {
 .event-tickets,
 .event-date {
     margin: 5px 0;
-    //font-size: 1em;
+    /* font-size: 1em; */
     color: white;
 }
