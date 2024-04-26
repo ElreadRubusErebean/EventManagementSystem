@@ -178,7 +178,7 @@ body {
 
 .form-control {
     background-color: #93B1A6;
-    color: white;
+    color: black;
     border-color: black;
     transition: background-color 0.5s ease, border-color 0.5s ease, box-shadow 0.5s ease; /* Übergangseffekt */
 }
@@ -295,6 +295,6 @@ body {
 .event-tickets,
 .event-date {
     margin: 5px 0;
-    font-size: 1em;
+    //font-size: 1em;
     color: white;
 }
