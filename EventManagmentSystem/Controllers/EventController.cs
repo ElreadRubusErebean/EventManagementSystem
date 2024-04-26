@@ -10,9 +10,11 @@ namespace EventManagmentSystem.Controllers
     public class EventController : ValidationController
     {
         private readonly EventService _eventService;
-        public EventController(EventService eventService)
+        private readonly UserService _userService;
+        public EventController(EventService eventService, UserService userService)
         {
             _eventService = eventService;
+            _userService = userService;
         }
 
         public async Task<IActionResult> EventOverview()
@@ -118,6 +120,28 @@ namespace EventManagmentSystem.Controllers
             
             SetErrorMessage("Event konnte nicht geändert werden.");
             return View("Event", eventViewModel);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> DeleteEvent(int eventId)
+        {
+            var user = await _userService.GetUserAsync(GetUserId());
+            if (user.Role!=UserRole.Seller)
+            {
+                SetErrorMessage("Sie sind kein Verkäufer und haben keine Rechte dieses Event zu löschen.");
+                return RedirectToAction("Event", Event(eventId));
+            }
+
+            var result = await _eventService.DeleteEventById(eventId);
+
+            if (!result)
+            {
+                SetErrorMessage("Das Event konnte nicht gelöscht werden.");
+                return RedirectToAction("Event", Event(eventId));
+            }
+            
+            SetSuccessMessage("Das Event wurde erfolgreich entfernt.");
+            return RedirectToAction("MyEvents","Seller");
         }
         
         //Methode um UserId aus dem Session zu holen

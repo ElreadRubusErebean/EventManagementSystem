@@ -4,6 +4,7 @@ using EventManagmentSystem.Models.DbModel;
 using EventManagmentSystem.Models.ViewModel;
 using EventManagmentSystem.ResultObject;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 
 namespace EventManagmentSystem.Services;
 
@@ -78,5 +79,32 @@ public class EventService
         //save changes for the DB
         await _context.SaveChangesAsync();
         return new ResultObject<Event>().Success(changingEvent.Value);
+    }
+
+    public async Task<bool> DeleteEventById(int eventId)
+    {
+        var eventById = await GetEventByIdAsync(eventId);
+
+        if (!eventById.IsSuccess)
+        {
+            return false;
+        }
+
+        var bookingsEvent = await  _context.Bookings.Where(b => b.EventId == eventId).ToListAsync();
+
+        if (!bookingsEvent.IsNullOrEmpty())
+        {
+            foreach (var booking in bookingsEvent)
+            {
+                _context.Bookings.Remove(booking);
+            }
+
+            await _context.SaveChangesAsync();
+        }        
+        
+        _context.Events.Remove(eventById.Value);
+        
+        await _context.SaveChangesAsync();
+        return true;
     }
 }
