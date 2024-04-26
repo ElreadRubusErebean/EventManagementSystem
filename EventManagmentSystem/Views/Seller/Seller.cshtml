@@ -1,45 +1,60 @@
-<a asp-area="" asp-controller="Seller" asp-action="Seller_EventOverview" class="btn-primary">Meine Events</a>
+@model EventManagmentSystem.Models.ViewModel.UserViewModel;
+@{
+    ViewData["Title"] = "Seller";
+}
 
-<h3>Mein Konto</h3>
+@if (TempData["ErrorMessage"] != null)
+{
+    <div class="alert alert-danger">
+        @TempData["ErrorMessage"]
+    </div>
+}
 
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success">
+        @TempData["SuccessMessage"]
+    </div>
+}
+
+<h1>Mein Konto</h1>
+<hr class="spacingLine-light" />
 <main>
-<button id="changeViewBtn">zu EVENTS/DATEN wechseln</button>
-    <div id="persData" class="form-group">
-            <label for="firstName">Vorname:</label>
-            <input name="firstName" type="text" class="accDetailInputs" required/>
-            <label for="lastName">Nachname</label>
-            <input name="lastName" type="text" class="accDetailInputs" required/>
-
-            <label for="email">E-Mail Adresse:</label>
-            <input name="email" type="email" class="accDetailInputs" required/>
-            <label for="password">Passwort</label>
-            <input name="password" type="password" class="accDetailInputs" required/>
-
-            <br/>
-            <button id="changeDetailsBtn" class="btn-primary">Daten bearbeiten</button>
-            <button id="deleteAccBtn" class="btn-primary">Konto löschen</button>
-            <button id="logoutBtn" class="btn-primary">logout</button>
+    <div class="d-flex justify-content-center">
+        <a asp-action="Seller" asp-controller="Seller" methode="Get" class="mx-2">
+            <button type="submit" class="btn btn-primary">Meine Daten</button>
+        </a>
+        <a asp-action="MyEvents" asp-controller="Seller" methode="Get">
+            <button type="submit" class="btn btn-primary">Meine Events</button>
+        </a>
+        <a href="@Url.Action("UpdateProfile", "Seller")" class="mx-2">
+            <button type="submit" class="btn btn-primary">Profil Bearbeiten</button>
+        </a>
     </div>
- <!--Eventlist-->       
-    <div id="bookedEvents">
-    <!--code: foreach Event create vvv -->
-        <section>
-            <p>TITEL</p>
-            <p>BESCHREIBUNG</p>
-            <p>ORT</p>
-            <p>DATUM</p>
-            <!--get parentelement by name?-->
-            <button id="deleteEventBtn">Event löschen</button>
-        </section>
+    <hr class="spacingLine-light" />
+    <div class="mx-auto">
+        <dl class="row">
+            <dt class="col-sm-2">E-Mail</dt>
+            <dd class="col-sm-9">@Model.Email</dd>
+
+            <dt class="col-sm-2">Vorname</dt>
+            <dd class="col-sm-9">@Model.FirstName</dd>
+
+            <dt class="col-sm-2">Nachname</dt>
+            <dd class="col-sm-9">@Model.LastName</dd>
+
+            <dt class="col-sm-2">Benutzername</dt>
+            <dd class="col-sm-9">@Model.UserName</dd>
+            <!-- Weitere Benutzerinformationen hier -->
+        </dl>
     </div>
-    <button id="addEventBtn">Event hinzufügen</button>
-  
+    
+    <hr class="spacingLine-light" />
+    <div class="d-flex justify-content-center">
     <!-- Formular zum Löschen des eigenen Kontos -->
-    <form method="post" action="@Url.Action("DeleteKonto", "Seller")"
-          onsubmit="return confirm('Sind Sie sicher, dass Sie Ihr Konto slöschen möchten? Dieser Vorgang kann nicht rückgängig gemacht werden.');">
-        <button type="submit" class="btn btn-danger">Konto löschen</button>
-    </form>
-  
-    <!--Link zu MyEvents Seite-->
-    <a asp-action="MyEvents" asp-controller="Seller" methode="Get">Meine Events</a>
+        <form method="post" action="@Url.Action("DeleteKonto", "Seller")"
+              onsubmit="return confirm('Sind Sie sicher, dass Sie Ihr Konto löschen möchten? Dieser Vorgang kann nicht rückgängig gemacht werden.');">
+            <button type="submit" class="btn btn-danger">Mein Konto löschen</button>
+        </form>
+    </div>
 </main>

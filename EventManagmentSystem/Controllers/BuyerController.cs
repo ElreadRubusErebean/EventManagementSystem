@@ -84,7 +84,7 @@ namespace EventManagmentSystem.Controllers
             return RedirectToAction("Index", "Home");
         }
 
-        //Methode zum updaten des Benutzerkontos
+        // Methode zum Updaten des Benutzerkontos
         [HttpGet]
         public async Task<IActionResult> UpdateProfile()
         {
@@ -92,12 +92,12 @@ namespace EventManagmentSystem.Controllers
             var userIdString = HttpContext.Session.GetString("UserID");
             if (!int.TryParse(userIdString, out var userId))
             {
-                //wenn die Benutzer-ID nicht vorhanden ist, wird der Benutzer auf die Startseite umgeleitet
+                // Wenn die Benutzer-ID nicht vorhanden ist, wird der Benutzer auf die Startseite umgeleitet
                 return NotFound();
             }
 
-            // ich rufe hier die Methode GetUserAsync() aus dem UserService auf
-            //damit ich die Daten des Benutzers abrufen kann
+            // Ich rufe hier die Methode GetUserAsync() aus dem UserService auf
+            // Damit ich die Daten des Benutzers abrufen kann
             var user = await _userService.GetUserAsync(userId);
             if (user == null)
             {
@@ -116,6 +116,7 @@ namespace EventManagmentSystem.Controllers
 
             return View(model);
         }
+
         [HttpPost]
         public async Task<IActionResult> UpdateProfile(UserViewModel model)
         {
