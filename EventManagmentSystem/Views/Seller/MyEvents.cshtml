@@ -2,6 +2,19 @@
 <!--Events des angemeldeten sellers-->
 <!--Hier kann der Seller seine Events sehens-->
 <h1>Meine Events</h1>
+<hr class="spacingLine-light" />
+<div class="d-flex justify-content-center">
+    <a asp-action="Seller" asp-controller="Seller" methode="Get" class="mx-2">
+        <button type="submit" class="btn btn-primary">Meine Daten</button>
+    </a>
+    <a asp-action="MyEvents" asp-controller="Seller" methode="Get">
+        <button type="submit" class="btn btn-primary">Meine Events</button>
+    </a>
+    <a asp-action="EventCreate" asp-controller="Event" class="mx-2">
+        <button type="submit" class="btn btn-success">+ Neues Event Erstellen</button>
+    </a>
+</div>
+<hr class="spacingLine-light" />
 <ul class="event-list">
     @foreach (var eventItem in Model)
     {
@@ -9,8 +22,7 @@
             <a class="event-link" asp-action="Event" asp-controller="Event" asp-route-id="@eventItem.EventId">
                 <div class="event-content">
                     <strong class="event-title">@eventItem.Title</strong>
-                    <p class="event-date
-                    ">Findet am @eventItem.Date.ToString("dd/MM/yyyy") statt.</p>
+                    <p class="event-date">Findet am @eventItem.Date.ToString("dd/MM/yyyy") statt.</p>
                     <p class="event-description">@eventItem.Description</p>
                     <p class="event-price">@eventItem.Price €</p>
                     <p class="event-tickets">@eventItem.AmountOfTickets Tickets sind noch verfügbar.</p>

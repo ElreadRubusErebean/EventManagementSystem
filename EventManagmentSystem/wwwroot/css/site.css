@@ -103,6 +103,11 @@ html {
         box-shadow: none !important;
     }
 
+.btn-link {
+    text-decoration: none;
+    outline: none;          /* Um den blauen Fokus-Rahmen in einigen Browsern zu entfernen */
+}
+
 body {
     display: flex;
     flex-direction: column; /* Stapelt die Inhalte vertikal */
@@ -141,6 +146,20 @@ body {
     margin-left: auto;
     margin-right: auto;
     margin-top: 5%;
+    -webkit-backdrop-filter: blur(10px);
+}
+
+.roundEdgesSmall {
+    color: white;
+    border: 1px solid #93B1A6;
+    width: 40%;
+    height: auto;
+    background-color: rgba(24, 61, 61, 0.6);
+    border-radius: 10px;
+    backdrop-filter: blur(10px);
+    padding: 20px;
+    margin-left: auto;
+    margin-right: auto;
     -webkit-backdrop-filter: blur(10px);
 }
 
@@ -193,6 +212,16 @@ body {
         border: none;
         background-color: #125D5D;
         border-color: #93B1A6;
+    }
+
+.btn-success {
+    color: white;
+    border: none;
+    background-color: #1B7932;
+}
+    .btn-success:hover {
+        color: white;
+        background-color: #2E8E3F;
     }
 
 .card {
