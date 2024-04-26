@@ -153,5 +153,10 @@ namespace EventManagmentSystem.Controllers
 
             return RedirectToAction("Profile");
         }
+
+        public IActionResult Buyer_EventOverview()
+        {
+            return View();
+        }
     }
 }
