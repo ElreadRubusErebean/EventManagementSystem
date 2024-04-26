@@ -42,6 +42,7 @@
     {
         <form asp-controller="Payment" asp-action="Payment" method="get" onsubmit="return validateNumberOfTickets()">
             <!-- Formularfelder für Event-Details und Anzahl der Tickets -->
+            <input type="hidden" name="eventId" value="@Model.EventId" />
             <label for="numberOfTickets" style="font-weight: bold; margin: 8px; margin-bottom: 0px;">Wie viele Tickets?</label>
             <input class="form-control" type="number" id="numberOfTickets" name="numberOfTickets" min="1" style="width: 5%; margin: 8px;" required>
             <hr class="spacingLine-light" />
