@@ -1,4 +1,4 @@
-<PageTitle>Mein Konto</PageTitle>
+<a asp-area="" asp-controller="Seller" asp-action="Seller_EventOverview" class="btn-primary">Meine Events</a>
 
 <h3>Mein Konto</h3>
 
@@ -16,9 +16,9 @@
             <input name="password" type="password" class="accDetailInputs" required/>
 
             <br/>
-            <button id="changeDetailsBtn">PLACEHOLDER</button>
-            <button id="deleteAccBtn">Konto löschen</button>
-            <button id="logoutBtn">logout</button>
+            <button id="changeDetailsBtn" class="btn-primary">Daten bearbeiten</button>
+            <button id="deleteAccBtn" class="btn-primary">Konto lÃ¶schen</button>
+            <button id="logoutBtn" class="btn-primary">logout</button>
     </div>
  <!--Eventlist-->       
     <div id="bookedEvents">
@@ -29,15 +29,17 @@
             <p>ORT</p>
             <p>DATUM</p>
             <!--get parentelement by name?-->
-            <button id="deleteEventBtn">Event löschen</button>
+            <button id="deleteEventBtn">Event lÃ¶schen</button>
         </section>
     </div>
-    <button id="addEventBtn">Event hinzufügen</button>
-    <!-- Formular zum Löschen des eigenen Kontos -->
+    <button id="addEventBtn">Event hinzufÃ¼gen</button>
+  
+    <!-- Formular zum LÃ¶schen des eigenen Kontos -->
     <form method="post" action="@Url.Action("DeleteKonto", "Seller")"
-          onsubmit="return confirm('Sind Sie sicher, dass Sie Ihr Konto slöschen möchten? Dieser Vorgang kann nicht rückgängig gemacht werden.');">
-        <button type="submit" class="btn btn-danger">Konto löschen</button>
+          onsubmit="return confirm('Sind Sie sicher, dass Sie Ihr Konto slÃ¶schen mÃ¶chten? Dieser Vorgang kann nicht rÃ¼ckgÃ¤ngig gemacht werden.');">
+        <button type="submit" class="btn btn-danger">Konto lÃ¶schen</button>
     </form>
+  
     <!--Link zu MyEvents Seite-->
     <a asp-action="MyEvents" asp-controller="Seller" methode="Get">Meine Events</a>
 </main>
