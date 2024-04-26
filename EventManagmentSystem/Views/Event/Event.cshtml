@@ -7,6 +7,18 @@
 <h1>@Model.Title</h1>
 <hr class="spacingLine-light" />
 
+<script>
+    function validateNumberOfTickets() {
+        var availableTickets = @Model.AmountOfTickets;
+        var numberOfTickets = parseInt(document.getElementById("numberOfTickets").value);
+
+        if (numberOfTickets > availableTickets) {
+            alert("Die Anzahl der angeforderten Tickets darf nicht größer sein als die verfügbare Anzahl von Tickets.");
+            return false;
+        }
+        return true;
+    }
+</script>
 <form method="post" action="/Booking/Book">
     <div class="form-group">
         <label for="title" id="title">Titel des Events</label>
@@ -35,31 +47,22 @@
     </div>
     <br />
 </form>
-
-<script>
-    function validateNumberOfTickets() {
-        var availableTickets = @Model.AmountOfTickets;
-        var numberOfTickets = parseInt(document.getElementById("numberOfTickets").value);
-
-        if (numberOfTickets > availableTickets) {
-            alert("Die Anzahl der angeforderten Tickets darf nicht größer sein als die verfügbare Anzahl von Tickets.");
-            return false;
-        }
-        return true;
-    }
-</script>
-   @if (Context.Session.GetString("UserRole").Equals("NormalUser"))
+@if (Context.Session.GetString("UserID") != null)
+{
+    @if (Context.Session.GetString("UserRole").Equals("NormalUser"))
     {
-    <form asp-controller="Payment" asp-action="Payment" method="get" onsubmit="return validateNumberOfTickets()">
-        <!-- Formularfelder für Event-Details und Anzahl der Tickets -->
-        <input type="hidden" name="eventId" value="@Model.EventId" />
-        <label for="numberOfTickets">Wie viele Tickets?</label>
-        <input class="form-control" type="number" id="numberOfTickets" name="numberOfTickets" min="1" style="width: 5%; margin-bottom: 10px; margin-top: 10px;" required>
-        <!--Wenn der user ein Seller ist soll das nicht angezeigt werden-->
-        <button type="submit" class="btn btn-outline-primary">Tickets buchen</button>
-    </form>
+        <form asp-controller="Payment" asp-action="Payment" method="get" onsubmit="return validateNumberOfTickets()">
+            <!-- Formularfelder für Event-Details und Anzahl der Tickets -->
+            <input type="hidden" name="eventId" value="@Model.EventId" />
+            <label for="numberOfTickets">Wie viele Tickets?</label>
+            <input class="form-control" type="number" id="numberOfTickets" name="numberOfTickets" min="1" style="width: 5%; margin-bottom: 10px; margin-top: 10px;" required>
+            <!--Wenn der user ein Seller ist soll das nicht angezeigt werden-->
+            <button type="submit" class="btn btn-outline-primary">Tickets buchen</button>
+        </form>
     }
     else
     {
         <p>Als Verkäufer können Sie keine Tickets für Ihre eigenen Veranstaltungen kaufen.</p>
     }
+}
+
