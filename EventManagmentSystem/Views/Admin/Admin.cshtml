@@ -1,10 +1,69 @@
 ﻿@model EventManagmentSystem.Models.ViewModel.AdminViewModel
-<PageTitle>Adminübersicht</PageTitle>
 
-<h3>Adminübersicht</h3>
+<style>
+    .roundEdges {
+        border-radius: 0px;
+        border-image: linear-gradient(45deg, #00ffff, #ff0080, #cc0000) 1;
+    }
+
+    .animated-header {
+        text-align: center;
+        justify-content: center;
+        padding: 10px 20px;
+        display: flex;
+        position: relative;
+        color: transparent;
+        background-image: linear-gradient(45deg, #00ffff, #ff0000, #00ffff);
+        -webkit-background-clip: text;
+        background-clip: text;
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+        transition: color 5s ease, letter-spacing 10s ease; /* Letter spacing Effekt :) */
+    }
+
+        .animated-header::after {
+            content: '';
+            position: absolute;
+            left: -2px;
+            top: -2px;
+            width: calc(100%);
+            height: calc(100%);
+            border: 2px solid transparent;
+            transition: border-color 0.5s, box-shadow 0.5s;                                 /* Übergangsanimation für den Border und Schatten */
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+            z-index: -1;
+        }
+
+        .animated-header::before {
+            content: '';
+            position: absolute;
+            left: -2px;
+            top: -2px;
+            width: calc(100%);
+            height: calc(100%);
+            border: 2px solid;
+            border-image: linear-gradient(45deg, #93B1A6, #ff0080, #ff4500) 1;
+            border-image-slice: 1;
+            transition: border-color 0.5s, border-image 0.6s;                               /* Übergangsanimation für den Border */
+            z-index: -2;
+        }
+
+        .animated-header:hover {
+            letter-spacing: 20px; /* Textfarbe ändern beim Hovern */
+            color: #00ffff;
+        }
+
+            .animated-header:hover::after,
+            .animated-header:hover::before {
+                border-image: linear-gradient(45deg, #ff0080, #00ffff, #ff4500) 1;      /* Randfarbe ändern beim Hovern */
+            }
+</style>
+
+<h1 class="animated-header">Adminübersicht</h1>
+
+<hr class="spacingLine-light" />
 @if (Model.Users != null && Model.Users.Any())
 {
-<table>
+    <table class="table" style="text-align: center;">
     <thead>
         <tr>
             <th>UserID</th>
@@ -13,9 +72,9 @@
             <th>Email</th>
             <th>Admin Status</th>
             <th>UserName</th>
-            <th></th>
+            <th>Role</th>
             <th>Edit</th>
-            <th>Delete</th>
+            <th>Löschen</th>
         </tr>
     </thead>
     <tbody>
@@ -28,8 +87,11 @@
                 <td>@user.Email</td>
                 <td>@user.IsAdmin</td>
                 <td>@user.UserName</td>
+                <td>@user.Role</td>
                 <!--hier sollen die Methoden aufgerufen werden -->
-                <td><a href="@Url.Action("Edit", "Admin", new { id = @user.UserId })">Edit</a></td>
+                <td><a href="@Url.Action("Edit", "Admin", new { id = @user.UserId })">
+                            <button type="submit" class="btn btn-secondary">Edit</button>
+                </a></td>
                     <td>
                         <form action="@Url.Action("DeleteUser", "Admin", new { userId = user.UserId })" method="post">
                             <button type="submit" class="btn btn-danger" onclick="return confirm('Sind Sie sicher, dass Sie diesen Benutzer löschen möchten?');">Löschen</button>
