@@ -101,11 +101,29 @@ namespace EventManagmentSystem.Controllers
         [HttpPost]
         public async Task<IActionResult> ChangeEvent(int eventId, EventViewModel eventViewModel)
         {
+            //das bereits existierende Event abfragen und mit Änderungen vergleichen, ob sie sich unterscheiden
+            var unchangedEvent = await _eventService.GetEventByIdAsync(eventId);
+
+            var unchangedViewModel = new EventViewModel
+            {
+                Title = unchangedEvent.Value.Title,
+                Description = unchangedEvent.Value.Description,
+                Date = unchangedEvent.Value.Date,
+                Price = unchangedEvent.Value.Price,
+                AmountOfTickets = unchangedEvent.Value.AmountOfTickets,
+                State = unchangedEvent.Value.State
+            };
+
+            if (eventViewModel==unchangedViewModel)
+            {
+                SetErrorMessage("Es gibt keine Änderungen im Event. Bitte geben Sie neue Daten ein.");
+                return View("Event", eventViewModel);
+            }
+            
             ResultObject<Event> result = await _eventService.ChangeEventAsync(eventId, eventViewModel);
             
             if (result.IsSuccess)
             {
-                SetSuccessMessage("Event wurde geändert.");
                 var changedEventViewModel = new EventViewModel
                 {
                     Title = result.Value.Title,
@@ -115,6 +133,8 @@ namespace EventManagmentSystem.Controllers
                     AmountOfTickets = result.Value.AmountOfTickets,
                     State = result.Value.State
                 };
+                
+                SetSuccessMessage("Event wurde geändert.");
                 return View("Event",changedEventViewModel);
             }
             
