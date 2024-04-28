@@ -18,45 +18,42 @@
 }
 
 <h1>Mein Konto</h1>
-<hr class="spacingLine-light" />
-<main>
-    <div class="d-flex justify-content-center">
-        <a asp-action="Profile" asp-controller="Buyer" methode="Get" class="mx-2">
-            <button type="submit" class="btn btn-primary">Meine Daten</button>
-        </a>
-        <a href="@Url.Action("UserBookings", "Booking")">
-            <button type="submit" class="btn btn-primary">Meine Buchungen</button>
-        </a>
-        <a href="@Url.Action("UpdateProfile", "Buyer")" class="mx-2">
-            <button type="submit" class="btn btn-primary">Profil Bearbeiten</button>
-        </a>
+<hr />
+<div class="blockProfile">
+    <!--Buchungen Seite aufrufen-->
+    <div class="accNav">
+        <a asp-action="Profile" asp-controller="Buyer" methode="Get" class="linkThicc">Meine Daten</a>
+        <a href="@Url.Action("UserBookings", "Booking")" class="linkTransparent">Meine Buchungen</a> 
     </div>
-    <hr class="spacingLine-light" />
-    <div class="mx-auto">
-        <dl class="row">
-            <dt class="col-sm-2">E-Mail</dt>
-            <dd class="col-sm-9">@Model.Email</dd>
-
-            <dt class="col-sm-2">Vorname</dt>
-            <dd class="col-sm-9">@Model.FirstName</dd>
-
-            <dt class="col-sm-2">Nachname</dt>
-            <dd class="col-sm-9">@Model.LastName</dd>
-
-            <dt class="col-sm-2">Benutzername</dt>
-            <dd class="col-sm-9">@Model.UserName</dd>
+    <hr />
+        <div class="datablock">
+            <label for="email">E-Mail</label>
+            <input name="email" class="outputFields" readonly value="@Model.Email" />
+        <div></div>
+            <label for="forname">Vorname</label>
+            <input name="forname" class="outputFields" readonly value="@Model.FirstName" />
+        <div></div>
+            <label for="lastname">Nachname</label>
+            <input name="lastname" class="outputFields" readonly value="@Model.LastName" />
+        <div></div>
+            <label for="lastname">Benutzername</label>
+            <input name="lastname" class="outputFields" readonly value="@Model.UserName" />
             <!-- Weitere Benutzerinformationen hier -->
-        </dl>
-    </div>
+        </div>
 
-    <hr class="spacingLine-light" />
-    <div class="d-flex justify-content-center">
-        <!-- Formular zum Löschen des eigenen Kontos -->
-        <form method="post" action="@Url.Action("DeleteKonto", "Buyer")"
-              onsubmit="return confirm('Sind Sie sicher, dass Sie Ihr Konto löschen möchten? Dieser Vorgang kann nicht rückgängig gemacht werden.');">
+    <hr />
+
+    <div class="d-flex p-2 flex-row-reverse">
+       <!-- Formular zum Löschen des eigenen Kontos -->
+       <form method="post" action="@Url.Action("DeleteKonto", "Buyer")"
+                  onsubmit="return confirm('Sind Sie sicher, dass Sie Ihr Konto löschen möchten? Dieser Vorgang kann nicht rückgängig gemacht werden.');">
             <a asp-action="MyEvents" asp-controller="Seller" methode="Get">
-                <button type="submit" class="btn btn-danger">Mein Konto löschen</button>
+                    <button type="submit" class="btn btn-danger btn-round">Mein Konto löschen</button>
             </a>
-        </form>
+       </form>
+
+        <a href="@Url.Action("UpdateProfile", "Buyer")" class="mx-2">
+            <button type="submit" class="btn btn-primary btn-round">Profil Bearbeiten</button>
+        </a>
     </div>
-</main>
+</div>

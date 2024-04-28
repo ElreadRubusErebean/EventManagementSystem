@@ -1,0 +1,47 @@
+﻿.blockProfile {
+    width: 90vw;
+    height: auto;
+}
+
+.linkThicc, .linkTransparent {
+    margin-right: 3%;
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: white;
+    text-decoration: none;
+}
+
+.linkTransparent {
+    opacity: 60%;
+    font-size: 1rem;
+}
+
+.datablock {
+    padding-bottom: 20px;
+}
+
+.datablock > div {
+    height: 3vh;
+    max-height: 63px;
+}
+
+ .datablock > input {
+    float: right;
+    margin-right: 5%;
+ }
+
+.outputFields {
+    background-color: #93B1A6;
+    border-radius: 5px/ 5px;
+    outline: none;
+    border: none;
+    width: 60vw;
+    max-width: 95%;
+}
+
+/* < Mobile L*/
+@media (max-width: 425px) {
+    .outputFields {
+        max-width: 60%
+    }
+}
