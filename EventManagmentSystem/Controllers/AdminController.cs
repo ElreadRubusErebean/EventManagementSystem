@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace EventManagmentSystem.Controllers
 {
-    public class AdminController : Controller
+    public class AdminController : ValidationController
     {
         private readonly UserService _userService;
 
@@ -42,21 +42,30 @@ namespace EventManagmentSystem.Controllers
         [HttpPost]
         public async Task<IActionResult> DeleteUser(int userId)
         {
-            //check ob der user admin ist
+            // ist angemeldete Benutzer der Administrator ist
             if (!_userService.IsAdmin())
             {
-                TempData["ErrorMessage"] = "Sie haben nicht die erforderlichen Berechtigungen";
+                SetErrorMessage("Sie haben nicht die erforderlichen Berechtigungen");
                 return RedirectToAction("Index", "Home");
             }
-            //löschen des Benutzers
-            //die Methode DeleteUserAsync() ist asynchron und ist in UserService definiert
+
+            // ob der Administrator versucht, sich selbst zu löschen
+            var loggedInUserIdString = HttpContext.Session.GetString("UserID");
+            if (int.TryParse(loggedInUserIdString, out var loggedInUserId) && loggedInUserId == userId)
+            {
+                SetErrorMessage("Sie können sich nicht selbst löschen");
+                return RedirectToAction("Admin","Admin");
+            }
+
+            // Löschen des Benutzers
             var success = await _userService.DeleteUserAsync(userId);
             if (!success)
             {
-                TempData["ErrorMessage"] = "Benutzer konnte nicht gelöscht werden";
+                SetErrorMessage("Benutzer konnte nicht gelöscht werden");
             }
-            return RedirectToAction("Admin");
+            return RedirectToAction("Admin", "Admin");
         }
+
 
         public IActionResult Admin_EventOverview()
         {
