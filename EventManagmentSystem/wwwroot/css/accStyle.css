@@ -36,11 +36,10 @@
     .noTextareaOverlap {
         display: block;
         clear: both;
-        resize: none;
     }
 
 .outputFields {
-    background-color: transparent !important;
+    background-color: transparent;
     outline: none;
     border: none;
     width: 30vw;
