@@ -1,33 +1,36 @@
 ﻿@model EventManagmentSystem.Models.ViewModel.UserBookingsViewModel;
 
-<h4>Buchungen</h4>
-<table class="table">
-    <thead>
-        <tr>
-            <th>Event-Titel</th>
-            <th>Event-Beschreibung</th>
-            <th>Event-Datum</th>
-            <th>Anzahl der Tickets</th>
-            <th>Gebuchtes Datum</th>
-            <th>Buchung stornieren</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model.Bookings)
-        {
-            <tr>
-                <td>@item.Event.Title</td>
-                <td>@item.Event.Description</td>
-                <td>@item.Event.Date.ToString("dd.MM.yyyy HH:mm")</td>
-                <td>@item.Booking.AmountOfTickets</td>
-                <td>@item.Booking.BookingDate.ToString("dd.MM.yyyy HH:mm")</td>
-                <!--Button zum Stornieren-->
-                <td>
-                    <form method="post" action="@Url.Action("CancelBooking", "Booking")">
-                        <input type="hidden" name="bookingId" value="@item.Booking.BookingId" />
-                        <button type="submit" class="btn btn-danger">Stornieren</button>
-                    </form>
-            </tr>
-        }
-    </tbody>
-</table>
+<h4>Mein Konto</h4>
+<hr />
+
+<div class="accNav">
+    <a href="#" class="linkThicc">Meine Buchungen</a>
+    <a asp-action="Profile" asp-controller="Buyer" methode="Get" class="linkTransparent">Meine Daten</a>
+</div>
+<hr />
+
+    @foreach (var item in Model.Bookings)
+    {
+       <div class="datablock blockBgLight">
+            <label for="title">Event-Titel</label>
+            <input name="title" class="outputFields" readonly value="@item.Event.Title" />
+            <div></div>
+            <label for="description">Event-Beschreibung</label>
+            <textarea name="description" readonly value="@item.Event.Description" class="outputFields"></textarea>
+            <div></div>
+            <label for="date">Event-Datum</label>
+            <input name="date" class="outputFields" readonly value="@item.Event.Date.ToString("dd.MM.yyyy HH:mm")" />
+            <div></div>
+            <label for="ticketAmount">Anzahl der Tickets</label>
+            <input name="ticketAmount" class="outputFields" readonly value="@item.Booking.AmountOfTickets" />
+            <div></div>
+            <label for="bookedDate">Gebuchtes Datum</label>
+            <input name="bookedDate" class="outputFields" readonly value="@item.Booking.BookingDate.ToString("dd.MM.yyyy HH:mm")" />
+            <div></div>
+
+            <form method="post" action="@Url.Action("CancelBooking", "Booking")">
+                <input type="hidden" name="bookingId" value="@item.Booking.BookingId" />
+                <button type="submit" class="btn btn-danger btn-round">Stornieren</button>
+            </form>
+        </div>
+    }

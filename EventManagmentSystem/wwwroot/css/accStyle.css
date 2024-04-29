@@ -39,6 +39,14 @@
     max-width: 95%;
 }
 
+.blockBgLight {
+    background-color: rgba(92, 131, 116, 0.7);
+    margin: 2%;
+    padding: 20px;
+    border: 3px solid #93B1A6;
+    border-radius: 10px/ 10px;
+}
+
 /* < Mobile L*/
 @media (max-width: 425px) {
     .outputFields {
