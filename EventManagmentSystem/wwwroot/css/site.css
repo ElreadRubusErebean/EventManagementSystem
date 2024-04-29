@@ -257,6 +257,8 @@ body {
 }
 .card-title {
     padding: 16px;
+    padding-top: 8px;
+    padding-bottom: 4px;
     margin: 0px;
     height: 60px;
     overflow-y: auto;
