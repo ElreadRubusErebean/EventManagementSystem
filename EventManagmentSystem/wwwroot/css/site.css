@@ -18,6 +18,7 @@ html {
 }
 
 .spacingLine-light {
+    margin: 12px, 0px, 12px, 0px;
     border: 1px solid #93B1A6;
 }
 
@@ -110,9 +111,8 @@ html {
 
 body {
     display: flex;
-    flex-direction: column; /* Stapelt die Inhalte vertikal */
+    flex-direction: column;                 /* Stapelt die Inhalte vertikal */
     justify-content: center;
-    margin-bottom: 60px;
     background-color: black;
     background-image: url("/images/background.jpg");
     background-size: cover;
@@ -120,18 +120,44 @@ body {
     padding: 0;
 }
 
+.carousel-control-prev,
+.carousel-control-next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(24, 61, 61, 0.6); /* Hintergrundfarbe der Buttons */
+}
+
+.carousel-control-prev {
+    border: 1px solid #93B1A6;
+    border-radius: 20px;
+    width: 40px;
+    height: 200px;
+    left: -100px;
+}
+
+.carousel-control-next {
+    border: 1px solid #93B1A6;
+    border-radius: 20px;
+    width: 40px;
+    height: 200px;
+    right: -100px;
+}
+
 .roundEdges {
+    position: relative;
     color: white;
     border: 1px solid #93B1A6;
     width: 80%;
     height: auto;
     background-color: rgba(24, 61, 61, 0.6); /* Farbe mit Alpha-Wert für Transparenz */
+    background-size: cover;
     border-radius: 10px;
     backdrop-filter: blur(10px);
     padding: 20px;
     margin-left: auto;
     margin-right: auto;
-    -webkit-backdrop-filter: blur(10px); /* Für Safari-Browser */
+    -webkit-backdrop-filter: blur(10px);
 }
 
 .roundEdgesLogin {
@@ -229,6 +255,46 @@ body {
     background-color: rgba(4, 21, 21, 0.6);
     border-color: rgba(4, 21, 21);
 }
+.card-title {
+    padding: 16px;
+    margin: 0px;
+    height: 60px;
+    overflow-y: auto;
+    scroll-behavior: smooth;
+}
+
+.card-body {
+    flex: 1;
+    padding: 0px;
+    padding-right: 16px;
+    padding-left: 16px;
+    margin-bottom: 16px;
+    overflow-y: auto;
+    scroll-behavior: smooth;
+}
+
+    /* Stil für den vertikalen Scrollbalken */
+    .card-body::-webkit-scrollbar, .card-title::-webkit-scrollbar {
+        width: 12px;
+    }
+
+    /* Track (Hintergrund) des Scrollbalkens */
+    .card-body::-webkit-scrollbar-track, .card-title::-webkit-scrollbar-track {
+        background: transparent;
+        border-radius: 10px;
+    }
+
+    /* Griff (beweglicher Teil) des Scrollbalkens */
+    .card-body::-webkit-scrollbar-thumb, .card-title::-webkit-scrollbar-thumb {
+        background: rgba(0, 0, 0, 0.3);
+        border-radius: 10px;
+    }
+
+        /* Hover-Stil für den Griff des Scrollbalkens */
+        .card-body::-webkit-scrollbar-thumb:hover, .card-title::-webkit-scrollbar-thumb:hover {
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 10px;
+        }
 
 .carousel-item {
     float: left;

@@ -4,30 +4,67 @@
     ViewData["Title"] = "Event Overview";
 }
 
+<style>
+    .card {
+        display: flex;
+        flex-direction: column;
+        height: 500px;
+    }
+
+    .mb-4 {
+        margin-bottom: 0 !important;
+    }
+</style>
+
 <h1>Aktuelle Veranstaltungen</h1>
 <hr class="spacingLine-light" />
 
 <div id="eventCarousel" class="carousel slide" data-bs-ride="carousel">
     <div class="carousel-inner">
         @{
-            bool isActive = true;
-            @foreach (var eventItem in Model.ListOfEvents)
+            int pageSize = 3; // Anzahl der Events pro Seite
+            int pageCount = (int)Math.Ceiling((double)Model.ListOfEvents.Count / pageSize);
+
+            for (int pageIndex = 0; pageIndex < pageCount; pageIndex++)
             {
+                bool isActive = pageIndex == 0;
+
                 <div class="carousel-item @(isActive ? "active" : "")">
-                    <div class="card" style="width: 100%;">
-                        <div class="card-body">
-                            <h5 class="card-title">@eventItem.Title</h5>
-                            <p class="card-text">@eventItem.Description</p>
-                            <p class="card-text">Datum: @eventItem.Date.ToString("dd/MM/yyyy")</p>
-                            <p class="card-text">Preis: @eventItem.Price €</p>
-                            <p class="card-text">@eventItem.AmountOfTickets Tickets verfügbar</p>
-                            <a asp-action="Event" asp-controller="Event" asp-route-id="@eventItem.EventId" class="btn btn-primary float-end">Zum Event</a>
-                        </div>
+                    <div class="row">
+                        @for (int i = pageIndex * pageSize; i < (pageIndex + 1) * pageSize && i < Model.ListOfEvents.Count; i++)
+                        {
+                            var eventItem = Model.ListOfEvents[i];
+
+                            <div class="col-md-4">
+                                <div class="card mb-4">
+                                    <div class="">
+                                        <h5 class="card-title">@eventItem.Title</h5>
+                                    </div>
+                                    <hr class="spacingLine-light" />
+                                    <div class="card-body">
+                                        <p class="card-text">@eventItem.Description</p>
+                                    </div>
+                                    <div class="card-footer">
+                                        <div class="mx-auto">
+                                            <dl>
+                                                <dt class="card-text">Datum</dt>
+                                                <dd class="card-text">@eventItem.Date.ToString("dd/MM/yyyy")</dd>
+                                                <dt class="card-text">Preis</dt>
+                                                <dd class="card-text">@eventItem.Price €</dd>
+                                                <dt class="card-text">Tickets verfügbar</dt>
+                                                <dd class="card-text">@eventItem.AmountOfTickets</dd>
+                                            </dl>
+                                        </div>
+                                    </div>
+                                    <div class="card-footer" style="display: flex; justify-content: center; align-items: center;">
+                                        <a asp-action="Event" asp-controller="Event" asp-route-id="@eventItem.EventId" class="btn btn-primary">Event aufrufen</a>
+                                    </div>
+                                </div>
+                            </div>
+                        }
                     </div>
                 </div>
-                isActive = false;
             }
-
         }
     </div>
     <button class="carousel-control-prev" type="button" data-bs-target="#eventCarousel" data-bs-slide="prev">
