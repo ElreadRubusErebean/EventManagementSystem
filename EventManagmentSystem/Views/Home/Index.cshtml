@@ -1,73 +1,41 @@
-﻿@{
-    ViewData["Title"] = "Login";
-}
-@if (TempData["ErrorMessage"] != null)
-{
-    <div class="alert alert-danger">
-        @TempData["ErrorMessage"]
-    </div>
+﻿@model EventManagmentSystem.Models.ViewModel.EventOverview
+
+@{
+    ViewData["Title"] = "Event Overview";
 }
 
-@if (TempData["SuccessMessage"] != null)
-{
-    <div class="alert alert-success">
-        @TempData["SuccessMessage"]
-    </div>
-}
-
-<h3>Start</h3>
+<h1>Aktuelle Veranstaltungen</h1>
 <hr class="spacingLine-light" />
 
-<div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+<div id="eventCarousel" class="carousel slide" data-bs-ride="carousel">
     <div class="carousel-inner">
-        <div class="carousel-item active">
-            <div class="card" style="width: 18rem;">
-                <img class="card-img-top" src="~/images/testDog1.jpeg" alt="Card image cap">
-                <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">A</p>
-                    <a href="#" class="btn btn-primary float-end">Zum Event</a>
+        @{
+            bool isActive = true;
+            @foreach (var eventItem in Model.ListOfEvents)
+            {
+                <div class="carousel-item @(isActive ? "active" : "")">
+                    <div class="card" style="width: 100%;">
+                        <div class="card-body">
+                            <h5 class="card-title">@eventItem.Title</h5>
+                            <p class="card-text">@eventItem.Description</p>
+                            <p class="card-text">Datum: @eventItem.Date.ToString("dd/MM/yyyy")</p>
+                            <p class="card-text">Preis: @eventItem.Price €</p>
+                            <p class="card-text">@eventItem.AmountOfTickets Tickets verfügbar</p>
+                            <a asp-action="Event" asp-controller="Event" asp-route-id="@eventItem.EventId" class="btn btn-primary float-end">Zum Event</a>
+                        </div>
+                    </div>
                 </div>
-            </div>
+                isActive = false;
+            }
 
-            <div class="card" style="width: 18rem;">
-                <img class="card-img-top" src="~/images/testRat.jpeg" alt="Card image cap">
-                <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">A.B</p>
-                    <a href="#" class="btn btn-primary float-end">Zum Event</a>
-                </div>
-            </div>
-        </div>
-
-        <div class="carousel-item">
-            <div class="card" style="width: 18rem;">
-                <img class="card-img-top" src="~/images/testCat1.jpeg" alt="Card image cap">
-                <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">B</p>
-                    <a href="#" class="btn btn-primary float-end">Zum Event</a>
-                </div>
-            </div>
-        </div>
-
-        <div class="carousel-item">
-            <div class="card" style="width: 18rem;">
-                <img class="card-img-top" src="~/images/testCat2.jpeg" alt="Card image cap">
-                <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">C</p>
-                    <a href="#" class="btn btn-primary float-end">Zum Event</a>
-                </div>
-            </div>
-        </div>
+        }
     </div>
-    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+    <button class="carousel-control-prev" type="button" data-bs-target="#eventCarousel" data-bs-slide="prev">
         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Previous</span>
+        <span class="visually-hidden">Vorherige</span>
     </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+    <button class="carousel-control-next" type="button" data-bs-target="#eventCarousel" data-bs-slide="next">
         <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Next</span>
+        <span class="visually-hidden">Nächste</span>
     </button>
 </div>
