@@ -195,11 +195,7 @@ body {
         box-shadow: 0 0 0 0.2rem rgba(38, 143, 255, 0.25); /* Setzt den Schatten um das Element (Bootstrap-Stil für Fokus) */
     }
 
-.btn-round {
-    border-radius: 20px/20px;
-    padding-left: 10px;
-    padding-right: 10px;
-}
+
 
 .btn-outline-primary {
     color: white;
