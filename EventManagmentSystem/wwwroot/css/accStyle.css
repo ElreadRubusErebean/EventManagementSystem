@@ -13,22 +13,27 @@
 
 .linkTransparent {
     opacity: 60%;
-    font-size: 1rem;
+    font-size: 1.2rem;
 }
 
 .datablock {
     padding-bottom: 20px;
 }
 
-.datablock > div {
-    height: 3vh;
-    max-height: 63px;
-}
+.spacingDiv {
+        height: 3vh;
+        max-height: 63px;
+    }
 
  .datablock > input {
     float: right;
-    margin-right: 5%;
  }
+ /*für Textblöcke in Userview > Meine Buchungen*/
+    .noTextareaOverlap {
+        display: block;
+        clear: both;
+       
+    }
 
 .outputFields {
     background-color: #93B1A6;
@@ -36,7 +41,14 @@
     outline: none;
     border: none;
     width: 60vw;
-    max-width: 95%;
+}
+
+.outputFields_Booking {
+    background-color: #93B1A6;
+    border-radius: 5px/ 5px;
+    outline: none;
+    border: none;
+    width: 50vw;
 }
 
 .blockBgLight {

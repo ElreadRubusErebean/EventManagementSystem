@@ -13,24 +13,26 @@
     {
        <div class="datablock blockBgLight">
             <label for="title">Event-Titel</label>
-            <input name="title" class="outputFields" readonly value="@item.Event.Title" />
-            <div></div>
-            <label for="description">Event-Beschreibung</label>
-            <textarea name="description" readonly value="@item.Event.Description" class="outputFields"></textarea>
-            <div></div>
+            <input name="title" class="outputFields_Booking" readonly value="@item.Event.Title" />
+        <div class="spacingDiv"></div>
+        <div class="w-100 d-flex justify-content-between">
+                <label for="description">Event-Beschreibung</label>
+                <textarea name="description" readonly class="outputFields_Booking noTextareaOverlap">@item.Event.Description</textarea>
+        </div>
+        <div class="spacingDiv"></div>
             <label for="date">Event-Datum</label>
-            <input name="date" class="outputFields" readonly value="@item.Event.Date.ToString("dd.MM.yyyy HH:mm")" />
-            <div></div>
+            <input name="date" class="outputFields_Booking" readonly value="@item.Event.Date.ToString("dd.MM.yyyy HH:mm")" />
+        <div class="spacingDiv"></div>
             <label for="ticketAmount">Anzahl der Tickets</label>
-            <input name="ticketAmount" class="outputFields" readonly value="@item.Booking.AmountOfTickets" />
-            <div></div>
+            <input name="ticketAmount" class="outputFields_Booking" readonly value="@item.Booking.AmountOfTickets" />
+        <div class="spacingDiv"></div>
             <label for="bookedDate">Gebuchtes Datum</label>
-            <input name="bookedDate" class="outputFields" readonly value="@item.Booking.BookingDate.ToString("dd.MM.yyyy HH:mm")" />
-            <div></div>
+            <input name="bookedDate" class="outputFields_Booking" readonly value="@item.Booking.BookingDate.ToString("dd.MM.yyyy HH:mm")" />
+        <div class="spacingDiv"></div>
 
-            <form method="post" action="@Url.Action("CancelBooking", "Booking")">
-                <input type="hidden" name="bookingId" value="@item.Booking.BookingId" />
-                <button type="submit" class="btn btn-danger btn-round">Stornieren</button>
-            </form>
+        <form method="post" action="@Url.Action("CancelBooking", "Booking")" class="d-flex p-2 flex-row-reverse w-100">
+                    <input type="hidden" name="bookingId" value="@item.Booking.BookingId" />
+                    <button type="submit" class="btn btn-danger btn-round">Stornieren</button>
+                </form>
         </div>
     }
