@@ -51,6 +51,12 @@
     width: 50vw;
 }
 
+.textareaWrapper {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
 .blockBgLight {
     background-color: rgba(92, 131, 116, 0.7);
     margin: 2%;
@@ -59,9 +65,25 @@
     border-radius: 10px/ 10px;
 }
 
+/*Tablet < Laptop*/
+@media (max-width: 950px) {
+    .textareaWrapper {
+        width: 100%;
+        display: block;
+    }
+
+    .blockBgLight {
+        display: grid;
+    }
+}
+
 /* < Mobile L*/
 @media (max-width: 425px) {
     .outputFields {
         max-width: 60%
+    }
+
+    .datablock {
+        display: grid
     }
 }
