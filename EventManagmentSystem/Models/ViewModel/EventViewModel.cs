@@ -12,7 +12,27 @@ namespace EventManagmentSystem.Models.ViewModel
 
         public decimal Price { get; set; } //keine Unterscheidung für Plätze 
 
-        public EventStateEnum State { get; set; }
+        
+        /// <summary>
+        /// in der Getter-Methode wird bei Abfrage der State-Property geprüft, ob das Event abgelaufen ist,
+        /// wenn ja wird das Event als abgelaufen gesetzt,
+        /// wenn nein wird der bisherige State zuruückgegeben
+        /// </summary>
+        private EventStateEnum state;
+        public EventStateEnum State
+        {
+            get
+            {
+                if (Date.CompareTo(DateTime.Now)>0)
+                {
+                    State = EventStateEnum.OutOfDate;
+                }
+                return state;
+            }
+            set
+            {
+                state = value;
+            } }
 
         public int AmountOfTickets { get; set; } //Gesamtanzahl
         public int EventId { get; set; }
