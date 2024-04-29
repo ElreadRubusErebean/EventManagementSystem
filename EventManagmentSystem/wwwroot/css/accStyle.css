@@ -1,6 +1,10 @@
 ﻿.blockProfile {
-    width: 90vw;
+    width:50vw;
     height: auto;
+}
+
+.accNav {
+    width: 50vw;
 }
 
 .linkThicc, .linkTransparent {
@@ -32,23 +36,23 @@
     .noTextareaOverlap {
         display: block;
         clear: both;
-       
+        resize: none;
     }
 
 .outputFields {
-    background-color: #93B1A6;
-    border-radius: 5px/ 5px;
+    background-color: transparent !important;
     outline: none;
     border: none;
-    width: 60vw;
+    width: 30vw;
+    color: white;
 }
 
 .outputFields_Booking {
-    background-color: #93B1A6;
-    border-radius: 5px/ 5px;
+    background-color: transparent !important;
     outline: none;
     border: none;
-    width: 50vw;
+    width: 30vw;
+    color: white !important;
 }
 
 .textareaWrapper {
@@ -59,7 +63,9 @@
 
 .blockBgLight {
     background-color: rgba(92, 131, 116, 0.7);
-    margin: 2%;
+    width: 60vw;
+    margin: auto;
+    margin-bottom: 2%;
     padding: 20px;
     border: 3px solid #93B1A6;
     border-radius: 10px/ 10px;
