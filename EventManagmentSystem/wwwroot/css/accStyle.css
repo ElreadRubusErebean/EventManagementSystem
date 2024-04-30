@@ -55,7 +55,7 @@ label {
     outline: none;
     border: none;
     width: 30vw;
-    color: white;
+    color: black !important;
 }
 
 .outputFields_Booking {
