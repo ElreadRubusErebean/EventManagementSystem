@@ -193,7 +193,7 @@ body {
 .form-control {
     background-color: #93B1A6;
     color: white;
-    border-color: white;
+    border-color: #93B1A6;
     transition: background-color 0.5s ease, border-color 0.5s ease, box-shadow 0.5s ease; /* Übergangseffekt */
 }
 
