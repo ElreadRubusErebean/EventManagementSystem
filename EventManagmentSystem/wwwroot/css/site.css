@@ -165,7 +165,8 @@ body {
 .roundEdgesSmall {
     color: white;
     border: 1px solid #93B1A6;
-    width: 40%;
+    min-width: 40%;
+    max-width: 95%;
     height: auto;
     background-color: rgba(24, 61, 61, 0.6);
     border-radius: 10px;
