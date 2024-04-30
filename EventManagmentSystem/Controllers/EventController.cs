@@ -59,7 +59,7 @@ namespace EventManagmentSystem.Controllers
         {
             if(!ModelState.IsValid)
             {
-                return View(eventModel);
+                return View("EventCreate", eventModel);
             }
             //ich hole hier die USerId mit Seller Rolle aus dem session
             var userId = GetUserId();
