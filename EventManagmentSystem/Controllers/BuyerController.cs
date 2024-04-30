@@ -8,10 +8,12 @@ namespace EventManagmentSystem.Controllers
     public class BuyerController : ValidationController
     {
         private readonly UserService _userService;
+        private readonly BookingService _bookingService;
 
-        public BuyerController(UserService userService)
+        public BuyerController(UserService userService, BookingService bookingService)
         {
             _userService = userService;
+            _bookingService = bookingService;
         }
         [HttpGet]
         public async Task<IActionResult> Profile()
@@ -50,6 +52,8 @@ namespace EventManagmentSystem.Controllers
         [HttpPost]
         public async Task<IActionResult> DeleteKonto()
         {
+            //check ob user Booking hat oder nicht
+            //wenn ja rufe cancelBooking() aus dem UserService auf
             // Benutzer-ID 
             var userIdString = HttpContext.Session.GetString("UserID");
             if (!int.TryParse(userIdString, out var userId))
@@ -80,7 +84,7 @@ namespace EventManagmentSystem.Controllers
             return RedirectToAction("Index", "Home");
         }
 
-        //Methode zum updaten des Benutzerkontos
+        // Methode zum Updaten des Benutzerkontos
         [HttpGet]
         public async Task<IActionResult> UpdateProfile()
         {
@@ -88,12 +92,12 @@ namespace EventManagmentSystem.Controllers
             var userIdString = HttpContext.Session.GetString("UserID");
             if (!int.TryParse(userIdString, out var userId))
             {
-                //wenn die Benutzer-ID nicht vorhanden ist, wird der Benutzer auf die Startseite umgeleitet
+                // Wenn die Benutzer-ID nicht vorhanden ist, wird der Benutzer auf die Startseite umgeleitet
                 return NotFound();
             }
 
-            // ich rufe hier die Methode GetUserAsync() aus dem UserService auf
-            //damit ich die Daten des Benutzers abrufen kann
+            // Ich rufe hier die Methode GetUserAsync() aus dem UserService auf
+            // Damit ich die Daten des Benutzers abrufen kann
             var user = await _userService.GetUserAsync(userId);
             if (user == null)
             {
@@ -112,6 +116,7 @@ namespace EventManagmentSystem.Controllers
 
             return View(model);
         }
+
         [HttpPost]
         public async Task<IActionResult> UpdateProfile(UserViewModel model)
         {
@@ -148,6 +153,11 @@ namespace EventManagmentSystem.Controllers
             }
 
             return RedirectToAction("Profile");
+        }
+
+        public IActionResult Buyer_EventOverview()
+        {
+            return View();
         }
     }
 }

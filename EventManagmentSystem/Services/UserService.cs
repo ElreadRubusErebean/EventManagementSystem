@@ -118,20 +118,78 @@ namespace EventManagmentSystem.Services
             return false;
         }
 
-        //Methode zum löschen des Benutzerkontos
+        //Methode zum löschen des Benutzerkontos (NormalUser)
         public async Task<bool> DeleteUserAsync(int userId)
         {
+            /// <summary>
+            /// To Do : wenn User noch offene Buchungen hat, dann werden diese einfach gelöscht
+            /// wenn User sein Konto löscht
+            /// </summary>            
             var user = await _context.Users.FirstOrDefaultAsync(u => u.UserId == userId);
             if (user == null)
             {
                 return false;
             }
+            //hier wird geprüft, ob der User noch offene Buchungen hat
+            var bookings = await _context.Bookings.Where(b => b.UserId == userId).ToListAsync();
+            foreach (var booking in bookings)
+            {
+                var ev = await _context.Events.FirstOrDefaultAsync(e => e.EventId == booking.EventId);
+                if (ev != null)
+                {
+                    //Anzahl der verfügbaren Tickets aktualisierens
+                    ev.AmountOfTickets += booking.AmountOfTickets;
+                }
+                _context.Bookings.Remove(booking);
+            }
+            await _context.SaveChangesAsync();
 
+            // Benutzer löschen
             _context.Users.Remove(user);
             await _context.SaveChangesAsync();
+
             return true;
         }
+        /// <summary>
+        /// ich habe hier eine neue Methode hinzugefügt, um das Benutzerkonto eines Verkäufers zu löschen
+        /// weil mit dem käufer das löschen des Kontos anders ist als mit dem Verkäufer
+        /// </summary>
+        public async Task<bool> DeleteSellerAccountAsync(int sellerId)
+        {
+            //zuerst die userId des Verkäufers holen und checken ob das wirklich ein Verkäufer ist
+            var seller = await _context.Users.FirstOrDefaultAsync(u => u.UserId == sellerId);
+            if (seller == null)
+            {
+                return false; // Verkäufer nicht gefunden
+            }
 
+            // Überprüfen, ob der Verkäufer Events hat
+            //und ob die events von dem Verkäufer sind
+            //wenn ja, dann werden alle Events und Buchungen für das Event gelöscht
+            var sellerEvents = await _context.Events.Where(e => e.UserId == sellerId).ToListAsync();
+            foreach (var ev in sellerEvents)
+            {
+                //hier werden geschaut ob das Event noch Buchungen hat
+                //wenn ja dann werden die Buchungen gelöscht
+                //ansonsten springt der code weiter und löscht das Event
+                // Alle Buchungen für das Event löschen
+                var bookings = await _context.Bookings.Where(b => b.EventId == ev.EventId).ToListAsync();
+                foreach (var booking in bookings)
+                {
+                    _context.Bookings.Remove(booking);
+                }
+
+                // Event löschen
+                _context.Events.Remove(ev);
+            }
+            //wenn alle Abhängigkeiten gelöscht sind, dann wird das Benutzerkonto gelöscht
+            // Benutzerkonto des Verkäufers löschen
+            _context.Users.Remove(seller);
+
+            await _context.SaveChangesAsync();
+
+            return true;
+        }
         //Methode zum updaten des Benutzerkontos
         public async Task<bool> UpdateUserAsync(User user)
         {

@@ -1,14 +1,23 @@
-﻿@model EventManagmentSystem.Models.ViewModel.EventOverview
-
-@{
-    ViewData["Title"] = "Event Overview";
-}
-
-<h1>Aktuelle Veranstaltungen</h1>
+﻿@model IEnumerable<EventManagmentSystem.Models.DbModel.Event>
+<!--Events des angemeldeten sellers-->
+<!--Hier kann der Seller seine Events sehens-->
+<h1>Meine Events</h1>
+<hr class="spacingLine-light" />
+<div class="d-flex justify-content-center">
+    <a asp-action="Seller" asp-controller="Seller" methode="Get" class="mx-2">
+        <button type="submit" class="btn btn-primary">Meine Daten</button>
+    </a>
+    <a asp-action="MyEvents" asp-controller="Seller" methode="Get">
+        <button type="submit" class="btn btn-primary">Meine Events</button>
+    </a>
+    <a asp-action="EventCreate" asp-controller="Event" class="mx-2">
+        <button type="submit" class="btn btn-success">+ Neues Event erstellen</button>
+    </a>
+</div>
 <hr class="spacingLine-light" />
 
 <ul class="event-list">
-    @foreach (var eventItem in Model.ListOfEvents)
+    @foreach (var eventItem in Model)
     {
         <li class="event-item">
             <a class="event-link" asp-action="Event" asp-controller="Event" asp-route-id="@eventItem.EventId">

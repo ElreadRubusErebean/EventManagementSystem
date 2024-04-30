@@ -21,6 +21,7 @@ builder.Services.AddControllersWithViews();
 //Ich füge hier die Services hinzu, damit ich sie in den Controllern verwenden kann
 builder.Services.AddScoped<UserService>();
 builder.Services.AddScoped<EventService>();
+builder.Services.AddScoped<BookingService>();
 
 builder.Services.AddControllersWithViews();
 builder.Services.AddHttpContextAccessor();

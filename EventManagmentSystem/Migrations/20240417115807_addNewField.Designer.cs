@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EventManagmentSystem.Migrations
 {
     [DbContext(typeof(EventDbContext))]
-    [Migration("20240412105943_CreateEventTable")]
-    partial class CreateEventTable
+    [Migration("20240417115807_addNewField")]
+    partial class addNewField
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -24,6 +24,35 @@ namespace EventManagmentSystem.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
+
+            modelBuilder.Entity("EventManagmentSystem.Models.Booking", b =>
+                {
+                    b.Property<int>("BookingId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("BookingId"));
+
+                    b.Property<int>("AmountOfTickets")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("BookingDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("EventId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("BookingId");
+
+                    b.HasIndex("EventId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Booking");
+                });
 
             modelBuilder.Entity("EventManagmentSystem.Models.DbModel.Event", b =>
                 {
@@ -109,6 +138,25 @@ namespace EventManagmentSystem.Migrations
                     b.ToTable("Users");
                 });
 
+            modelBuilder.Entity("EventManagmentSystem.Models.Booking", b =>
+                {
+                    b.HasOne("EventManagmentSystem.Models.DbModel.Event", "Event")
+                        .WithMany("Bookings")
+                        .HasForeignKey("EventId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("EventManagmentSystem.Models.DbModel.User", "User")
+                        .WithMany("Bookings")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Event");
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("EventManagmentSystem.Models.DbModel.Event", b =>
                 {
                     b.HasOne("EventManagmentSystem.Models.DbModel.User", "User")
@@ -120,8 +168,15 @@ namespace EventManagmentSystem.Migrations
                     b.Navigation("User");
                 });
 
+            modelBuilder.Entity("EventManagmentSystem.Models.DbModel.Event", b =>
+                {
+                    b.Navigation("Bookings");
+                });
+
             modelBuilder.Entity("EventManagmentSystem.Models.DbModel.User", b =>
                 {
+                    b.Navigation("Bookings");
+
                     b.Navigation("Events");
                 });
 #pragma warning restore 612, 618

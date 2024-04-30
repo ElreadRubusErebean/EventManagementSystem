@@ -10,11 +10,12 @@ namespace EventManagmentSystem.Models.ViewModel
 
         public DateTime Date { get; set; }
 
-        public double Price { get; set; } //keine Unterscheidung für Plätze 
+        public decimal Price { get; set; } //keine Unterscheidung für Plätze 
 
         public EventStateEnum State { get; set; }
 
         public int AmountOfTickets { get; set; } //Gesamtanzahl
+        public int EventId { get; set; }
 
     }
 }
