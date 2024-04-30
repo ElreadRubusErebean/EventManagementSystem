@@ -40,9 +40,15 @@ label {
         max-height: 63px;
     }
 
- .datablock > input {
+ .datablock > input, .datablock > p {
     float: right;
  }
+
+.longTextBlocks {
+    height: 50px;
+    overflow-y: auto;
+    scroll-behavior: smooth;
+}
 
 .outputFields {
     background-color: transparent;
@@ -97,3 +103,27 @@ label {
         display: grid
     }
 }
+
+
+/* Stil für den vertikalen Scrollbalken */
+::-webkit-scrollbar {
+    width: 12px;
+}
+
+/* Track (Hintergrund) des Scrollbalkens */
+::-webkit-scrollbar-track {
+    background: transparent;
+    border-radius: 10px;
+}
+
+/* Griff (beweglicher Teil) des Scrollbalkens */
+::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+}
+
+    /* Hover-Stil für den Griff des Scrollbalkens */
+    ::-webkit-scrollbar-thumb:hover {
+        background: rgba(0, 0, 0, 0.5);
+        border-radius: 10px;
+    }
