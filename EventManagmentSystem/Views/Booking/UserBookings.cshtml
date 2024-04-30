@@ -13,21 +13,21 @@
     {
        <div class="datablock blockBgLight">
             <label for="title">Event-Titel</label>
-            <input name="title" class="outputFields_Booking" readonly value="@item.Event.Title" />
+            <input name="title" class="outputFields_Light" readonly value="@item.Event.Title" />
         <div class="spacingDiv"></div>
         <div class="textareaWrapper">
                 <label for="description">Event-Beschreibung</label>
-                <textarea name="description" readonly class="outputFields_Booking noTextareaOverlap">@item.Event.Description</textarea>
+                <textarea name="description" readonly class="outputFields_Light noTextareaOverlap">@item.Event.Description</textarea>
         </div>
         <div class="spacingDiv"></div>
             <label for="date">Event-Datum</label>
-            <input name="date" class="outputFields_Booking" readonly value="@item.Event.Date.ToString("dd.MM.yyyy HH:mm")" />
+            <input name="date" class="outputFields_Light" readonly value="@item.Event.Date.ToString("dd.MM.yyyy HH:mm")" />
         <div class="spacingDiv"></div>
             <label for="ticketAmount">Anzahl der Tickets</label>
-            <input name="ticketAmount" class="outputFields_Booking" readonly value="@item.Booking.AmountOfTickets" />
+            <input name="ticketAmount" class="outputFields_Light" readonly value="@item.Booking.AmountOfTickets" />
         <div class="spacingDiv"></div>
             <label for="bookedDate">Gebuchtes Datum</label>
-            <input name="bookedDate" class="outputFields_Booking" readonly value="@item.Booking.BookingDate.ToString("dd.MM.yyyy HH:mm")" />
+            <input name="bookedDate" class="outputFields_Light" readonly value="@item.Booking.BookingDate.ToString("dd.MM.yyyy HH:mm")" />
         <div class="spacingDiv"></div>
         <hr />
         <form method="post" action="@Url.Action("CancelBooking", "Booking")" class="d-flex p-2 flex-row-reverse w-100">
