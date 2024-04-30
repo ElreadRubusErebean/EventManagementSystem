@@ -43,11 +43,6 @@ label {
  .datablock > input {
     float: right;
  }
- /*für Textblöcke in Userview > Meine Buchungen*/
-    .noTextareaOverlap {
-        display: block;
-        clear: both;
-    }
 
 .outputFields {
     background-color: transparent;

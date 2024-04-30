@@ -17,8 +17,9 @@
         <div class="spacingDiv"></div>
         <div class="textareaWrapper">
                 <label for="description">Event-Beschreibung</label>
-                <textarea name="description" readonly class="outputFields_Light noTextareaOverlap">@item.Event.Description</textarea>
+                <p name="description" class="outputFields_Light">@item.Event.Description</p>
         </div>
+
         <div class="spacingDiv"></div>
             <label for="date">Event-Datum</label>
             <input name="date" class="outputFields_Light" readonly value="@item.Event.Date.ToString("dd.MM.yyyy HH:mm")" />
