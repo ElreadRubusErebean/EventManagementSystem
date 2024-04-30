@@ -276,24 +276,24 @@ body {
 }
 
     /* Stil für den vertikalen Scrollbalken */
-    .card-body::-webkit-scrollbar, .card-title::-webkit-scrollbar {
+    ::-webkit-scrollbar {
         width: 12px;
     }
 
     /* Track (Hintergrund) des Scrollbalkens */
-    .card-body::-webkit-scrollbar-track, .card-title::-webkit-scrollbar-track {
+    ::-webkit-scrollbar-track {
         background: transparent;
         border-radius: 10px;
     }
 
     /* Griff (beweglicher Teil) des Scrollbalkens */
-    .card-body::-webkit-scrollbar-thumb, .card-title::-webkit-scrollbar-thumb {
+    ::-webkit-scrollbar-thumb {
         background: rgba(0, 0, 0, 0.3);
         border-radius: 10px;
     }
 
         /* Hover-Stil für den Griff des Scrollbalkens */
-        .card-body::-webkit-scrollbar-thumb:hover, .card-title::-webkit-scrollbar-thumb:hover {
+        ::-webkit-scrollbar-thumb:hover {
             background: rgba(0, 0, 0, 0.5);
             border-radius: 10px;
         }

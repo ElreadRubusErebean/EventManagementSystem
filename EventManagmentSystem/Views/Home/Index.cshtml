@@ -8,6 +8,7 @@
     .card {
         display: flex;
         flex-direction: column;
+        width: 95%;
         height: 500px;
     }
 
@@ -30,39 +31,37 @@
                 bool isActive = pageIndex == 0;
 
                 <div class="carousel-item @(isActive ? "active" : "")">
-                    <div class="row">
-                        @for (int i = pageIndex * pageSize; i < (pageIndex + 1) * pageSize && i < Model.ListOfEvents.Count; i++)
-                        {
-                            var eventItem = Model.ListOfEvents[i];
+                    @for (int i = pageIndex * pageSize; i < (pageIndex + 1) * pageSize && i < Model.ListOfEvents.Count; i++)
+                    {
+                        var eventItem = Model.ListOfEvents[i];
 
-                            <div class="col-md-4">
-                                <div class="card mb-4">
-                                    <div class="">
-                                        <h5 class="card-title">@eventItem.Title</h5>
-                                    </div>
-                                    <hr class="spacingLine-light" />
-                                    <div class="card-body">
-                                        <p class="card-text">@eventItem.Description</p>
-                                    </div>
-                                    <div class="card-footer">
-                                        <div class="mx-auto">
-                                            <dl>
-                                                <dt class="card-text">Datum</dt>
-                                                <dd class="card-text">@eventItem.Date.ToString("dd/MM/yyyy")</dd>
-                                                <dt class="card-text">Preis</dt>
-                                                <dd class="card-text">@eventItem.Price €</dd>
-                                                <dt class="card-text">Tickets verfügbar</dt>
-                                                <dd class="card-text">@eventItem.AmountOfTickets</dd>
-                                            </dl>
-                                        </div>
-                                    </div>
-                                    <div class="card-footer" style="display: flex; justify-content: center; align-items: center;">
-                                        <a asp-action="Event" asp-controller="Event" asp-route-id="@eventItem.EventId" class="btn btn-primary">Event aufrufen</a>
+                        <div class="col-md-4">
+                            <div class="card mb-4">
+                                <div class="">
+                                    <h5 class="card-title">@eventItem.Title</h5>
+                                </div>
+                                <hr class="spacingLine-light" />
+                                <div class="card-body">
+                                    <p class="card-text">@eventItem.Description</p>
+                                </div>
+                                <div class="card-footer">
+                                    <div class="mx-auto">
+                                        <dl>
+                                            <dt class="card-text">Datum</dt>
+                                            <dd class="card-text">@eventItem.Date.ToString("dd/MM/yyyy")</dd>
+                                            <dt class="card-text">Preis</dt>
+                                            <dd class="card-text">@eventItem.Price €</dd>
+                                            <dt class="card-text">Tickets verfügbar</dt>
+                                            <dd class="card-text">@eventItem.AmountOfTickets</dd>
+                                        </dl>
                                     </div>
                                 </div>
+                                <div class="card-footer" style="display: flex; justify-content: end; align-items: end;">
+                                    <a asp-action="Event" asp-controller="Event" asp-route-id="@eventItem.EventId" class="btn btn-primary">Event aufrufen</a>
+                                </div>
                             </div>
-                        }
-                    </div>
+                        </div>
+                    }
                 </div>
             }
         }
