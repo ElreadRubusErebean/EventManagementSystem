@@ -16,7 +16,7 @@
         @TempData["SuccessMessage"]
     </div>
 }
-
+<div class="dataWrapper">
 <h1>Mein Konto</h1>
 <hr />
 <div class="blockProfile">
@@ -46,13 +46,14 @@
        <!-- Formular zum Löschen des eigenen Kontos -->
        <form method="post" action="@Url.Action("DeleteKonto", "Buyer")"
                   onsubmit="return confirm('Sind Sie sicher, dass Sie Ihr Konto löschen möchten? Dieser Vorgang kann nicht rückgängig gemacht werden.');">
-            <a asp-action="MyEvents" asp-controller="Seller" methode="Get">
+            <a asp-action="MyEvents" asp-controller="Seller" method="Get">
                     <button type="submit" class="btn btn-danger">Mein Konto löschen</button>
             </a>
        </form>
 
         <a href="@Url.Action("UpdateProfile", "Buyer")" class="mx-2">
-            <button type="submit" class="btn btn-primary">Profil Bearbeiten</button>
+            <button type="submit" class="btn btn-primary">Profil bearbeiten</button>
         </a>
+    </div>
     </div>
 </div>

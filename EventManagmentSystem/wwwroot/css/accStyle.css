@@ -1,13 +1,21 @@
-﻿.blockProfile {
-    width:50vw;
+﻿.dataWrapper {
+    width: 60vw;
     height: auto;
+}
+
+label {
+    font-weight: bold;
+}
+
+.centeredFields {
+    margin: auto;
 }
 
 .accNav {
     width: 50vw;
 }
 
-.linkThicc, .linkTransparent {
+.linkThicc {
     margin-right: 3%;
     font-size: 1.3rem;
     font-weight: 600;
@@ -16,8 +24,12 @@
 }
 
 .linkTransparent {
+    margin-right: 3%;
     opacity: 60%;
     font-size: 1.2rem;
+    font-weight: 600;
+    color: white;
+    text-decoration: none;
 }
 
 .datablock {

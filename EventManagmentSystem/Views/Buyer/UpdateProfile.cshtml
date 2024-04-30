@@ -1,22 +1,23 @@
 ﻿@model EventManagmentSystem.Models.ViewModel.UserViewModel;
 
+<div class="dataWrapper">
 <div class="updateBlock">
     <h1>Meine Daten bearbeiten</h1>
     <hr />
-    <form asp-action="UpdateProfile" method="post">
-        <div class="form-group">
+        <form asp-action="UpdateProfile" method="post" >
+        <div class="form-group centeredFields">
             <label for="Email">E-Mail</label>
-            <input type="email" class="form-control outputFields" id="Email" name="Email" value="@Model.Email">
+            <input type="email" class="form-control outputFields w-100" id="Email" name="Email" value="@Model.Email">
             <span asp-validation-for="Email" class="text-danger"></span>
             <br />
             <label for="FirstName">Vorname</label>
-            <input type="text" class="form-control outputFields" id="FirstName" name="FirstName" value="@Model.FirstName">
+            <input type="text" class="form-control outputFields w-100" id="FirstName" name="FirstName" value="@Model.FirstName">
             <br />
             <label for="LastName">Nachname</label>
-            <input type="text" class="form-control outputFields" id="LastName" name="LastName" value="@Model.LastName">
+            <input type="text" class="form-control outputFields w-100" id="LastName" name="LastName" value="@Model.LastName">
             <br />
             <label for="UserName">Benutzername</label>
-            <input type="text" class="form-control outputFields" id="UserName" name="UserName" value="@Model.UserName">
+            <input type="text" class="form-control outputFields w-100" id="UserName" name="UserName" value="@Model.UserName">
         </div>
         <hr />
         <div class="d-flex justify-content-center">
@@ -26,4 +27,5 @@
             </a>
         </div>
     </form>
+</div>
 </div>
