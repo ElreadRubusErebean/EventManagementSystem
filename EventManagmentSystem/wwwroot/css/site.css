@@ -111,11 +111,13 @@ html {
 
 body {
     display: flex;
-    flex-direction: column;                 /* Stapelt die Inhalte vertikal */
+    flex-direction: column; /* Stapelt die Inhalte vertikal */
     justify-content: center;
     background-color: black;
     background-image: url("/images/background.jpg");
+    background-repeat: no-repeat;
     background-size: cover;
+    background-attachment: fixed;
     margin: 0;
     padding: 0;
 }
@@ -230,14 +232,13 @@ body {
 .btn-primary {
     color: white;
     border: none;
-    background-color: #183D3D;
+    background-color: #5900A6;
 }
 
     .btn-primary:hover {
         color: white;
         border: none;
-        background-color: #125D5D;
-        border-color: #93B1A6;
+        background-color: #8B3AFF;
     }
 
 .btn-success {
@@ -255,6 +256,12 @@ body {
     background-color: rgba(4, 21, 21, 0.6);
     border-color: rgba(4, 21, 21);
 }
+
+    .card:hover {
+        box-shadow: 0 0 8px rgba(147, 177, 166, 0.4);
+        transition: box-shadow 0.3s ease;
+    }
+
 .card-title {
     padding: 16px;
     padding-top: 8px;
@@ -277,7 +284,7 @@ body {
 
     /* Stil für den vertikalen Scrollbalken */
     ::-webkit-scrollbar {
-        width: 12px;
+        width: 16px;
     }
 
     /* Track (Hintergrund) des Scrollbalkens */
@@ -288,14 +295,15 @@ body {
 
     /* Griff (beweglicher Teil) des Scrollbalkens */
     ::-webkit-scrollbar-thumb {
-        background: rgba(0, 0, 0, 0.3);
+        background: rgba(24, 61, 61, 0.6);
         border-radius: 10px;
     }
 
         /* Hover-Stil für den Griff des Scrollbalkens */
         ::-webkit-scrollbar-thumb:hover {
-            background: rgba(0, 0, 0, 0.5);
+            background: rgba(24, 61, 61, 0.8);
             border-radius: 10px;
+            cursor: pointer;
         }
 
 .carousel-item {
