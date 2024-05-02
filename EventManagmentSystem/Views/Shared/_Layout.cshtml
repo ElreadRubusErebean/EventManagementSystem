@@ -8,6 +8,30 @@
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/EventManagmentSystem.styles.css" asp-append-version="true" />
 </head>
+
+<!-- Funktion zum Schließen des Alerts -->
+<script>
+    function closeAlert(alertId) {
+        document.getElementById(alertId).style.display = "none";
+    }
+</script>
+
+@if (TempData["ErrorMessage"] != null)
+{
+    <div id="errorAlert" class="alert alert-danger alert-dismissible fade show" role="alert">
+        @TempData["ErrorMessage"]
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close" onclick="closeAlert('errorAlert')"></button>
+    </div>
+}
+
+@if (TempData["SuccessMessage"] != null)
+{
+    <div id="successAlert" class="alert alert-success alert-dismissible fade show" role="alert">
+        @TempData["SuccessMessage"]
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close" onclick="closeAlert('successAlert')"></button>
+    </div>
+}
+
 <body>
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-white border-bottom box-shadow mb-3">
@@ -38,8 +62,8 @@
                     </ul>
 
                     <form class="form-inline my-2 my-lg-0 d-flex w-50">
-                        <input class="form-control flex-grow-1 mr-2" type="search" placeholder="Suchen.." aria-label="Suche">
-                        <button class="btn my-2 my-sm-0" id="searchBtn" type="submit">Suchen</button>
+                        <input class="form-control mr-2" type="search" placeholder="Suchen.." aria-label="Suche">
+                        <button class="btn btn-primary my-2 my-sm-0" id="searchBtn" type="submit">Suchen</button>
                     </form>
 
                     <div class="ml-auto">
@@ -103,6 +127,9 @@
         else if ((currentController == "Seller" && currentAction == "Seller") ||
         (currentController == "Buyer" && currentAction == "Profile") ||
         (currentController == "Buyer" && currentAction == "UpdateProfile") ||
+        (currentController == "Seller" && currentAction == "UpdateProfile") ||
+        (currentController == "Registration" && currentAction == "Registration") ||
+        (currentController == "Event" && currentAction == "EventCreate") ||
         (currentController == "Seller" && currentAction == "UpdateProfile"))
             {
                 selectBodyContainer = "roundEdgesSmall";
