@@ -232,14 +232,13 @@ body {
 .btn-primary {
     color: white;
     border: none;
-    background-color: #183D3D;
+    background-color: #5900A6;
 }
 
     .btn-primary:hover {
         color: white;
         border: none;
-        background-color: #125D5D;
-        border-color: #93B1A6;
+        background-color: #8B3AFF;
     }
 
 .btn-success {
