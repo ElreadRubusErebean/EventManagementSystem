@@ -22,10 +22,27 @@ html {
 }
 
 .navbar {
-    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.5) 10%, rgba(255, 255, 255, 0) 100%) !important; /* Anpassen für gewünschte Farbe und Transparenz */
+    background: linear-gradient(to bottom, rgba(24, 61, 61, 0.5) 0%, rgba(255, 255, 255, 0) 100%) !important; /* Anpassen für gewünschte Farbe und Transparenz */
     border-bottom: none !important; /* Entfernt den unteren Rand, falls vorhanden */
     backdrop-filter: blur(10px);
     color: white;
+}
+    .navbar-nav {
+        display: flex;
+        flex-direction: column;     /* Anordnung der Elemente in einer Spalte */
+        justify-content: center;    /* Vertikale Zentrierung der Elemente */
+        align-items: center;        /* Horizontale Zentrierung der Elemente */
+    }
+
+.footer {
+    display: flex;
+    height: 80px;
+    background: linear-gradient(to top, rgba(24, 61, 61, 0.8) 10%, rgba(255, 255, 255, 0) 100%) !important; /* Anpassen für gewünschte Farbe und Transparenz */
+    border-bottom: none !important; /* Entfernt den unteren Rand, falls vorhanden */
+    backdrop-filter: blur(10px);
+    color: white;
+    justify-content: center;
+    align-items: center;
 }
 
 .nav-link{
@@ -131,6 +148,7 @@ body {
     padding: 20px;
     margin-left: auto;
     margin-right: auto;
+    margin-bottom: 80px;
     -webkit-backdrop-filter: blur(10px); /* Für Safari-Browser */
 }
 
@@ -297,4 +315,49 @@ body {
     margin: 5px 0;
     /* font-size: 1em; */
     color: white;
+}
+
+#imageContainer {
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0,0,0,0.5);
+    z-index: 1000;
+}
+
+#styleImage {
+    max-width: 100%;
+    max-height: 100%;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+    #styleImage.zoom {
+        transform: scale(2) translateY(25%);
+    }
+
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 30px;
+    color: white;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+}
+    .close-btn:hover {
+        color: #93B1A6;
+        transition: transform 0.3s ease;
+    }
+
+.bungee-shade-regular {
+    font-family: "Bungee Shade", sans-serif;
+    font-weight: 400;
+    font-style: normal;
 }

@@ -7,19 +7,23 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/EventManagmentSystem.styles.css" asp-append-version="true" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bungee+Shade&display=swap" rel="stylesheet">
 </head>
 <body>
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-white border-bottom box-shadow mb-3">
             <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">
-                </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav mr-auto">
+                        <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">
+                            <p class="bungee-shade-regular" style="font-size: 16pt; margin-bottom: 0; background: linear-gradient(45deg, #ff8a00, #e52e71); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Eventopia</p>
+                        </a>
                         <li class="nav-item">
                             <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
@@ -118,6 +122,36 @@
             @RenderBody()
         </main>
     </div>
+
+
+    <footer class="footer bg-transparent box-shadow">
+        <a href="https://github.com/ElreadRubusErebean/EventManagementSystem" target="_blank" title="Zu unserem GitHub Projekt!">
+            <img src="~/images/github-icon.png" style="height: 45px; width: 45px; border-radius: 20px; margin: 0 16px 0 16px;"/>
+        </a>
+        <button type="button" class="btn btn-outline-primary" style="background: transparent; border-radius: 40px; height: 46px; width: 46px; padding: 0; margin: 0;" title="Unser Styleguide!" onclick="toggleImageContainer()">
+            <img src="~/images/styleguide.svg" style="height: 45px; width: 45px; padding: 0; margin: 0;" />
+        </button>
+    </footer>
+
+
+    <!-- Bild-Container -->
+    <div id="imageContainer" style="display:none; border-color: black; overflow-y: auto;">
+        <img id="styleImage" src="~/images/Eventopia.png" alt="Styleguide Image" onclick="toggleZoom()">
+        <button type="button" class="btn btn-secondary close-btn" style="border-radius: 20px; background: none; right: 30%; top: 10px;" onclick="toggleImageContainer()">&times;</button>
+    </div>
+
+    <script>
+        function toggleImageContainer() {
+            var container = document.getElementById("imageContainer");
+            container.style.display = container.style.display === "none" ? "flex" : "none";
+            document.getElementById("styleImage").classList.remove("zoom"); // Zoom zurücksetzen
+        }
+
+        function toggleZoom() {
+            var img = document.getElementById("styleImage");
+            img.classList.toggle("zoom");
+        }
+    </script>
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
