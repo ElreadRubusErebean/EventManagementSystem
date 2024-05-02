@@ -257,6 +257,12 @@ body {
     background-color: rgba(4, 21, 21, 0.6);
     border-color: rgba(4, 21, 21);
 }
+
+    .card:hover {
+        box-shadow: 0 0 8px rgba(147, 177, 166, 0.4);
+        transition: box-shadow 0.3s ease;
+    }
+
 .card-title {
     padding: 16px;
     padding-top: 8px;
