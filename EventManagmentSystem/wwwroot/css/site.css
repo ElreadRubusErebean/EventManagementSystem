@@ -111,11 +111,13 @@ html {
 
 body {
     display: flex;
-    flex-direction: column;                 /* Stapelt die Inhalte vertikal */
+    flex-direction: column; /* Stapelt die Inhalte vertikal */
     justify-content: center;
     background-color: black;
     background-image: url("/images/background.jpg");
+    background-repeat: no-repeat;
     background-size: cover;
+    background-attachment: fixed;
     margin: 0;
     padding: 0;
 }
