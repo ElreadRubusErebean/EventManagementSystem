@@ -360,4 +360,9 @@ body {
     font-family: "Bungee Shade", sans-serif;
     font-weight: 400;
     font-style: normal;
+    font-size: 16pt;
+    margin-bottom: 0;
+    background: linear-gradient(45deg, #ff8a00, #e52e71);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
