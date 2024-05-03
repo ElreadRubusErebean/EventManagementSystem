@@ -1,19 +1,16 @@
 ﻿using EventManagmentSystem.Services;
 using Microsoft.AspNetCore.Mvc;
 using EventManagmentSystem.Models.ViewModel;
-using System.Security.Claims;
 
 namespace EventManagmentSystem.Controllers
 {
     public class BuyerController : ValidationController
     {
         private readonly UserService _userService;
-        private readonly BookingService _bookingService;
 
-        public BuyerController(UserService userService, BookingService bookingService)
+        public BuyerController(UserService userService)
         {
             _userService = userService;
-            _bookingService = bookingService;
         }
         [HttpGet]
         public async Task<IActionResult> Profile()

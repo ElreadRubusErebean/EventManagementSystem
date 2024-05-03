@@ -2,7 +2,6 @@
 using EventManagmentSystem.Models.ViewModel;
 using EventManagmentSystem.Services;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 
 namespace EventManagmentSystem.Controllers
 {
@@ -14,6 +13,7 @@ namespace EventManagmentSystem.Controllers
         {
             _userService = userService;
         }
+
         [HttpGet]
         public async Task<IActionResult> Admin()
         {

@@ -1,9 +1,6 @@
-﻿using System.Text.RegularExpressions;
-using EventManagmentSystem.Models.DbModel;
-using EventManagmentSystem.Models.ViewModel;
+﻿using EventManagmentSystem.Models.ViewModel;
 using EventManagmentSystem.Services;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
 
 namespace EventManagmentSystem.Controllers
 {
@@ -104,4 +101,4 @@ namespace EventManagmentSystem.Controllers
             }
         }
     }
-    }
+}

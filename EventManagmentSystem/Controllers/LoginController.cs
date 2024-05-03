@@ -1,10 +1,6 @@
 ﻿using EventManagmentSystem.Services;
 using Microsoft.AspNetCore.Mvc;
 using EventManagmentSystem.Models.ViewModel;
-using Microsoft.AspNetCore.Cryptography.KeyDerivation;
-using Microsoft.EntityFrameworkCore;
-using EventManagmentSystem.Models.DbModel;
-using EventManagmentSystem.Enums;
 
 namespace EventManagmentSystem.Controllers
 {

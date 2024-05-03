@@ -57,6 +57,7 @@ namespace EventManagmentSystem.Services
             await _context.SaveChangesAsync();
             return true;
         }
+
         //canceled Booking
         /*
          * BookingId holen
@@ -64,7 +65,6 @@ namespace EventManagmentSystem.Services
          * Anzahl der Tickets zu AmountOfTickets addieren
          * Booking löschen
          */
-
         public async Task Cancel(int bookingId)
         {
             var booking = await _context.Bookings
@@ -121,9 +121,5 @@ namespace EventManagmentSystem.Services
 
             return bookingsWithEvents;
         }
-
-
-
-
     }
 }

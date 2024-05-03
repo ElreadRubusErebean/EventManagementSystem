@@ -32,9 +32,6 @@ public class Event
     [Required(ErrorMessage = "Please select an amount of tickets.")]
     public int AmountOfTickets { get; set; } //Gesamtanzahl
 
-    [DefaultValue(0)]
-    public int NumberOfSoldTickets { get; set; }
-
     // Navigationseigenschaft zu User
     public User User { get; set; }
     public int UserId { get; set; }
