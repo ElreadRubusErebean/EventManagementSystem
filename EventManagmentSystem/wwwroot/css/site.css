@@ -23,10 +23,27 @@ html {
 }
 
 .navbar {
-    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.5) 10%, rgba(255, 255, 255, 0) 100%) !important; /* Anpassen für gewünschte Farbe und Transparenz */
+    background: linear-gradient(to bottom, rgba(24, 61, 61, 0.5) 0%, rgba(255, 255, 255, 0) 100%) !important; /* Anpassen fÃ¼r gewÃ¼nschte Farbe und Transparenz */
     border-bottom: none !important; /* Entfernt den unteren Rand, falls vorhanden */
     backdrop-filter: blur(10px);
     color: white;
+}
+    .navbar-nav {
+        display: flex;
+        flex-direction: column;     /* Anordnung der Elemente in einer Spalte */
+        justify-content: center;    /* Vertikale Zentrierung der Elemente */
+        align-items: center;        /* Horizontale Zentrierung der Elemente */
+    }
+
+.footer {
+    display: flex;
+    height: 80px;
+    background: linear-gradient(to top, rgba(24, 61, 61, 0.8) 10%, rgba(255, 255, 255, 0) 100%) !important; /* Anpassen fÃ¼r gewÃ¼nschte Farbe und Transparenz */
+    border-bottom: none !important; /* Entfernt den unteren Rand, falls vorhanden */
+    backdrop-filter: blur(10px);
+    color: white;
+    justify-content: center;
+    align-items: center;
 }
 
 .nav-link{
@@ -152,7 +169,7 @@ body {
     border: 1px solid #93B1A6;
     width: 80%;
     height: auto;
-    background-color: rgba(24, 61, 61, 0.6); /* Farbe mit Alpha-Wert für Transparenz */
+    background-color: rgba(24, 61, 61, 0.6); /* Farbe mit Alpha-Wert fÃ¼r Transparenz */
     background-size: cover;
     border-radius: 10px;
     backdrop-filter: blur(10px);
@@ -194,27 +211,27 @@ body {
 .roundEdges input,
 .roundEdges textarea,
 .roundEdges select {
-    background-color: #93B1A6;      /* Hintergrundfarbe für Input- und Textfelder */
+    background-color: #93B1A6;      /* Hintergrundfarbe fÃ¼r Input- und Textfelder */
     color: black;                   /* Schriftfarbe innerhalb der Inputfelder Schwarz */
 }
 
 .roundEdges input::placeholder,
 .roundEdges textarea::placeholder {
     color: black;                   /* Farbe des Platzhaltertextes Schwarz */
-    opacity: 1;                     /* Stellt sicher, dass der Platzhalter vollständig sichtbar ist */
+    opacity: 1;                     /* Stellt sicher, dass der Platzhalter vollstÃ¤ndig sichtbar ist */
 }
 
 .form-control {
     background-color: #93B1A6;
     color: black;
     border-color: black;
-    transition: background-color 0.5s ease, border-color 0.5s ease, box-shadow 0.5s ease; /* Übergangseffekt */
+    transition: background-color 0.5s ease, border-color 0.5s ease, box-shadow 0.5s ease; /* Ãœbergangseffekt */
 }
 
 .form-control:focus {
     background-color: white;
     border-color: black;
-    box-shadow: 0 0 0 0.2rem rgba(38, 143, 255, 0.25); /* Setzt den Schatten um das Element (Bootstrap-Stil für Fokus) */
+    box-shadow: 0 0 0 0.2rem rgba(38, 143, 255, 0.25); /* Setzt den Schatten um das Element (Bootstrap-Stil fÃ¼r Fokus) */
 }
 
 .btn-outline-primary {
@@ -282,7 +299,7 @@ body {
     scroll-behavior: smooth;
 }
 
-    /* Stil für den vertikalen Scrollbalken */
+    /* Stil fÃ¼r den vertikalen Scrollbalken */
     ::-webkit-scrollbar {
         width: 16px;
     }
@@ -299,7 +316,7 @@ body {
         border-radius: 10px;
     }
 
-        /* Hover-Stil für den Griff des Scrollbalkens */
+        /* Hover-Stil fÃ¼r den Griff des Scrollbalkens */
         ::-webkit-scrollbar-thumb:hover {
             background: rgba(24, 61, 61, 0.8);
             border-radius: 10px;
@@ -373,4 +390,54 @@ body {
     margin: 5px 0;
     /* font-size: 1em; */
     color: white;
+}
+
+#imageContainer {
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0,0,0,0.5);
+    z-index: 1000;
+}
+
+#styleImage {
+    max-width: 100%;
+    max-height: 100%;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+    #styleImage.zoom {
+        transform: scale(2) translateY(25%);
+    }
+
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 30px;
+    color: white;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+}
+    .close-btn:hover {
+        color: #93B1A6;
+        transition: transform 0.3s ease;
+    }
+
+.bungee-shade-regular {
+    font-family: "Bungee Shade", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 16pt;
+    margin-bottom: 0;
+    background: linear-gradient(45deg, #ff8a00, #e52e71);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
