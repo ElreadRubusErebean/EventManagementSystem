@@ -128,4 +128,49 @@ else
         </tr>
     </tbody>
 }
+<!--Events-->
+<h1 class="animated-header">Eventübersicht</h1>
+<hr class="spacingLine-light" />
+@if (Model.Events != null && Model.Events.Any())
+{
+    <table class="table" style="text-align: center;">
+        <thead>
+            <tr>
+                <th>EventID</th>
+                <th>Title</th>
+                <th>Beschreibung</th>
+                <th>Datum</th>
+                <th>Price</th>
+                <th>Tickets</th>
+                <th>Löschen</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var eventItem in Model.Events)
+            {
+                <tr>
+                    <td>@eventItem.EventId</td>
+                    <td>@eventItem.Title</td>
+                    <td>@eventItem.Description</td>
+                    <td>@eventItem.Date</td>
+                    <td>@eventItem.Price</td>
+                    <td>@eventItem.NumberOfSoldTickets</td>
+                    <td>
+                        <form action="@Url.Action("DeleteEvent", "Event", new { eventId = eventItem.EventId })" method="post">
+                            <button type="submit" class="btn btn-danger" onclick="return confirm('Sind Sie sicher, dass Sie dieses Event löschen möchten?');">Löschen</button>
+                        </form>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <tbody>
+        <tr>
+            <td colspan="9" class="text-center">Keine Events gefunden.</td>
+        </tr>
+    </tbody>
+}
 
