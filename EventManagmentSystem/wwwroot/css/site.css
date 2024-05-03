@@ -136,6 +136,7 @@ body {
     background-size: cover;
     background-attachment: fixed;
     margin: 0;
+    margin-bottom: 80px;
     padding: 0;
 }
 
