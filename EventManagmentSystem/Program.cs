@@ -10,10 +10,23 @@ using EventManagmentSystem.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
-//Hier wird die Connection zur Datenbank hergestellt
+// Hier wird die Connection zur Datenbank hergestellt
+//var dbHost = Environment.GetEnvironmentVariable("DB_HOST");
+//var dbName = Environment.GetEnvironmentVariable("DB_NAME");
+//var dbPassword = Environment.GetEnvironmentVariable("DB_SA_PASSWORD");
+
+// Korrekt formatierte Verbindungszeichenfolge
+//var connectionString = $"Data Source={dbHost};Initial Catalog={dbName};User ID=sa;Password={dbPassword};Encrypt=true;TrustServerCertificate=true";
+
+// Nutzung der connectionString Variable ohne Anführungszeichen
+//builder.Services.AddDbContext<EventDbContext>(options =>
+   //options.UseSqlServer(connectionString, options => options.EnableRetryOnFailure()));
+
 builder.Services.AddDbContext<EventDbContext>(options =>
 options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"))
 );
+
+
 
 
 // Add services to the container.
@@ -23,7 +36,6 @@ builder.Services.AddScoped<UserService>();
 builder.Services.AddScoped<EventService>();
 builder.Services.AddScoped<BookingService>();
 
-builder.Services.AddControllersWithViews();
 builder.Services.AddHttpContextAccessor();
 
 //Session
