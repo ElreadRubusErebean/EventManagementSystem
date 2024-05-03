@@ -222,6 +222,19 @@ body {
     background-color: rgb(92, 131, 116, 70%);
 }
 
+/*damit buttons nach klick nicht blau werden*/
+    .btn-primary::after visited {
+        color: white;
+        border-color: rgb(92, 131, 116, 70%);
+        background-color: rgb(92, 131, 116, 70%);
+    }
+
+    .btn-primary:focus {
+        color: white;
+        background-color: #125D5D;
+        border-color: #125D5D;
+    }
+
     .btn-primary:hover {
         color: white;
         border-color: #125D5D;
