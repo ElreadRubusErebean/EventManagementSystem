@@ -37,5 +37,26 @@ namespace EventManagmentSystem.Models.ViewModel
         public int AmountOfTickets { get; set; } //Gesamtanzahl
         public int EventId { get; set; }
 
+        public override bool Equals(object? obj)
+        {
+            if (obj==null|!(obj is EventViewModel))
+            {
+                return false;
+            }
+
+            var objEvent = (EventViewModel)obj;
+            if (objEvent.EventId==this.EventId
+                &&objEvent.Title==this.Title
+                &&objEvent.Description==this.Description
+                &&objEvent.Date==this.Date
+                &&objEvent.Price==this.Price
+                &&objEvent.AmountOfTickets==this.AmountOfTickets
+                &&objEvent.State==this.State)
+            {
+                return true;
+            }
+
+            return false;
+        }
     }
 }

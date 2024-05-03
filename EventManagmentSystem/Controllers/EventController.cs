@@ -99,13 +99,19 @@ namespace EventManagmentSystem.Controllers
         }
         
         [HttpPost]
-        public async Task<IActionResult> ChangeEvent(int eventId, EventViewModel eventViewModel)
+        public async Task<IActionResult> ChangeEvent(EventViewModel eventViewModel)
         {
+            if (!ModelState.IsValid)
+            {
+                return View("Event",eventViewModel);
+            }
+            
             //das bereits existierende Event abfragen und mit Änderungen vergleichen, ob sie sich unterscheiden
-            var unchangedEvent = await _eventService.GetEventByIdAsync(eventId);
+            var unchangedEvent = await _eventService.GetEventByIdAsync(eventViewModel.EventId);
 
             var unchangedViewModel = new EventViewModel
             {
+                EventId = unchangedEvent.Value.EventId,
                 Title = unchangedEvent.Value.Title,
                 Description = unchangedEvent.Value.Description,
                 Date = unchangedEvent.Value.Date,
@@ -114,13 +120,13 @@ namespace EventManagmentSystem.Controllers
                 State = unchangedEvent.Value.State
             };
 
-            if (eventViewModel==unchangedViewModel)
+            if (eventViewModel.Equals(unchangedViewModel))
             {
                 SetErrorMessage("Es gibt keine Änderungen im Event. Bitte geben Sie neue Daten ein.");
-                return View("Event", eventViewModel);
+                return View("Event", unchangedViewModel);
             }
             
-            ResultObject<Event> result = await _eventService.ChangeEventAsync(eventId, eventViewModel);
+            ResultObject<Event> result = await _eventService.ChangeEventAsync(eventViewModel.EventId, eventViewModel);
             
             if (result.IsSuccess)
             {
