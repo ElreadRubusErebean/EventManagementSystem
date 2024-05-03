@@ -1,70 +1,73 @@
 ﻿@model EventManagmentSystem.Models.ViewModel.PaymentViewModel
 
-<br />
-
-<h3>Checkout</h3>
-
+<h1>Checkout</h1>
 <hr class="spacingLine-light" />
-
-@if (TempData["ErrorMessage"] != null)
-{
-    <div class="alert alert-danger">
-        @TempData["ErrorMessage"]
-    </div>
-}
 
 <form asp-controller="Payment" asp-action="Payment" method="post">
     <div class="form-group">
-        <label asp-for="IBAN">IBAN:</label>
-        <input asp-for="IBAN" 
-               type="text" 
-               class="form-control @(ViewBag.IbanError ? "border-danger" : String.Empty)" 
-               id="iban" required>
-
+        <dt class="col-sm-10">
+            <label asp-for="IBAN">IBAN:</label>
+        </dt>
+        <dd class="col-sm-12">
+            <input asp-for="IBAN"
+                   type="text"
+                   class="form-control @(ViewBag.IbanError ? "border-danger" : String.Empty)"
+                   id="iban" required>
+        </dd>
         @TempData["IbanMessage"]
     </div>
 
     <br />
 
     <div class="form-group">
-        <label asp-for="CardOwner">Kartenbesitzer*in:</label>
-        <input asp-for="CardOwner" 
-               type="text" 
-               class="form-control @(ViewBag.CardOwnerError ? "border-danger" : String.Empty)" 
-               id="owner" required>
-        
+        <dt class="col-sm-10">
+            <label asp-for="CardOwner">Kartenbesitzer*in:</label>
+        </dt>
+        <dd class="col-sm-12">
+            <input asp-for="CardOwner"
+                   type="text"
+                   class="form-control @(ViewBag.CardOwnerError ? "border-danger" : String.Empty)"
+                   id="owner" required>
+        </dd>
         @TempData["CardOwnerMessage"]
     </div>
 
     <br />
 
     <div class="form-group">
-        <label asp-for="ExpiredDateTime">Ablaufdatum:</label>
-        <input asp-for="ExpiredDateTime" 
-               type="date" 
-               class="form-control @(ViewBag.ExpireDateError ? "border-danger" : String.Empty)" 
-               id="expireDate" required>
-        
+        <dt class="col-sm-10">
+            <label asp-for="ExpiredDateTime">Ablaufdatum:</label>
+        </dt>
+        <dd class="col-sm-12">
+            <input asp-for="ExpiredDateTime"
+                   type="date"
+                   class="form-control @(ViewBag.ExpireDateError ? "border-danger" : String.Empty)"
+                   id="expireDate" value="@DateTime.Now.ToString("yyyy-MM-dd")" required>               <!-- Zeigt das aktuelle Datum im Input Feld an -->
+        </dd>
         @TempData["ExpireDateMessage"]
     </div>
 
     <br />
 
     <div class="form-group">
-        <label asp-for="SecurityNumber">Sicherheitsnummer:</label>
-        <input asp-for="SecurityNumber" 
-               type="number" 
-               class="form-control @(ViewBag.SafetyNumberError ? "border-danger" : String.Empty)" 
-               id="securityNumber" max="999" required>
-        
+        <dt class="col-sm-10">
+            <label asp-for="SecurityNumber">Sicherheitsnummer:</label>
+        </dt>
+        <dd class="col-sm-12">
+            <input asp-for="SecurityNumber"
+                   type="number"
+                   class="form-control @(ViewBag.SafetyNumberError ? "border-danger" : String.Empty)"
+                   id="securityNumber" max="999" value="null" required>                                  <!-- Inputfeld bleibt durch value="null" leer -->
+        </dd>
         @TempData["SafetyNumberMessage"]
     </div>
 
-    <br />
     <input type="hidden" asp-for="EventId" />
     <input type="hidden" asp-for="UserId" />
     <input type="hidden" asp-for="NumberOfTickets" />
 
-
-    <button id="checkout" type="submit" class="btn btn-primary">Bezahlen</button>
+    <hr class="spacingLine-light" />
+    <div class="d-flex justify-content-end">
+        <button id="checkout" type="submit" class="btn btn-success">Ticket kaufen</button>
+    </div>
 </form>

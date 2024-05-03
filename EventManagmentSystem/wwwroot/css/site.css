@@ -490,3 +490,10 @@ body {
     font-size: 16pt;
     margin-bottom: 0;
 }
+
+.alert-success {
+    color: #0f5132;
+    background-color: #d1e7dd;
+    border-color: #badbcc;
+    margin: 0;
+}
