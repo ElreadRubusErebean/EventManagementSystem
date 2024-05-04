@@ -1,4 +1,5 @@
 @using System.Globalization
+@using EventManagmentSystem.Enums
 @model EventManagmentSystem.Models.ViewModel.EventViewModel
 
 @{
@@ -117,7 +118,10 @@
                 <p>Als Verkäufer können Sie keine Tickets für Ihre eigenen Veranstaltungen kaufen.</p>
             </div>
             <div class="p-2">
-                <button id="changeEvent" onclick="setEventEditable()" class="btn btn-primary">Event bearbeiten</button>
+                @if (Model.State != EventStateEnum.OutOfDate)
+                {
+                    <button id="changeEvent" onclick="setEventEditable()" class="btn btn-primary">Event bearbeiten</button>   
+                }
                 <form method="post" action="@Url.Action("DeleteEvent", "Event", new { eventId = Model.EventId })"
                       onsubmit="return confirm('Event endgültig löschen?');">
                     <button type="submit" class="btn btn-danger">Event löschen</button>

@@ -125,8 +125,19 @@ namespace EventManagmentSystem.Controllers
                 SetErrorMessage("Es gibt keine Änderungen im Event. Bitte geben Sie neue Daten ein.");
                 return View("Event", unchangedViewModel);
             }
+
+            var eventModel = new Event
+            {
+                EventId = eventViewModel.EventId,
+                Title = eventViewModel.Title,
+                Description = eventViewModel.Description,
+                Date = eventViewModel.Date,
+                Price = eventViewModel.Price,
+                AmountOfTickets = eventViewModel.AmountOfTickets,
+                State = eventViewModel.State
+            };
             
-            ResultObject<Event> result = await _eventService.ChangeEventAsync(eventViewModel.EventId, eventViewModel);
+            ResultObject<Event> result = await _eventService.ChangeEventAsync(eventModel.EventId, eventModel);
             
             if (result.IsSuccess)
             {

@@ -56,10 +56,10 @@ public class EventService
         return await _context.Events.Where(e => e.UserId == userId).ToListAsync();
     }
     
-    public async Task<ResultObject<Event>> ChangeEventAsync(int eventId, EventViewModel eventViewModel)
+    public async Task<ResultObject<Event>> ChangeEventAsync(int eventId, Event eventModel)
     {
         var changingEvent = await GetEventByIdAsync(eventId);
-
+    
         //Check if event was found
         if (!changingEvent.IsSuccess)
         {
@@ -67,12 +67,12 @@ public class EventService
         }
 
         //Update Eventdata
-        changingEvent.Value.Title = eventViewModel.Title;
-        changingEvent.Value.Description = eventViewModel.Description;
-        changingEvent.Value.AmountOfTickets = eventViewModel.AmountOfTickets;
-        changingEvent.Value.Date = eventViewModel.Date;
-        changingEvent.Value.Price = eventViewModel.Price;
-        changingEvent.Value.State = eventViewModel.State;
+        changingEvent.Value.Title = eventModel.Title;
+        changingEvent.Value.Description = eventModel.Description;
+        changingEvent.Value.AmountOfTickets = eventModel.AmountOfTickets;
+        changingEvent.Value.Date = eventModel.Date;
+        changingEvent.Value.Price = eventModel.Price;
+        changingEvent.Value.State = eventModel.State;
 
         _context.Events.Update(changingEvent.Value);
 
