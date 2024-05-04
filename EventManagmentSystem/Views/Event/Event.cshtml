@@ -137,20 +137,20 @@
     else
     {
         <div id="eventMethodsAndButtons">
-            <div class="d-flex justify-content-between">
-                <div class="d-flex justify-content-start">
-                    <p>Als Verkäufer können Sie keine Tickets für Ihre eigenen Veranstaltungen kaufen.</p>
+            <div class="d-flex justify-content-around align-items-center">
+                <div class="d-flex">
+                    Als Verkäufer können Sie keine Tickets für Ihre eigenen Veranstaltungen kaufen.
                 </div>
-                <div class="d-flex justify-content-end">
-                    @if (Model.State != EventStateEnum.OutOfDate)
-                    {
-                        <button onclick="setEventEditable()" class="btn btn-primary mb-0">Event bearbeiten</button>   
-                    }
-                <form method="post" action="@Url.Action("DeleteEvent", "Event", new { eventId = Model.EventId })"
-                    onsubmit="return confirm('Event endgültig löschen?');">
-                    <button type="submit" class="btn btn-danger mb-0">Event löschen</button>
-                </form>
-            </div>
+                    <div class="d-flex">
+                        @if (Model.State != EventStateEnum.OutOfDate)
+                        {
+                            <button onclick="setEventEditable()" class="btn btn-primary mb-0">Event bearbeiten</button>   
+                        }
+                    </div>
+                    <form method="post" action="@Url.Action("DeleteEvent", "Event", new { eventId = Model.EventId })"
+                          onsubmit="return confirm('Event endgültig löschen?');">
+                        <button type="submit" class="btn btn-danger" style="right: 0;">Event löschen</button>
+                    </form>
             </div>
         </div>
     }
