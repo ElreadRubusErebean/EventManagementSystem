@@ -5,6 +5,7 @@
     src: url('fonts/arimo/Arimo-Bold.eot');
     src: url('fonts/arimo/Arimo-Bold.woff2') format('woff2'), url('fonts/arimo/Arimo-Bold.woff') format('woff'), url('fonts/arimo/Arimo-Bold.ttf') format('truetype');
 }
+
  /*gehört eigentlich zu accStyles, aber das wollte da einfach nicht funktionieren*/
 .linkThicc:hover, .linkTransparent:hover {
     color: white;
@@ -225,21 +226,22 @@ body {
 .roundEdges input,
 .roundEdges textarea,
 .roundEdges select {
-    background-color: #93B1A6;      /* Hintergrundfarbe für Input- und Textfelder */
-    color: black;                   /* Schriftfarbe innerhalb der Inputfelder Schwarz */
+    background-color: #93B1A6; /* Hintergrundfarbe für Input- und Textfelder */
+    color: black; /* Schriftfarbe innerhalb der Inputfelder Schwarz */
 }
 
-.roundEdges input::placeholder,
-.roundEdges textarea::placeholder {
-    color: black;                   /* Farbe des Platzhaltertextes Schwarz */
-    opacity: 1;                     /* Stellt sicher, dass der Platzhalter vollständig sichtbar ist */
-}
+    .roundEdges input::placeholder,
+    .roundEdges textarea::placeholder {
+        color: black; /* Farbe des Platzhaltertextes Schwarz */
+        opacity: 1; /* Stellt sicher, dass der Platzhalter vollst�ndig sichtbar ist */
+    }
 
 .form-control {
     background-color: #93B1A6;
     color: white;
     border-color: #93B1A6;
     transition: background-color 0.5s ease, border-color 0.5s ease, box-shadow 0.5s ease; /* Übergangseffekt */
+
 }
 
     .form-control:focus {
@@ -357,12 +359,12 @@ body {
     float: left;
 }
 
-.carousel-item.active,
-.carousel-item-next,
-.carousel-item-prev {
-    display: flex;
-    justify-content: space-evenly;
-}
+    .carousel-item.active,
+    .carousel-item-next,
+    .carousel-item-prev {
+        display: flex;
+        justify-content: space-evenly;
+    }
 
 .table {
     color: white;
@@ -518,6 +520,9 @@ body {
     font-style: normal;
     font-size: 16pt;
     margin-bottom: 0;
+    background: linear-gradient(45deg, #ff8a00, #e52e71);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 /* SuccessMessage */

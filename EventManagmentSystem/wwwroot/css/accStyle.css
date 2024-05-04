@@ -1,4 +1,3 @@
-﻿
 ﻿.dataWrapper {
     width: 100%;
 }
@@ -44,6 +43,7 @@ label {
     height: 3vh;
     max-height: 63px;
 }
+
 
 .longTextBlocks {
     height: 50px;
