@@ -27,16 +27,6 @@ namespace EventManagmentSystem.Models.ViewModel
             {
                 State = EventStateEnum.ForSale;
                 
-                if (AmountOfTickets<=0)
-                {
-                    State = EventStateEnum.SoldOut;
-                }
-                
-                if (Date.CompareTo(DateTime.Now)<0)
-                {
-                    State = EventStateEnum.OutOfDate;
-                }
-                
                 return state;
             }
             set
@@ -56,6 +46,11 @@ namespace EventManagmentSystem.Models.ViewModel
 
         public int AmountOfTickets { get; set; } //Gesamtanzahl
         public int EventId { get; set; }
+
+        public EventViewModel()
+        {
+            
+        }
 
         public override bool Equals(object? obj)
         {
