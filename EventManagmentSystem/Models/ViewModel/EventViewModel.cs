@@ -14,9 +14,11 @@ namespace EventManagmentSystem.Models.ViewModel
 
         
         /// <summary>
-        /// in der Getter-Methode wird bei Abfrage der State-Property geprüft, ob das Event abgelaufen ist,
+        /// in der Getter und Setter-Methode wird geprüft, ob das Event abgelaufen ist,
         /// wenn ja wird das Event als abgelaufen gesetzt,
-        /// wenn nein wird der bisherige State zurückgegeben
+        /// ob die Tickets ausverkauft sind,
+        /// wenn ja wird das Event als ausverkauft gesetzt,
+        /// ansonsten ist das Event zu verkaufen
         /// </summary>
         private EventStateEnum state;
         public EventStateEnum State
