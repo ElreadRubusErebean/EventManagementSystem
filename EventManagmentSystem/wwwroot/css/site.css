@@ -5,7 +5,8 @@
     src: url('fonts/arimo/Arimo-Bold.eot');
     src: url('fonts/arimo/Arimo-Bold.woff2') format('woff2'), url('fonts/arimo/Arimo-Bold.woff') format('woff'), url('fonts/arimo/Arimo-Bold.ttf') format('truetype');
 }
- /*geh�rt eigentlich zu accStyles, aber das wollte da einfach nicht funktionieren*/
+
+ /*gehört eigentlich zu accStyles, aber das wollte da einfach nicht funktionieren*/
 .linkThicc:hover, .linkTransparent:hover {
     color: white;
     opacity: 100%;
@@ -239,7 +240,8 @@ body {
     background-color: #93B1A6;
     color: white;
     border-color: #93B1A6;
-    transition: background-color 0.5s ease, border-color 0.5s ease, box-shadow 0.5s ease; /* �bergangseffekt */
+    transition: background-color 0.5s ease, border-color 0.5s ease, box-shadow 0.5s ease; /* Übergangseffekt */
+
 }
 
     .form-control:focus {
@@ -267,6 +269,19 @@ body {
     border-color: rgb(92, 131, 116, 70%);
     background-color: rgb(92, 131, 116, 70%);
 }
+
+/*damit buttons nach klick nicht blau werden*/
+    .btn-primary::after visited {
+        color: white;
+        border-color: rgb(92, 131, 116, 70%);
+        background-color: rgb(92, 131, 116, 70%);
+    }
+
+    .btn-primary:focus {
+        color: white;
+        background-color: #125D5D;
+        border-color: #125D5D;
+    }
 
     .btn-primary:hover {
         color: white;

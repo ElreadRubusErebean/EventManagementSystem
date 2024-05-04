@@ -35,19 +35,21 @@ label {
     padding-bottom: 20px;
 }
 
-.spacingDiv {
-        height: 3vh;
-        max-height: 63px;
+    .event-link > input, .datablock > input {
+        float: right;
     }
 
- .datablock > input, .datablock > p {
-    float: right;
- }
+.spacingDiv {
+    height: 3vh;
+    max-height: 63px;
+}
+
 
 .longTextBlocks {
     height: 50px;
     overflow-y: auto;
     scroll-behavior: smooth;
+    float: right !important;
 }
 
 .outputFields {
