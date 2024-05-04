@@ -36,6 +36,7 @@ namespace EventManagmentSystem.Controllers
                 HttpContext.Session.SetString("UserID", User.UserId.ToString());
                 HttpContext.Session.SetString("UserEmail", User.Email);
                 HttpContext.Session.SetString("Admin", User.IsAdmin.ToString());
+                HttpContext.Session.SetString("UserName", User.UserName);
                 //Userrolle anzeigen ob seller oder normaluser
                 HttpContext.Session.SetString("UserRole", User.Role.ToString());
 
