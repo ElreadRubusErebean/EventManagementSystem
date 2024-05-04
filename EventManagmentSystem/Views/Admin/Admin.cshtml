@@ -27,7 +27,6 @@
             <th>Admin Status</th>
             <th>UserName</th>
             <th>Role</th>
-            <th>Edit</th>
             <th>Löschen</th>
         </tr>
     </thead>
@@ -43,14 +42,11 @@
                 <td>@user.UserName</td>
                 <td>@user.Role</td>
                 <!--hier sollen die Methoden aufgerufen werden -->
-                <td><a href="@Url.Action("Edit", "Admin", new { id = @user.UserId })">
-                            <button type="submit" class="btn btn-secondary">Edit</button>
-                </a></td>
-                    <td>
-                        <form action="@Url.Action("DeleteUser", "Admin", new { userId = user.UserId })" method="post">
-                            <button type="submit" class="btn btn-danger" onclick="return confirm('Sind Sie sicher, dass Sie diesen Benutzer löschen möchten?');">Löschen</button>
-                        </form>
-                     </td>
+                <td>
+                    <form action="@Url.Action("DeleteUser", "Admin", new { userId = user.UserId })" method="post">
+                        <button type="submit" class="btn btn-danger" onclick="return confirm('Sind Sie sicher, dass Sie diesen Benutzer löschen möchten?');">Löschen</button>
+                    </form>
+                </td>
             </tr>
         }
     </tbody>
