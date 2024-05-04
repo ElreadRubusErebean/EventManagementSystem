@@ -30,7 +30,7 @@
         <label asp-for="Date" class="control-label">Wähle das Datum und die Uhrzeit für das Event aus</label>
     </dt>
     <dd class="col-sm-12">
-        <input asp-for="Date" class="form-control" type="datetime-local" />
+        <input asp-for="Date" class="form-control" type="datetime-local" min="@DateTime.Now.ToString("yyyy-MM-ddThh:mm")"/>
         <span asp-validation-for="Date" class="text-danger"></span>
     </dd>
     <br />
@@ -38,7 +38,7 @@
         <label asp-for="Price" class="control-label">Lege den Ticketpreis fest</label>
     </dt>
     <dd class="col-sm-12">
-        <input asp-for="Price" class="form-control" type="number" step="0.01" />
+        <input asp-for="Price" class="form-control" type="number" step="0.01" min="0.01" />
         <span asp-validation-for="Price" class="text-danger"></span>
     </dd>
     <br />
@@ -46,7 +46,7 @@
         <label asp-for="AmountOfTickets" class="control-label">Gib die Anzahl der verfügbaren Tickets an</label>
     </dt>
     <dd class="col-sm-12">
-        <input asp-for="AmountOfTickets" class="form-control" type="number" />
+        <input asp-for="AmountOfTickets" class="form-control" type="number" min="1" />
         <span asp-validation-for="AmountOfTickets" class="text-danger"></span>
     </dd>
     <hr class="spacingLine-light" />

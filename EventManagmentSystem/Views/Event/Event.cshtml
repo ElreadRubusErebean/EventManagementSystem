@@ -1,3 +1,5 @@
+@using System.Globalization
+@using EventManagmentSystem.Enums
 @model EventManagmentSystem.Models.ViewModel.EventViewModel
 
 @{
@@ -15,49 +17,122 @@
         }
         return true;
     }
+    
+    function setEventEditable(){
+        var changeEventForm = document.getElementById("changeEvent");
+        changeEventForm.removeAttribute("hidden");
+        
+        var bookingForm = document.getElementById("booking");
+        bookingForm.setAttribute("hidden","hidden");
+        
+        var buttonChange = document.getElementById("changeEventButton");
+        buttonChange.setAttribute("hidden","hidden");
+    }   
+        
+    function setEventNotEditable ()
+    {
+        var changeEventForm = document.getElementById("changeEvent");
+        changeEventForm.setAttribute("hidden","hidden");
+                
+        var bookingForm = document.getElementById("booking");
+        bookingForm.removeAttribute("hidden");
+        
+        var buttonChange = document.getElementById("changeEventButton");
+        buttonChange.removeAttribute("hidden");
+    }
+    function resetChanges()
+    {
+        location.reload(true);
+    }
+    
 </script>
 
-<form method="post" action="/Booking/Book">
-    <h1 class="display-4" id="description">@Model.Title</h1>
-    <hr class="my-4">
-    <p class="lead" id="description" style="margin: 8px;">@Model.Description</p>
-    <hr class="spacingLine-light" />
-    <div class="form-group">
-        <label for="date" style="font-weight: bold; margin: 8px; margin-bottom: 0px;">Datum und Uhrzeit</label>
-        <p class="event-date" id="date" style="margin: 8px;">@Model.Date</p>
-    </div>
-    <div class="form-group">
-        <label for="price" style="font-weight: bold; margin: 8px; margin-bottom: 0px;">Preis</label>
-        <p class="event-price" id="price" style="margin: 8px;">@Model.Price €</p>
-    </div>
-    <div class="form-group">
-        <label for="tickets" style="font-weight: bold; margin: 8px; margin-bottom: 0px;">Verfügbare Tickets</label>
-        <p class="event-tickets" id="tickets" style="margin: 8px;">@Model.AmountOfTickets</p>
-    </div>
-    <hr class="spacingLine-light" />
-</form>
+    <form id="booking" method="post" action="/Booking/Book">
+        <h1 class="display-4" id="title">@Model.Title</h1>
+        <hr class="my-4">
+        <p class="lead" id="description" style="margin: 8px;">@Model.Description</p>
+        <hr class="spacingLine-light" />
+        <div class="form-group">
+            <label for="date" style="font-weight: bold; margin: 8px; margin-bottom: 0px;">Datum und Uhrzeit</label>
+            <p class="event-date" id="date" style="margin: 8px;">@Model.Date</p>
+        </div>
+        <div class="form-group">
+            <label for="price" style="font-weight: bold; margin: 8px; margin-bottom: 0px;">Preis</label>
+            <p class="event-price" id="price" style="margin: 8px;">@Model.Price €</p>
+        </div>
+        <div class="form-group">
+            <label for="tickets" style="font-weight: bold; margin: 8px; margin-bottom: 0px;">Verfügbare Tickets</label>
+            <p class="event-tickets" id="tickets" style="margin: 8px;">@Model.AmountOfTickets</p>
+        </div>
+        <hr class="spacingLine-light" />
+    </form>
+
+    <form id="changeEvent" hidden="hidden" method="post" asp-controller="Event" asp-action="ChangeEvent">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <input asp-for="Title" class="form-control h1 display-4 event-title" value="@Model.Title" required="required"/>
+        <span asp-validation-for="Title" class="text-danger"></span>
+        <hr class="my-4"/>
+        <textarea asp-for="Description" class="lead m-2 form-control event-description" required="required">@Model.Description</textarea>
+        <span asp-validation-for="Description" class="text-danger"></span>
+        <hr class="spacingLine-light"/>
+        <div class="form-group">
+            <label asp-for="Date" class="fw-bold m-2 mb-0 control-label">Datum und Uhrzeit</label>
+            <input asp-for="Date" type="datetime-local" class="event-date m-2 form-control" value="@HtmlEncoder.Encode(Model.Date.ToString("yyyy-MM-ddThh:mm"))" min="@DateTime.Now.ToString("yyyy-MM-ddThh:mm")" required="required"/>
+            <span asp-validation-for="Date" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Price" class="fw-bold m-2 mb-0">Preis in €</label>
+            <input asp-for="Price" class="event-price form-control m-2" type="number" step="0.01" value="@Model.Price.ToString("#0.00", CultureInfo.InvariantCulture)" min="0.01" required="required"/>
+            <span asp-validation-for="Price" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="AmountOfTickets" class="control-label fw-bold m-2 mb-0">Verfügbare Tickets</label>
+            <input asp-for="AmountOfTickets" class="form-control event-tickets m-2" type="number" value="@Model.AmountOfTickets" min="1" required="required"/>
+            <span asp-validation-for="AmountOfTickets"></span>
+        </div>
+        <textarea asp-for="EventId" class="d-none">@Model.EventId</textarea>
+        <br/>
+        <div class="form-group">
+            <button type="submit" id="submitChanges" onsubmit="setEventNotEditable()" value="ChangeEvent" class="btn btn-success">Änderungen bestätigen</button>
+            <button type="reset" id="abortChanges" onclick="resetChanges()" class="btn btn-danger">Bearbeiten abbrechen</button>
+        </div>
+    </form>
+
 @if (Context.Session.GetString("UserID") != null)
 {
     @if (Context.Session.GetString("UserRole").Equals("NormalUser"))
     {
-        <form asp-controller="Payment" asp-action="Payment" method="get" onsubmit="return validateNumberOfTickets()">
-            <!-- Formularfelder für Event-Details und Anzahl der Tickets -->
-            <input type="hidden" name="eventId" value="@Model.EventId" />
-            <label for="numberOfTickets" style="font-weight: bold; margin: 8px; margin-bottom: 0px;">Wie viele Tickets?</label>
-            <input class="form-control" type="number" id="numberOfTickets" name="numberOfTickets" min="1" style="width: 5%; margin: 8px;" required>
-            <hr class="spacingLine-light" />
-            <!--Wenn der user ein Seller ist soll das nicht angezeigt werden-->
-            <div class="d-flex justify-content-end">
-                <div class="p-2">
+        @if (Model.State == EventStateEnum.ForSale)
+        {
+            <form asp-controller="Payment" asp-action="Payment" method="get" onsubmit="return validateNumberOfTickets()">
+                <!-- Formularfelder für Event-Details und Anzahl der Tickets -->
+                <input type="hidden" name="eventId" value="@Model.EventId"/>
+                <label for="numberOfTickets" style="font-weight: bold; margin: 8px; margin-bottom: 0px;">Wie viele Tickets?</label>
+                <input class="form-control" type="number" id="numberOfTickets" name="numberOfTickets" min="1" style="width: 5%; margin: 8px;" required>
+                <hr class="spacingLine-light"/>
+                <!--Wenn der user ein Seller ist soll das nicht angezeigt werden-->
+                <div class="d-flex justify-content-end">
+                    <div class="p-2">
                     <a asp-action="Index" asp-controller="Home" method="Get" class="mx-2">
                         <button type="button" class="btn btn-danger">Abbrechen</button>
                     </a>
+                    </div>
+                    <div class="p-2">
+                        <button type="submit" class="btn btn-success">Tickets buchen</button>
+                    </div>
                 </div>
-                <div class="p-2">
-                    <button type="submit" class="btn btn-success">Tickets buchen</button>
-                </div>
-            </div>
-        </form>
+            </form>
+        }
+        @if(Model.State==EventStateEnum.OutOfDate)
+        {
+            <hr class="spacingLine-light"/>
+            <p class="fw-bold m-2 mb-0">Das Event hat schon stattgefunden. Es können keine Tickets mehr gekauft werden.</p>
+        }
+        @if (Model.State == EventStateEnum.SoldOut)
+        {
+            <hr class="spacingLine-light"/>
+            <p class="fw-bold m-2 mb-0">Das Event ist ausverkauft. Es können keine Tickets mehr gekauft werden.</p>
+        }
     }
     else
     {
@@ -67,9 +142,13 @@
                 <p>Als Verkäufer können Sie keine Tickets für Ihre eigenen Veranstaltungen kaufen.</p>
             </div>
             <div class="p-2">
-                <form method="post" action="@Url.Action("DeleteEvent", "Event")"
+                @if (Model.State != EventStateEnum.OutOfDate)
+                {
+                    <button id="changeEventButton" onclick="setEventEditable()" class="btn btn-primary m-2 mb-0">Event bearbeiten</button>   
+                }
+                <form method="post" action="@Url.Action("DeleteEvent", "Event", new { eventId = Model.EventId })"
                       onsubmit="return confirm('Event endgültig löschen?');">
-                    <button type="submit" class="btn btn-danger">Event löschen</button>
+                    <button type="submit" class="btn btn-danger m-2 mb-0">Event löschen</button>
                 </form>
             </div>
         </div>
