@@ -6,20 +6,6 @@
     ViewData["Title"] = "Event";
 }
 
-@if (TempData["ErrorMessage"] != null)
-{
-    <div class="alert alert-danger">
-        @TempData["ErrorMessage"]
-    </div>
-}
-
-@if (TempData["SuccessMessage"] != null)
-{
-    <div class="alert alert-success">
-        @TempData["SuccessMessage"]
-    </div>
-}
-
 <script>
     function validateNumberOfTickets() {
         var availableTickets = @Model.AmountOfTickets;
@@ -33,30 +19,26 @@
     }
     
     function setEventEditable(){
-        var editFields = document.querySelectorAll(".form-control");
-        for (i=0;i<editFields.length;i++)
-            {
-                editFields[i].removeAttribute("disabled");
-            }
-        var button = document.getElementById("submitChanges");
-        button.removeAttribute("hidden");
-        var buttonChange = document.getElementById("changeEvent");
+        var changeEventForm = document.getElementById("changeEvent");
+        changeEventForm.removeAttribute("hidden");
+        
+        var bookingForm = document.getElementById("booking");
+        bookingForm.setAttribute("hidden","hidden");
+        
+        var buttonChange = document.getElementById("changeEventButton");
         buttonChange.setAttribute("hidden","hidden");
-        var abortButton = document.getElementById("abortChanges");
-        abortButton.removeAttribute("hidden");
     }   
         
     function setEventNotEditable ()
     {
-        var editfields = document.querySelectorAll(".form-control");
-        for (i=0;i<editfields.length;i++)
-            {
-                editfields[i].setAttribute("disabled", "disabled");
-            }
-        var button = document.getElementById("submitChanges");
-        button.setAttribute("hidden","hidden");
-        var buttonChange = document.getElementById("changeEvent");
-                        buttonChange.removeAttribute("hidden");
+        var changeEventForm = document.getElementById("changeEvent");
+        changeEventForm.setAttribute("hidden","hidden");
+                
+        var bookingForm = document.getElementById("booking");
+        bookingForm.removeAttribute("hidden");
+        
+        var buttonChange = document.getElementById("changeEventButton");
+        buttonChange.removeAttribute("hidden");
     }
     function resetChanges()
     {
@@ -65,34 +47,54 @@
     
 </script>
 
-    <form method="post" asp-controller="Event" asp-action="ChangeEvent">
+    <form id="booking" method="post" action="/Booking/Book">
+        <h1 class="display-4" id="title">@Model.Title</h1>
+        <hr class="my-4">
+        <p class="lead" id="description" style="margin: 8px;">@Model.Description</p>
+        <hr class="spacingLine-light" />
+        <div class="form-group">
+            <label for="date" style="font-weight: bold; margin: 8px; margin-bottom: 0px;">Datum und Uhrzeit</label>
+            <p class="event-date" id="date" style="margin: 8px;">@Model.Date</p>
+        </div>
+        <div class="form-group">
+            <label for="price" style="font-weight: bold; margin: 8px; margin-bottom: 0px;">Preis</label>
+            <p class="event-price" id="price" style="margin: 8px;">@Model.Price €</p>
+        </div>
+        <div class="form-group">
+            <label for="tickets" style="font-weight: bold; margin: 8px; margin-bottom: 0px;">Verfügbare Tickets</label>
+            <p class="event-tickets" id="tickets" style="margin: 8px;">@Model.AmountOfTickets</p>
+        </div>
+        <hr class="spacingLine-light" />
+    </form>
+
+    <form id="changeEvent" hidden="hidden" method="post" asp-controller="Event" asp-action="ChangeEvent">
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-        <input asp-for="Title" class="form-control h1 display-4 event-title" value="@Model.Title" disabled="disabled" required="required"/>
+        <input asp-for="Title" class="form-control h1 display-4 event-title" value="@Model.Title" required="required"/>
         <span asp-validation-for="Title" class="text-danger"></span>
         <hr class="my-4"/>
-        <textarea asp-for="Description" class="lead m-2 form-control event-description" disabled="disabled" required="required">@Model.Description</textarea>
+        <textarea asp-for="Description" class="lead m-2 form-control event-description" required="required">@Model.Description</textarea>
         <span asp-validation-for="Description" class="text-danger"></span>
         <hr class="spacingLine-light"/>
         <div class="form-group">
             <label asp-for="Date" class="fw-bold m-2 mb-0 control-label">Datum und Uhrzeit</label>
-            <input asp-for="Date" type="datetime-local" class="event-date m-2 form-control" value="@HtmlEncoder.Encode(Model.Date.ToString("yyyy-MM-ddThh:mm"))" min="@DateTime.Now.ToString("yyyy-MM-ddThh:mm")" disabled="disabled" required="required"/>
+            <input asp-for="Date" type="datetime-local" class="event-date m-2 form-control" value="@HtmlEncoder.Encode(Model.Date.ToString("yyyy-MM-ddThh:mm"))" min="@DateTime.Now.ToString("yyyy-MM-ddThh:mm")" required="required"/>
             <span asp-validation-for="Date" class="text-danger"></span>
         </div>
         <div class="form-group">
             <label asp-for="Price" class="fw-bold m-2 mb-0">Preis in €</label>
-            <input asp-for="Price" class="event-price form-control m-2" type="number" step="0.01" value="@Model.Price.ToString("#0.00", CultureInfo.InvariantCulture)" min="0.01" disabled="disabled" required="required"/>
+            <input asp-for="Price" class="event-price form-control m-2" type="number" step="0.01" value="@Model.Price.ToString("#0.00", CultureInfo.InvariantCulture)" min="0.01" required="required"/>
             <span asp-validation-for="Price" class="text-danger"></span>
         </div>
         <div class="form-group">
             <label asp-for="AmountOfTickets" class="control-label fw-bold m-2 mb-0">Verfügbare Tickets</label>
-            <input asp-for="AmountOfTickets" class="form-control event-tickets m-2" type="number" value="@Model.AmountOfTickets" min="1" disabled="disabled" required="required"/>
+            <input asp-for="AmountOfTickets" class="form-control event-tickets m-2" type="number" value="@Model.AmountOfTickets" min="1" required="required"/>
             <span asp-validation-for="AmountOfTickets"></span>
         </div>
         <textarea asp-for="EventId" class="d-none">@Model.EventId</textarea>
         <br/>
         <div class="form-group">
-            <button type="submit" id="submitChanges" onsubmit="setEventNotEditable()" value="ChangeEvent" class="btn btn-primary" hidden="hidden">Änderungen bestätigen</button>
-            <button type="submit" id="abortChanges" onclick="resetChanges()" class="btn btn-danger" hidden="hidden">Bearbeiten abbrechen</button>
+            <button type="submit" id="submitChanges" onsubmit="setEventNotEditable()" value="ChangeEvent" class="btn btn-success">Änderungen bestätigen</button>
+            <button type="reset" id="abortChanges" onclick="resetChanges()" class="btn btn-danger">Bearbeiten abbrechen</button>
         </div>
     </form>
 
@@ -142,7 +144,7 @@
             <div class="p-2">
                 @if (Model.State != EventStateEnum.OutOfDate)
                 {
-                    <button id="changeEvent" onclick="setEventEditable()" class="btn btn-primary m-2 mb-0">Event bearbeiten</button>   
+                    <button id="changeEventButton" onclick="setEventEditable()" class="btn btn-primary m-2 mb-0">Event bearbeiten</button>   
                 }
                 <form method="post" action="@Url.Action("DeleteEvent", "Event", new { eventId = Model.EventId })"
                       onsubmit="return confirm('Event endgültig löschen?');">
