@@ -65,7 +65,7 @@ namespace EventManagmentSystem.Services
          * Booking löschen
          */
 
-        public async Task Cancel(int bookingId)
+        public async Task<bool> Cancel(int bookingId)
         {
             var booking = await _context.Bookings
                                         .Include(b => b.Event)
@@ -74,7 +74,7 @@ namespace EventManagmentSystem.Services
             if (booking == null)
             {
                 // Buchung nicht gefunden
-                return;
+                return false;
             }
 
             // Überprüfen, ob das Eventdatum noch nicht vergangen ist
@@ -82,7 +82,7 @@ namespace EventManagmentSystem.Services
             {
                 // Eventdatum ist bereits vergangen, Stornierung nicht möglich
                 //ToDo : Fehlermeldung anzeigen
-                return;
+                return false;
             }
 
             // Anzahl der Tickets zur Veranstaltung hinzufügen
@@ -92,6 +92,8 @@ namespace EventManagmentSystem.Services
             _context.Bookings.Remove(booking);
 
             await _context.SaveChangesAsync();
+
+            return true;
         }
 
 
