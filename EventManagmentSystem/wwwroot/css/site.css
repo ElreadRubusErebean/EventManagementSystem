@@ -5,7 +5,7 @@
     src: url('fonts/arimo/Arimo-Bold.eot');
     src: url('fonts/arimo/Arimo-Bold.woff2') format('woff2'), url('fonts/arimo/Arimo-Bold.woff') format('woff'), url('fonts/arimo/Arimo-Bold.ttf') format('truetype');
 }
- /*gehört eigentlich zu accStyles, aber das wollte da einfach nicht funktionieren*/
+ /*geh�rt eigentlich zu accStyles, aber das wollte da einfach nicht funktionieren*/
 .linkThicc:hover, .linkTransparent:hover {
     color: white;
     opacity: 100%;
@@ -232,14 +232,14 @@ body {
     .roundEdges input::placeholder,
     .roundEdges textarea::placeholder {
         color: black; /* Farbe des Platzhaltertextes Schwarz */
-        opacity: 1; /* Stellt sicher, dass der Platzhalter vollständig sichtbar ist */
+        opacity: 1; /* Stellt sicher, dass der Platzhalter vollst�ndig sichtbar ist */
     }
 
 .form-control {
     background-color: #93B1A6;
     color: white;
     border-color: #93B1A6;
-    transition: background-color 0.5s ease, border-color 0.5s ease, box-shadow 0.5s ease; /* Übergangseffekt */
+    transition: background-color 0.5s ease, border-color 0.5s ease, box-shadow 0.5s ease; /* �bergangseffekt */
 }
 
     .form-control:focus {
@@ -505,6 +505,9 @@ body {
     font-style: normal;
     font-size: 16pt;
     margin-bottom: 0;
+    background: linear-gradient(45deg, #ff8a00, #e52e71);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 /* SuccessMessage */
