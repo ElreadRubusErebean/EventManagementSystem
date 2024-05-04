@@ -41,7 +41,9 @@
         var button = document.getElementById("submitChanges");
         button.removeAttribute("hidden");
         var buttonChange = document.getElementById("changeEvent");
-                buttonChange.setAttribute("hidden","hidden");
+        buttonChange.setAttribute("hidden","hidden");
+        var abortButton = document.getElementById("abortChanges");
+        abortButton.removeAttribute("hidden");
     }   
         
     function setEventNotEditable ()
@@ -55,6 +57,10 @@
         button.setAttribute("hidden","hidden");
         var buttonChange = document.getElementById("changeEvent");
                         buttonChange.removeAttribute("hidden");
+    }
+    function resetChanges()
+    {
+        location.reload(true);
     }
     
 </script>
@@ -86,6 +92,7 @@
         <br/>
         <div class="form-group">
             <button type="submit" id="submitChanges" onsubmit="setEventNotEditable()" value="ChangeEvent" class="btn btn-primary" hidden="hidden">Änderungen bestätigen</button>
+            <button type="submit" id="abortChanges" onclick="resetChanges()" class="btn btn-danger" hidden="hidden">Bearbeiten abbrechen</button>
         </div>
     </form>
 
@@ -133,11 +140,11 @@
             <div class="p-2">
                 @if (Model.State != EventStateEnum.OutOfDate)
                 {
-                    <button id="changeEvent" onclick="setEventEditable()" class="btn btn-primary">Event bearbeiten</button>   
+                    <button id="changeEvent" onclick="setEventEditable()" class="btn btn-primary m-2 mb-0">Event bearbeiten</button>   
                 }
                 <form method="post" action="@Url.Action("DeleteEvent", "Event", new { eventId = Model.EventId })"
                       onsubmit="return confirm('Event endgültig löschen?');">
-                    <button type="submit" class="btn btn-danger">Event löschen</button>
+                    <button type="submit" class="btn btn-danger m-2 mb-0">Event löschen</button>
                 </form>
             </div>
         </div>
