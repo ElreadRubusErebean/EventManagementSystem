@@ -1,73 +1,77 @@
-﻿@{
-    ViewData["Title"] = "Login";
-}
-@if (TempData["ErrorMessage"] != null)
-{
-    <div class="alert alert-danger">
-        @TempData["ErrorMessage"]
-    </div>
+﻿@model EventManagmentSystem.Models.ViewModel.EventOverview
+
+@{
+    ViewData["Title"] = "Event Overview";
 }
 
-@if (TempData["SuccessMessage"] != null)
-{
-    <div class="alert alert-success">
-        @TempData["SuccessMessage"]
-    </div>
-}
+<style>
+    .card {
+        display: flex;
+        flex-direction: column;
+        width: 95%;
+        height: 500px;
+    }
 
-<h3>Start</h3>
+    .mb-4 {
+        margin-bottom: 0 !important;
+    }
+</style>
+
+<h1>Aktuelle Veranstaltungen</h1>
 <hr class="spacingLine-light" />
 
-<div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+<div id="eventCarousel" class="carousel slide" data-bs-ride="carousel">
     <div class="carousel-inner">
-        <div class="carousel-item active">
-            <div class="card" style="width: 18rem;">
-                <img class="card-img-top" src="~/images/testDog1.jpeg" alt="Card image cap">
-                <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">A</p>
-                    <a href="#" class="btn btn-primary float-end">Zum Event</a>
-                </div>
-            </div>
+        @{
+            int pageSize = 3; // Anzahl der Events pro Seite
+            int pageCount = (int)Math.Ceiling((double)Model.ListOfEvents.Count / pageSize);
 
-            <div class="card" style="width: 18rem;">
-                <img class="card-img-top" src="~/images/testRat.jpeg" alt="Card image cap">
-                <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">A.B</p>
-                    <a href="#" class="btn btn-primary float-end">Zum Event</a>
-                </div>
-            </div>
-        </div>
+            for (int pageIndex = 0; pageIndex < pageCount; pageIndex++)
+            {
+                bool isActive = pageIndex == 0;
 
-        <div class="carousel-item">
-            <div class="card" style="width: 18rem;">
-                <img class="card-img-top" src="~/images/testCat1.jpeg" alt="Card image cap">
-                <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">B</p>
-                    <a href="#" class="btn btn-primary float-end">Zum Event</a>
-                </div>
-            </div>
-        </div>
+                <div class="carousel-item @(isActive ? "active" : "")">
+                    @for (int i = pageIndex * pageSize; i < (pageIndex + 1) * pageSize && i < Model.ListOfEvents.Count; i++)
+                    {
+                        var eventItem = Model.ListOfEvents[i];
 
-        <div class="carousel-item">
-            <div class="card" style="width: 18rem;">
-                <img class="card-img-top" src="~/images/testCat2.jpeg" alt="Card image cap">
-                <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">C</p>
-                    <a href="#" class="btn btn-primary float-end">Zum Event</a>
+                        <div class="col-md-4">
+                            <div class="card mb-4">
+                                <div class="">
+                                    <h5 class="card-title">@eventItem.Title</h5>
+                                </div>
+                                <hr class="spacingLine-light" />
+                                <div class="card-body">
+                                    <p class="card-text">@eventItem.Description</p>
+                                </div>
+                                <div class="card-footer">
+                                    <div class="mx-auto">
+                                        <dl>
+                                            <dt class="card-text">Datum</dt>
+                                            <dd class="card-text">@eventItem.Date.ToString("dd/MM/yyyy")</dd>
+                                            <dt class="card-text">Preis</dt>
+                                            <dd class="card-text">@eventItem.Price €</dd>
+                                            <dt class="card-text">Tickets verfügbar</dt>
+                                            <dd class="card-text">@eventItem.AmountOfTickets</dd>
+                                        </dl>
+                                    </div>
+                                </div>
+                                <div class="card-footer" style="display: flex; justify-content: end; align-items: end;">
+                                    <a asp-action="Event" asp-controller="Event" asp-route-id="@eventItem.EventId" class="btn btn-primary">Event aufrufen</a>
+                                </div>
+                            </div>
+                        </div>
+                    }
                 </div>
-            </div>
-        </div>
+            }
+        }
     </div>
-    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+    <button class="carousel-control-prev" type="button" data-bs-target="#eventCarousel" data-bs-slide="prev">
         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Previous</span>
+        <span class="visually-hidden">Vorherige</span>
     </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+    <button class="carousel-control-next" type="button" data-bs-target="#eventCarousel" data-bs-slide="next">
         <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Next</span>
+        <span class="visually-hidden">Nächste</span>
     </button>
 </div>
