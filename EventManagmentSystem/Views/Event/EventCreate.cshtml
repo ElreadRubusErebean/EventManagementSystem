@@ -31,7 +31,7 @@
     <br />
     <div class="form-group">
         <label asp-for="Date" class="control-label">Wähle das Datum und die Uhrzeit für das Event aus</label>
-        <input asp-for="Date" class="form-control" type="datetime-local" />
+        <input asp-for="Date" class="form-control" type="datetime-local" min="@DateTime.Now.ToString("yyyy-MM-ddThh:mm")"/>
         <span asp-validation-for="Date" class="text-danger"></span>
     </div>
     <br />
