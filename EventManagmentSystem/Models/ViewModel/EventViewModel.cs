@@ -47,11 +47,6 @@ namespace EventManagmentSystem.Models.ViewModel
         public int AmountOfTickets { get; set; } //Gesamtanzahl
         public int EventId { get; set; }
 
-        public EventViewModel()
-        {
-            
-        }
-
         public override bool Equals(object? obj)
         {
             if (obj==null|!(obj is EventViewModel))

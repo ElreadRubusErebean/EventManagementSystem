@@ -49,7 +49,12 @@ namespace EventManagmentSystem.Controllers
                     AmountOfTickets = resultEvent.Value.AmountOfTickets,
                     State = resultEvent.Value.State
                 };
-            
+
+                if (resultEvent.Value.State!=viewModel.State)
+                {
+                    await UpdateEventState(viewModel.EventId,viewModel.State);
+                }
+                
                 return View(viewModel);
             }
             SetErrorMessage(resultEvent.Message);
@@ -179,6 +184,15 @@ namespace EventManagmentSystem.Controllers
             
             SetSuccessMessage("Das Event wurde erfolgreich entfernt.");
             return RedirectToAction("MyEvents","Seller");
+        }
+
+        private async Task UpdateEventState(int eventId, EventStateEnum eventState)
+        {
+            var result = await _eventService.UpdateEventState(eventId,eventState);
+            if (!result)
+            {
+                Console.Write("Der State konnte in der Datenbank nicht geändert werden.");
+            }
         }
         
         //Methode um UserId aus dem Session zu holen

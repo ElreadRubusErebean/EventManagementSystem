@@ -107,4 +107,21 @@ public class EventService
         await _context.SaveChangesAsync();
         return true;
     }
+
+    public async Task<bool> UpdateEventState(int eventId, EventStateEnum eventState)
+    {
+        var eventById = await GetEventByIdAsync(eventId);
+
+        if (!eventById.IsSuccess)
+        {
+            return false;
+        }
+
+        eventById.Value.State = eventState;
+
+        _context.Events.Update(eventById.Value);
+
+        await _context.SaveChangesAsync();
+        return true;
+    }
 }
