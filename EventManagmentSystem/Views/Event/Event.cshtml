@@ -93,22 +93,35 @@
 {
     @if (Context.Session.GetString("UserRole").Equals("NormalUser"))
     {
-        <form asp-controller="Payment" asp-action="Payment" method="get" onsubmit="return validateNumberOfTickets()">
-            <!-- Formularfelder für Event-Details und Anzahl der Tickets -->
-            <input type="hidden" name="eventId" value="@Model.EventId" />
-            <label for="numberOfTickets" style="font-weight: bold; margin: 8px; margin-bottom: 0px;">Wie viele Tickets?</label>
-            <input class="form-control" type="number" id="numberOfTickets" name="numberOfTickets" min="1" style="width: 5%; margin: 8px;" required>
-            <hr class="spacingLine-light" />
-            <!--Wenn der user ein Seller ist soll das nicht angezeigt werden-->
-            <div class="d-flex justify-content-between">
-                <div class="p-2">
-                    <button type="submit" class="btn btn-outline-primary">Tickets buchen</button>
+        @if (Model.State == EventStateEnum.ForSale)
+        {
+            <form asp-controller="Payment" asp-action="Payment" method="get" onsubmit="return validateNumberOfTickets()">
+                <!-- Formularfelder für Event-Details und Anzahl der Tickets -->
+                <input type="hidden" name="eventId" value="@Model.EventId"/>
+                <label for="numberOfTickets" style="font-weight: bold; margin: 8px; margin-bottom: 0px;">Wie viele Tickets?</label>
+                <input class="form-control" type="number" id="numberOfTickets" name="numberOfTickets" min="1" style="width: 5%; margin: 8px;" required>
+                <hr class="spacingLine-light"/>
+                <!--Wenn der user ein Seller ist soll das nicht angezeigt werden-->
+                <div class="d-flex justify-content-between">
+                    <div class="p-2">
+                        <button type="submit" class="btn btn-outline-primary">Tickets buchen</button>
+                    </div>
+                    <div class="p-2">
+                        <button type="submit" class="btn btn-danger">Abbrechen</button>
+                    </div>
                 </div>
-                <div class="p-2">
-                    <button type="submit" class="btn btn-danger">Abbrechen</button>
-                </div>
-            </div>
-        </form>
+            </form>
+        }
+        @if(Model.State==EventStateEnum.OutOfDate)
+        {
+            <hr class="spacingLine-light"/>
+            <p class="fw-bold m-2 mb-0">Das Event hat schon stattgefunden. Es können keine Tickets mehr gekauft werden.</p>
+        }
+        @if (Model.State == EventStateEnum.SoldOut)
+        {
+            <hr class="spacingLine-light"/>
+            <p class="fw-bold m-2 mb-0">Das Event ist ausverkauft. Es können keine Tickets mehr gekauft werden.</p>
+        }
     }
     else
     {
