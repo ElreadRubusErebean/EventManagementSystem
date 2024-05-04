@@ -109,12 +109,14 @@
                 <input class="form-control" type="number" id="numberOfTickets" name="numberOfTickets" min="1" style="width: 5%; margin: 8px;" required>
                 <hr class="spacingLine-light"/>
                 <!--Wenn der user ein Seller ist soll das nicht angezeigt werden-->
-                <div class="d-flex justify-content-between">
+                <div class="d-flex justify-content-end">
                     <div class="p-2">
-                        <button type="submit" class="btn btn-outline-primary">Tickets buchen</button>
+                    <a asp-action="Index" asp-controller="Home" method="Get" class="mx-2">
+                        <button type="button" class="btn btn-danger">Abbrechen</button>
+                    </a>
                     </div>
                     <div class="p-2">
-                        <button type="submit" class="btn btn-danger">Abbrechen</button>
+                        <button type="submit" class="btn btn-success">Tickets buchen</button>
                     </div>
                 </div>
             </form>

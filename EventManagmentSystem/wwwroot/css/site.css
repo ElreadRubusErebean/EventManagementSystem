@@ -18,14 +18,33 @@ html {
 }
 
 .spacingLine-light {
+    margin: 12px, 0px, 12px, 0px;
     border: 1px solid #93B1A6;
 }
 
 .navbar {
-    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.5) 10%, rgba(255, 255, 255, 0) 100%) !important; /* Anpassen für gewünschte Farbe und Transparenz */
+    background: linear-gradient(to bottom, rgba(24, 61, 61, 0.5) 0%, rgba(255, 255, 255, 0) 100%) !important; /* Farbverlauf mit Transparenz */
     border-bottom: none !important; /* Entfernt den unteren Rand, falls vorhanden */
     backdrop-filter: blur(10px);
     color: white;
+    height: 64px;
+}
+    .navbar-nav {
+        display: flex;
+        flex-direction: column;     /* Anordnung der Elemente in einer Spalte */
+        justify-content: center;    /* Vertikale Zentrierung der Elemente */
+        align-items: center;        /* Horizontale Zentrierung der Elemente */
+    }
+
+.footer {
+    display: flex;
+    height: 64px;
+    background: linear-gradient(to top, rgba(24, 61, 61, 0.5) 0%, rgba(255, 255, 255, 0) 100%) !important; /* Farbverlauf mit Transparenz */
+    border-bottom: none !important; /* Entfernt den unteren Rand, falls vorhanden */
+    backdrop-filter: blur(10px);
+    color: white;
+    justify-content: center;
+    align-items: center;
 }
 
 .nav-link{
@@ -112,26 +131,54 @@ body {
     display: flex;
     flex-direction: column; /* Stapelt die Inhalte vertikal */
     justify-content: center;
-    margin-bottom: 60px;
     background-color: black;
     background-image: url("/images/background.jpg");
+    background-repeat: no-repeat;
     background-size: cover;
+    background-attachment: fixed;
     margin: 0;
+    margin-bottom: 80px;
     padding: 0;
 }
 
+.carousel-control-prev,
+.carousel-control-next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(24, 61, 61, 0.6); /* Hintergrundfarbe der Buttons */
+}
+
+.carousel-control-prev {
+    border: 1px solid #93B1A6;
+    border-radius: 20px;
+    width: 40px;
+    height: 200px;
+    left: -100px;
+}
+
+.carousel-control-next {
+    border: 1px solid #93B1A6;
+    border-radius: 20px;
+    width: 40px;
+    height: 200px;
+    right: -100px;
+}
+
 .roundEdges {
+    position: relative;
     color: white;
     border: 1px solid #93B1A6;
     width: 80%;
     height: auto;
-    background-color: rgba(24, 61, 61, 0.6); /* Farbe mit Alpha-Wert für Transparenz */
+    background-color: rgba(24, 61, 61, 0.6); /* Farbe mit Alpha-Wert fÃ¼r Transparenz */
+    background-size: cover;
     border-radius: 10px;
     backdrop-filter: blur(10px);
     padding: 20px;
     margin-left: auto;
     margin-right: auto;
-    -webkit-backdrop-filter: blur(10px); /* Für Safari-Browser */
+    -webkit-backdrop-filter: blur(10px);
 }
 
 .roundEdgesLogin {
@@ -166,27 +213,27 @@ body {
 .roundEdges input,
 .roundEdges textarea,
 .roundEdges select {
-    background-color: #93B1A6;      /* Hintergrundfarbe für Input- und Textfelder */
+    background-color: #93B1A6;      /* Hintergrundfarbe fÃ¼r Input- und Textfelder */
     color: black;                   /* Schriftfarbe innerhalb der Inputfelder Schwarz */
 }
 
 .roundEdges input::placeholder,
 .roundEdges textarea::placeholder {
     color: black;                   /* Farbe des Platzhaltertextes Schwarz */
-    opacity: 1;                     /* Stellt sicher, dass der Platzhalter vollständig sichtbar ist */
+    opacity: 1;                     /* Stellt sicher, dass der Platzhalter vollstÃ¤ndig sichtbar ist */
 }
 
 .form-control {
     background-color: #93B1A6;
     color: black;
     border-color: black;
-    transition: background-color 0.5s ease, border-color 0.5s ease, box-shadow 0.5s ease; /* Übergangseffekt */
+    transition: background-color 0.5s ease, border-color 0.5s ease, box-shadow 0.5s ease; /* Ãœbergangseffekt */
 }
 
 .form-control:focus {
     background-color: white;
     border-color: black;
-    box-shadow: 0 0 0 0.2rem rgba(38, 143, 255, 0.25); /* Setzt den Schatten um das Element (Bootstrap-Stil für Fokus) */
+    box-shadow: 0 0 0 0.2rem rgba(38, 143, 255, 0.25); /* Setzt den Schatten um das Element (Bootstrap-Stil fÃ¼r Fokus) */
 }
 
 .btn-outline-primary {
@@ -204,14 +251,13 @@ body {
 .btn-primary {
     color: white;
     border: none;
-    background-color: #183D3D;
+    background-color: #5900A6;
 }
 
     .btn-primary:hover {
         color: white;
         border: none;
-        background-color: #125D5D;
-        border-color: #93B1A6;
+        background-color: #8B3AFF;
     }
 
 .btn-success {
@@ -229,6 +275,55 @@ body {
     background-color: rgba(4, 21, 21, 0.6);
     border-color: rgba(4, 21, 21);
 }
+
+    .card:hover {
+        box-shadow: 0 0 8px rgba(147, 177, 166, 0.4);
+        transition: box-shadow 0.3s ease;
+    }
+
+.card-title {
+    padding: 16px;
+    padding-top: 8px;
+    padding-bottom: 4px;
+    margin: 0px;
+    height: 60px;
+    overflow-y: auto;
+    scroll-behavior: smooth;
+}
+
+.card-body {
+    flex: 1;
+    padding: 0px;
+    padding-right: 16px;
+    padding-left: 16px;
+    margin-bottom: 16px;
+    overflow-y: auto;
+    scroll-behavior: smooth;
+}
+
+    /* Stil fÃ¼r den vertikalen Scrollbalken */
+    ::-webkit-scrollbar {
+        width: 16px;
+    }
+
+    /* Track (Hintergrund) des Scrollbalkens */
+    ::-webkit-scrollbar-track {
+        background: transparent;
+        border-radius: 10px;
+    }
+
+    /* Griff (beweglicher Teil) des Scrollbalkens */
+    ::-webkit-scrollbar-thumb {
+        background: rgba(24, 61, 61, 0.6);
+        border-radius: 10px;
+    }
+
+        /* Hover-Stil fÃ¼r den Griff des Scrollbalkens */
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(24, 61, 61, 0.8);
+            border-radius: 10px;
+            cursor: pointer;
+        }
 
 .carousel-item {
     float: left;
@@ -297,4 +392,118 @@ body {
     margin: 5px 0;
     /* font-size: 1em; */
     color: white;
+}
+
+.animated-header {
+    text-align: center;
+    justify-content: center;
+    padding: 10px 20px;
+    display: flex;
+    position: relative;
+    color: transparent;
+    background-image: linear-gradient(45deg, #00ffff, #ff0000, #00ffff);
+    -webkit-background-clip: text;
+    background-clip: text;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+    transition: color 5s ease, letter-spacing 10s ease; /* Letter spacing Effekt :) */
+}
+
+    .animated-header::after {
+        content: '';
+        position: absolute;
+        left: -2px;
+        top: -2px;
+        width: calc(100%);
+        height: calc(100%);
+        border: 2px solid transparent;
+        transition: border-color 0.5s, box-shadow 0.5s; /* ï¿½bergangsanimation fï¿½r den Border und Schatten */
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+        z-index: -1;
+    }
+
+    .animated-header::before {
+        content: '';
+        position: absolute;
+        left: -2px;
+        top: -2px;
+        width: calc(100%);
+        height: calc(100%);
+        border: 2px solid;
+        border-image: linear-gradient(45deg, #93B1A6, #ff0080, #ff4500) 1;
+        border-image-slice: 1;
+        transition: border-color 0.5s, border-image 0.6s; /* ï¿½bergangsanimation fï¿½r den Border */
+        z-index: -2;
+    }
+
+    .animated-header:hover {
+        letter-spacing: 20px; /* Textfarbe ï¿½ndern beim Hovern */
+        color: #00ffff;
+    }
+
+        .animated-header:hover::after,
+        .animated-header:hover::before {
+            border-image: linear-gradient(45deg, #ff0080, #00ffff, #ff4500) 1; /* Randfarbe ï¿½ndern beim Hovern */
+        }
+
+#imageContainer {
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0,0,0,0.5);
+    z-index: 1000;
+}
+
+#styleImage {
+    max-width: 100%;
+    max-height: 100%;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+    #styleImage.zoom {
+        transform: scale(2) translateY(25%);
+    }
+
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 30px;
+    color: white;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+}
+    .close-btn:hover {
+        color: #93B1A6;
+        transition: transform 0.3s ease;
+    }
+
+.bungee-shade-regular {
+    font-family: "Bungee Shade", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 16pt;
+    margin-bottom: 0;
+}
+
+/* SuccessMessage */
+.alert-success {
+    color: #0f5132;
+    background-color: #d1e7dd;
+    border-color: #badbcc;
+    margin: 0;
+}
+
+/* ErrorMessage */
+.alert-danger {
+    color: #842029;
+    background-color: #f8d7da;
+    border-color: #f5c2c7;
+    margin: 0;
 }
