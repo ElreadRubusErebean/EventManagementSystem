@@ -27,14 +27,25 @@ namespace EventManagmentSystem.Controllers
 
         public async Task<IActionResult> CancelBooking(int bookingId)
         {
-            // Aufruf der Stornierungsmethode aus dem Service
-            //Todo Überprüfen UserId und BookingId ob sie zusammengehören 
-            await _bookingService.Cancel(bookingId);
+            if (bookingId == 0)
+            {
+                SetErrorMessage("Ungültige Buchungs-ID.");
+                return RedirectToAction("Index", "Home");
+            }
 
-            //Weiterleitung oder Aktualisierung der Ansicht
+            // Aufruf der Stornierungsmethode aus dem Service
+            bool isCancelled = await _bookingService.Cancel(bookingId);
+            if (!isCancelled)
+            {
+                SetErrorMessage("Buchung konnte nicht storniert werden, da das Event bereits stattgefunden hat oder die Buchung nicht gefunden wurde.");
+                return RedirectToAction("Index", "Home");
+            }
+
+            // Weiterleitung oder Aktualisierung der Ansicht
             SetSuccessMessage("Buchung wurde erfolgreich storniert");
             return RedirectToAction("Index", "Home");
         }
+
 
 
 
