@@ -9,10 +9,12 @@ namespace EventManagmentSystem.Controllers
     public class AdminController : ValidationController
     {
         private readonly UserService _userService;
+        private readonly EventService _eventService;
 
-        public AdminController(UserService userService)
+        public AdminController(UserService userService, EventService eventService)
         {
             _userService = userService;
+            _eventService = eventService;
         }
         [HttpGet]
         public async Task<IActionResult> Admin()
@@ -27,14 +29,20 @@ namespace EventManagmentSystem.Controllers
             //wenn der User Admin ist, dann alle User anzeigen
             //die methode GetAllUsersAsync() ist asynchron und ist in UserService definiert
             var users = await _userService.GetAllUsersAsync();
+            var events = await _eventService.GetAllEventsAsync();
             if (users == null)//
             {
                 // wenn keine Benutzer abgerufen werden können
                 users = new List<User>();
             }
+            if (events == null)
+            {
+                events = new List<Event>();
+            }
             var model = new AdminViewModel
                 {
-                    Users = users
+                    Users = users,
+                    Events = events
                 };
                 return View(model);
         }
