@@ -1,0 +1,46 @@
+@model EventManagmentSystem.Models.ViewModel.UserViewModel;
+@{
+    ViewData["Title"] = "Seller";
+}
+
+<h1>Mein Konto</h1>
+<hr />
+<div class="blockProfile">
+    <div class="accNav">
+        <a asp-action="Seller" asp-controller="Seller" methode="Get" class="linkThicc">
+            Meine Daten
+        </a>
+        <a asp-action="MyEvents" asp-controller="Seller" methode="Get" class="linkTransparent">
+            Meine Events
+        </a>
+    </div>
+
+    <hr />
+    <div class="datablock">
+        <label for="email">E-Mail</label>
+        <input name="email" class="outputFields_Light" readonly value="@Model.Email" />
+        <div class="spacingDiv"></div>
+        <label for="forname">Vorname</label>
+        <input name="forname" class="outputFields_Light" readonly value="@Model.FirstName" />
+        <div class="spacingDiv"></div>
+        <label for="lastname">Nachname</label>
+        <input name="lastname" class="outputFields_Light" readonly value="@Model.LastName" />
+        <div class="spacingDiv"></div>
+        <label for="username">Benutzername</label>
+        <input name="username" class="outputFields_Light" readonly value="@Model.UserName" />
+        <!-- Weitere Benutzerinformationen hier -->
+    </div>
+
+    <hr />
+    <div class="d-flex justify-content-end">
+        <a href="@Url.Action("UpdateProfile", "Seller")" class="mx-2">
+            <button type="submit" class="btn btn-primary">Profil bearbeiten</button>
+        </a>
+        <!-- Formular zum Löschen des eigenen Kontos -->
+        <form method="post" action="@Url.Action("DeleteKonto", "Seller")"
+              onsubmit="return confirm('Sind Sie sicher, dass Sie Ihr Konto löschen möchten? Dieser Vorgang kann nicht rückgängig gemacht werden.');">
+            <button type="submit" class="btn btn-danger">Mein Konto löschen</button>
+        </form>
+    </div>
+
+</div>

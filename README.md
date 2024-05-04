@@ -49,6 +49,3 @@ Für dieses Projekt benötigt es eine Datenanbindung. Das Projekt selbst basiert
   }
 }
 ```
-
-
-### Docker Container

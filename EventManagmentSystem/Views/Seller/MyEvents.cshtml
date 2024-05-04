@@ -1,0 +1,44 @@
+﻿@model IEnumerable<EventManagmentSystem.Models.DbModel.Event>
+<!--Events des angemeldeten sellers-->
+<!--Hier kann der Seller seine Events sehens-->
+<h1>Meine Events</h1>
+<hr />
+<div class="accNav">
+    <a asp-action="Seller" asp-controller="Seller" methode="Get" class="linkTransparent">
+        Meine Daten
+    </a>
+    <a asp-action="MyEvents" asp-controller="Seller" methode="Get" class="linkThicc">
+        Meine Events
+    </a>
+</div>
+<hr />
+<div class="d-flex justify-content-end">
+    <a asp-action="EventCreate" asp-controller="Event" class="mx-2">
+        <button type="submit" class="btn btn-success">+ Neues Event erstellen</button>
+    </a>
+</div>
+<hr />
+
+@foreach (var eventItem in Model)
+{
+    <div class="datablock blockBgLight event-item">
+        <a class="event-link" asp-action="Event" asp-controller="Event" asp-route-id="@eventItem.EventId">
+            <label for="title">Titel</label>
+            <p name="title" class="outputFields_Light longTextBlocks">@eventItem.Title</p>
+            <div class="spacingDiv"></div>
+            <div class="textareaWrapper">
+                <label for="description">Beschreibung</label>
+                <p name="description" class="outputFields_Light longTextBlocks">@eventItem.Description</p>
+            </div>
+            <div class="spacingDiv"></div>
+            <label for="date">Datum</label>
+            <input name="date" class="outputFields_Light" readonly value="@eventItem.Date.ToString("dd/MM/yyyy")" />
+            <div class="spacingDiv"></div>
+            <label for="ticketPrice">Preis</label>
+            <input name="ticketPrice" class="outputFields_Light" readonly value="@eventItem.Price €" />
+            <div class="spacingDiv"></div>
+            <label for="ticketsLeft">Anzahl verfügbarer Tickets</label>
+            <input name="ticketsLeft" class="outputFields_Light" readonly value="@eventItem.AmountOfTickets" />
+        </a>
+    </div>
+}

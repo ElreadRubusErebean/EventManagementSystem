@@ -1,0 +1,57 @@
+﻿@model EventManagmentSystem.Models.ViewModel.RegistrationViewModel
+<h3>Registrierung</h3>
+
+<hr class="spacingLine-light" />
+
+<div class="mx-auto">
+    <dl class="row">
+        <form asp-controller="Registration" asp-action="Registration" method="post">
+            <dt class="col-sm-2">
+                <label asp-for="FirstName">Vorname</label>
+            </dt>
+            <dd class="col-sm-12">
+                <input asp-for="FirstName" type="text" class="form-control" id="forname" required>
+            </dd>
+            <dt class="col-sm-2">
+                <label asp-for="LastName">Nachname</label>
+            </dt>
+            <dd class="col-sm-12">
+                <input asp-for="LastName" type="text" class="form-control" id="name" required>
+            </dd>
+            <dt class="col-sm-2">
+                <label asp-for="Email">E-Mail Adresse</label>
+            </dt>
+            <dd class="col-sm-12">
+                <input asp-for="Email" type="email" class="form-control" id="email" aria-describedby="emailHelp" required>
+            </dd>
+            <dt class="col-sm-2">
+                <label asp-for="UserName">Benutzername</label>
+            </dt>
+            <dd class="col-sm-12">
+                <input asp-for="UserName" type="text" class="form-control" id="username" required>
+            </dd>
+            <dt class="col-sm-2">
+                <label asp-for="Password">Passwort</label>
+            </dt>
+            <dd class="col-sm-12">
+                <input  asp-for="Password" type="password" class="form-control" id="password" required>
+            </dd>
+            <dt class="col-sm-2">
+                <label asp-for="Role">Rolle</label>
+            </dt>
+            <dd class="col-sm-12">
+                <select asp-for="Role" class="form-control" id="role" required>
+                    <option value="NormalUser">Käufer</option>
+                    <option value="Seller">Verkäufer</option>
+                </select>
+            </dd>
+            <hr class="spacingLine-light" />
+            <div class="d-flex justify-content-end">
+                <a asp-action="Index" asp-controller="Home" method="Get" class="mx-2">
+                    <button type="button" class="btn btn-danger">Abbrechen</button>
+                </a>
+                <button id="registrieren" type="submit" class="btn btn-success" style="">Registrieren</button>
+            </div>
+        </form>
+    </dl>
+</div>

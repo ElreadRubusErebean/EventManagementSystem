@@ -1,0 +1,29 @@
+﻿@model EventManagmentSystem.Models.ViewModel.UserViewModel;
+
+<div class="profile-header">
+    <h1>Meine Daten bearbeiten</h1>
+    <hr class="spacingLine-light" />
+    <form asp-action="UpdateProfile" method="post">
+        <div class="form-group">
+            <label for="Email">E-Mail</label>
+            <input type="email" class="form-control" id="Email" name="Email" value="@Model.Email">
+            <span asp-validation-for="Email" class="text-danger"></span>
+            <br />
+            <label for="FirstName">Vorname</label>
+            <input type="text" class="form-control" id="FirstName" name="FirstName" value="@Model.FirstName">
+            <br />
+            <label for="LastName">Nachname</label>
+            <input type="text" class="form-control" id="LastName" name="LastName" value="@Model.LastName">
+            <br />
+            <label for="UserName">Benutzername</label>
+            <input type="text" class="form-control" id="UserName" name="UserName" value="@Model.UserName">
+        </div>
+        <hr class="spacingLine-light" />
+        <div class="d-flex justify-content-end">
+            <a asp-action="Seller" asp-controller="Seller" method="Get" class="mx-2">
+                <button type="button" class="btn btn-danger">Abbrechen</button>
+            </a>
+            <button type="submit" class="btn btn-success">Änderungen speichern</button>
+        </div>
+    </form>
+</div>

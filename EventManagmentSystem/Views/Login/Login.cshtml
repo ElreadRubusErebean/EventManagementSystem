@@ -1,0 +1,27 @@
+﻿@model EventManagmentSystem.Models.ViewModel.LoginViewModel
+@{
+    ViewData["Title"] = "Login";
+}
+
+<h1>Login</h1>
+<hr class="spacingLine-light"/>
+
+<form asp-action ="Login" method="post">
+    <dt class="col-sm-10">
+        <label asp-for="Email">E-Mail Adresse</label>
+    </dt>
+    <dd class="col-sm-12">
+        <input asp-for="Email" type="email" class="form-control" id="email" required>
+    </dd>
+    <br />
+    <dt class="col-sm-10">
+        <label asp-for="Password">Passwort</label>
+    </dt>
+    <dd class="col-sm-12">
+        <input asp-for="Password" type="password" class="form-control" id="password" required>
+    </dd>
+    <hr class="spacingLine-light" />
+    <div class="d-flex justify-content-end">
+        <button id="login" type="submit" class="btn btn-success" style="justify-content: end;">Einloggen</button>
+    </div>
+</form>

@@ -1,0 +1,40 @@
+﻿@model EventManagmentSystem.Models.ViewModel.UserBookingsViewModel;
+<div class="dataWrapper">
+<h1>Mein Konto</h1>
+<hr />
+
+<div class="accNav">
+    <a asp-action="Profile" asp-controller="Buyer" methode="Get" class="linkTransparent">Meine Daten</a>
+    <a href="#" class="linkThicc">Meine Buchungen</a>
+</div>
+<hr />
+
+    @foreach (var item in Model.Bookings)
+    {
+       <div class="datablock blockBgLight">
+            <label for="title">Event-Titel</label>
+            <p name="title" class="outputFields_Light longTextBlocks">@item.Event.Title</p>
+        <div class="spacingDiv"></div>
+        <div class="textareaWrapper">
+                <label for="description">Event-Beschreibung</label>
+                <p name="description" class="outputFields_Light longTextBlocks">@item.Event.Description</p>
+        </div>
+
+        <div class="spacingDiv"></div>
+            <label for="date">Event-Datum</label>
+            <input name="date" class="outputFields_Light" readonly value="@item.Event.Date.ToString("dd.MM.yyyy HH:mm")" />
+        <div class="spacingDiv"></div>
+            <label for="ticketAmount">Anzahl der Tickets</label>
+            <input name="ticketAmount" class="outputFields_Light" readonly value="@item.Booking.AmountOfTickets" />
+        <div class="spacingDiv"></div>
+            <label for="bookedDate">Gebuchtes Datum</label>
+            <input name="bookedDate" class="outputFields_Light" readonly value="@item.Booking.BookingDate.ToString("dd.MM.yyyy HH:mm")" />
+        <div class="spacingDiv"></div>
+        <hr />
+        <form method="post" action="@Url.Action("CancelBooking", "Booking")" class="d-flex p-2 flex-row-reverse w-100">
+                    <input type="hidden" name="bookingId" value="@item.Booking.BookingId" />
+                    <button type="submit" class="btn btn-danger">Stornieren</button>
+                </form>
+        </div>
+    }
+</div>

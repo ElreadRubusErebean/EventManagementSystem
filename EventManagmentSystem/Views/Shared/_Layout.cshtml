@@ -3,44 +3,173 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - EventManagmentSystem</title>
+    <title>@ViewData["Title"] - EventManagementSystem</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/EventManagmentSystem.styles.css" asp-append-version="true" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bungee+Shade&display=swap" rel="stylesheet">
 </head>
+
+<!-- Funktion zum Schließen des Alerts -->
+<script>
+    function closeAlert(alertId) {
+        document.getElementById(alertId).style.display = "none";
+    }
+</script>
+
+@if (TempData["ErrorMessage"] != null)
+{
+    <div id="errorAlert" class="alert alert-danger alert-dismissible fade show" role="alert">
+        @TempData["ErrorMessage"]
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close" onclick="closeAlert('errorAlert')"></button>
+    </div>
+}
+
+@if (TempData["SuccessMessage"] != null)
+{
+    <div id="successAlert" class="alert alert-success alert-dismissible fade show" role="alert">
+        @TempData["SuccessMessage"]
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close" onclick="closeAlert('successAlert')"></button>
+    </div>
+}
+
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-white border-bottom box-shadow mb-3">
             <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">EventManagmentSystem</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
+                    <ul class="navbar-nav mr-auto">
+                        <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">
+                            <p class="bungee-shade-regular">Eventopia</p>
+                        </a>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                            <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
+                        @if (Context.Session.GetString("UserID") != null)
+                        {
+                            @if (Context.Session.GetString("UserRole").Equals("Seller"))
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link text-light" asp-area="" asp-controller="Event" asp-action="EventCreate">Event erstellen</a>
+                                </li>
+                            }
+                        }
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                            <a class="nav-link text-light" asp-area="" asp-controller="Event" asp-action="EventOverview">Event-Übersicht</a>
                         </li>
                     </ul>
+
+                    <div class="ml-auto">
+                        <div class="btn-group">
+                            @if (Context.Session.GetString("UserID") != null)
+                            {
+                                <!--Hier wird geprüft ob der User ein Admin ist wenn ja, weird der link zum admin Bereich angeschaltet-->
+                                @if (Context.Session.GetString("Admin").Equals("True", StringComparison.OrdinalIgnoreCase))
+                                {
+                                    <a class="nav-link" asp-controller="Admin" asp-action="Admin" type="submit">
+                                        <button class="btn btn-outline-admin" type="submit" type=""> @Context.Session.GetString("UserName")</button>
+                                    </a>
+                                }
+                                else if (Context.Session.GetString("UserRole").Equals("Seller", StringComparison.OrdinalIgnoreCase))
+                                {
+                                    <a class="nav-link" asp-controller="Seller" asp-action="Seller">
+                                        <button class="btn btn-outline-seller" type="submit"> @Context.Session.GetString("UserName")</button>
+                                    </a>
+                                }
+                                else
+                                {
+                                    <a class="nav-link" asp-controller="Buyer" asp-action="Profile">
+                                        <button class="btn btn-outline-buyer" type="submit"> @Context.Session.GetString("UserName")</button>
+                                    </a>
+                                }
+                                <a class="nav-link">
+                                    <form method="post" asp-controller="Login" asp-action="Logout">
+                                        <button class="btn btn-outline-warning" type="submit">Logout</button>
+                                    </form>
+                                </a>
+                            }
+                            else
+                            {
+                                <a class="nav-item">
+                                    <a class="nav-link" asp-area="" asp-controller="Login" asp-action="Login">
+                                        <button class="btn btn-outline-primary" style="">Login</button>
+                                    </a>
+                                </a>
+                                <a class="nav-item">
+                                    <a class="nav-link" asp-area="" asp-controller="Registration" asp-action="Registration">
+                                        <button class="btn btn-outline-primary">Registrieren</button>
+                                    </a>
+                                </a>
+                            }
+                        </div>
+                    </div>
                 </div>
             </div>
         </nav>
     </header>
-    <div class="container">
-        <main role="main" class="pb-3">
+
+    @{
+        string selectBodyContainer = "";
+        string currentController = ViewContext.RouteData.Values["controller"]?.ToString();
+        string currentAction = ViewContext.RouteData.Values["action"]?.ToString();
+
+        if (currentController == "Login" && currentAction == "Login")
+            {
+                selectBodyContainer = "roundEdgesLogin";
+            }
+        else if ((currentController == "Registration" && currentAction == "Registration") ||
+        (currentController == "Payment" && currentAction == "Payment"))
+            {
+                selectBodyContainer = "roundEdgesSmall";
+            }
+        else
+            {
+                selectBodyContainer = "roundEdges";
+            }
+    }
+
+    <div class="@selectBodyContainer">                                                  
+        <main role="main" class="pb-0">
             @RenderBody()
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2024 - EventManagmentSystem - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-        </div>
+
+    <footer class="footer bg-transparent box-shadow">
+        <a href="https://github.com/ElreadRubusErebean/EventManagementSystem" target="_blank" title="Zu unserem GitHub Projekt!">
+            <img src="~/images/github-icon.png" style="height: 35px; width: 35px; border-radius: 20px; margin: 0 16px 0 16px;" />
+        </a>
+        <button type="button" class="btn btn-outline-primary" style="background: transparent; border-radius: 40px; height: 35px; width: 35px; padding: 0; margin: 0 16px 0 16px;" title="Unser Styleguide!" onclick="toggleImageContainer()">
+            <img src="~/images/styleguide.svg" style="height: 34px; width: 34px; padding: 0; margin: 0;" />
+        </button>
     </footer>
+
+
+    <!-- Bild-Container -->
+    <div id="imageContainer" style="display:none; border-color: black; overflow-y: auto;">
+        <img id="styleImage" src="~/images/Eventopia.png" alt="Styleguide Image" onclick="toggleZoom()">
+        <button type="button" class="btn btn-secondary close-btn" style="border-radius: 20px; background: none; right: 30%; top: 10px;" onclick="toggleImageContainer()">&times;</button>
+    </div>
+
+    <script>
+        function toggleImageContainer() {
+            var container = document.getElementById("imageContainer");
+            container.style.display = container.style.display === "none" ? "flex" : "none";
+            document.getElementById("styleImage").classList.remove("zoom"); // Zoom zurücksetzen
+        }
+
+        function toggleZoom() {
+            var img = document.getElementById("styleImage");
+            img.classList.toggle("zoom");
+        }
+    </script>
+
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>

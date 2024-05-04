@@ -1,0 +1,45 @@
+﻿@model EventManagmentSystem.Models.ViewModel.UserViewModel;
+@{
+    ViewData["Title"] = "Profile";
+}
+
+<h1>Mein Konto</h1>
+<hr />
+<div class="blockProfile">
+    <!--Buchungen Seite aufrufen-->
+    <div class="accNav">
+        <a asp-action="Profile" asp-controller="Buyer" methode="Get" class="linkThicc">Meine Daten</a>
+        <a href="@Url.Action("UserBookings", "Booking")" class="linkTransparent">Meine Buchungen</a> 
+    </div>
+    <hr />
+        <div class="datablock">
+            <label for="email">E-Mail</label>
+            <input name="email" class="outputFields_Light" readonly value="@Model.Email" />
+        <div class="spacingDiv"></div>
+            <label for="forname">Vorname</label>
+            <input name="forname" class="outputFields_Light" readonly value="@Model.FirstName" />
+        <div class="spacingDiv"></div>
+            <label for="lastname">Nachname</label>
+            <input name="lastname" class="outputFields_Light" readonly value="@Model.LastName" />
+        <div class="spacingDiv"></div>
+            <label for="username">Benutzername</label>
+            <input name="username" class="outputFields_Light" readonly value="@Model.UserName" />
+            <!-- Weitere Benutzerinformationen hier -->
+        </div>
+
+    <hr />
+    <div class="d-flex p-2 flex-row-reverse">
+       <!-- Formular zum Löschen des eigenen Kontos -->
+       <form method="post" action="@Url.Action("DeleteKonto", "Buyer")"
+                  onsubmit="return confirm('Sind Sie sicher, dass Sie Ihr Konto löschen möchten? Dieser Vorgang kann nicht rückgängig gemacht werden.');">
+            <a asp-action="MyEvents" asp-controller="Seller" method="Get">
+                    <button type="submit" class="btn btn-danger">Mein Konto löschen</button>
+            </a>
+       </form>
+
+        <a href="@Url.Action("UpdateProfile", "Buyer")" class="mx-2">
+            <button type="submit" class="btn btn-primary">Profil bearbeiten</button>
+        </a>
+    </div>
+    </div>
+</div>

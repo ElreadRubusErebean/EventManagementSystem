@@ -1,0 +1,131 @@
+﻿.dataWrapper {
+    width: 100%;
+}
+
+label {
+    font-weight: bold;
+}
+
+.centeredFields {
+    margin: auto;
+}
+
+.accNav {
+    width: 50vw;
+}
+
+.linkThicc {
+    margin-right: 3%;
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: white;
+    text-decoration: none;
+}
+
+.linkTransparent {
+    margin-right: 3%;
+    opacity: 60%;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: white;
+    text-decoration: none;
+}
+
+.datablock {
+    padding-bottom: 20px;
+}
+
+    .event-link > input, .datablock > input {
+        float: right;
+    }
+
+.spacingDiv {
+    height: 3vh;
+    max-height: 63px;
+}
+
+
+.longTextBlocks {
+    height: 50px;
+    overflow-y: auto;
+    scroll-behavior: smooth;
+    float: right !important;
+}
+
+.outputFields {
+    background-color: transparent;
+    outline: none;
+    border: none;
+    width: 30vw;
+    color: black !important;
+}
+
+.outputFields_Light {
+    background-color: transparent !important;
+    outline: none;
+    border: none;
+    width: 30vw;
+    color: white !important;
+}
+
+.textareaWrapper {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.blockBgLight {
+    width: 60vw;
+    margin: auto;
+    margin-bottom: 2%;
+    padding: 20px;
+    border: 3px solid #93B1A6;
+    border-radius: 10px/ 10px;
+}
+
+/*Tablet < Laptop*/
+@media (max-width: 950px) {
+    .textareaWrapper {
+        width: 100%;
+        display: block;
+    }
+
+    .blockBgLight {
+        display: grid;
+    }
+}
+
+/* < Mobile L*/
+@media (max-width: 425px) {
+    .outputFields {
+        max-width: 60%
+    }
+
+    .datablock {
+        display: grid
+    }
+}
+
+
+/* Stil für den vertikalen Scrollbalken */
+::-webkit-scrollbar {
+    width: 12px;
+}
+
+/* Track (Hintergrund) des Scrollbalkens */
+::-webkit-scrollbar-track {
+    background: transparent;
+    border-radius: 10px;
+}
+
+/* Griff (beweglicher Teil) des Scrollbalkens */
+::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+}
+
+    /* Hover-Stil für den Griff des Scrollbalkens */
+    ::-webkit-scrollbar-thumb:hover {
+        background: rgba(0, 0, 0, 0.5);
+        border-radius: 10px;
+    }
