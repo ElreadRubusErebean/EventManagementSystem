@@ -25,8 +25,8 @@
         var bookingForm = document.getElementById("booking");
         bookingForm.setAttribute("hidden","hidden");
         
-        var buttonChange = document.getElementById("changeEventButton");
-        buttonChange.setAttribute("hidden","hidden");
+        var buttonSection = document.getElementById("eventMethodsAndButtons");
+        buttonSection.setAttribute("hidden","hidden");
     }   
         
     function setEventNotEditable ()
@@ -37,8 +37,8 @@
         var bookingForm = document.getElementById("booking");
         bookingForm.removeAttribute("hidden");
         
-        var buttonChange = document.getElementById("changeEventButton");
-        buttonChange.removeAttribute("hidden");
+        var buttonSection = document.getElementById("eventMethodsAndButtons");
+        buttonSection.removeAttribute("hidden");
     }
     function resetChanges()
     {
@@ -136,20 +136,21 @@
     }
     else
     {
-        <div class="d-flex justify-content-between">
-
-            <div class="d-flex justify-content-start">
-                <p>Als Verkäufer können Sie keine Tickets für Ihre eigenen Veranstaltungen kaufen.</p>
-            </div>
-            <div class="d-flex justify-content-end">
-                @if (Model.State != EventStateEnum.OutOfDate)
-                {
-                    <button id="changeEventButton" onclick="setEventEditable()" class="btn btn-primary mb-0">Event bearbeiten</button>   
-                }
+        <div id="eventMethodsAndButtons">
+            <div class="d-flex justify-content-between">
+                <div class="d-flex justify-content-start">
+                    <p>Als Verkäufer können Sie keine Tickets für Ihre eigenen Veranstaltungen kaufen.</p>
+                </div>
+                <div class="d-flex justify-content-end">
+                    @if (Model.State != EventStateEnum.OutOfDate)
+                    {
+                        <button onclick="setEventEditable()" class="btn btn-primary mb-0">Event bearbeiten</button>   
+                    }
                 <form method="post" action="@Url.Action("DeleteEvent", "Event", new { eventId = Model.EventId })"
-                      onsubmit="return confirm('Event endgültig löschen?');">
+                    onsubmit="return confirm('Event endgültig löschen?');">
                     <button type="submit" class="btn btn-danger mb-0">Event löschen</button>
                 </form>
+            </div>
             </div>
         </div>
     }
