@@ -1,24 +1,35 @@
+@import "accStyle.css";
+
+@font-face {
+    font-family: 'Arimo-Bold';
+    src: url('fonts/arimo/Arimo-Bold.eot');
+    src: url('fonts/arimo/Arimo-Bold.woff2') format('woff2'), url('fonts/arimo/Arimo-Bold.woff') format('woff'), url('fonts/arimo/Arimo-Bold.ttf') format('truetype');
+}
+ /*geh�rt eigentlich zu accStyles, aber das wollte da einfach nicht funktionieren*/
+.linkThicc:hover, .linkTransparent:hover {
+    color: white;
+    opacity: 100%;
+    text-decoration: underline
+}
+
+
 html {
-  font-size: 14px;
+    font-size: 14px;
+    position: relative;
+    min-height: 100%;
 }
 
 @media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
+    html {
+        font-size: 16px;
+    }
 }
 
 .btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
-  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+    box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
 }
 
-html {
-  position: relative;
-  min-height: 100%;
-}
-
-.spacingLine-light {
-    margin: 12px, 0px, 12px, 0px;
+hr {
     border: 1px solid #93B1A6;
 }
 
@@ -117,14 +128,14 @@ html {
         outline: none;
     }
 
-    .btn:focus,
-    .btn:active {
-        box-shadow: none !important;
-    }
+.btn:focus,
+.btn:active {
+    box-shadow: none !important;
+}
 
 .btn-link {
     text-decoration: none;
-    outline: none;          /* Um den blauen Fokus-Rahmen in einigen Browsern zu entfernen */
+    outline: none; /* Um den blauen Fokus-Rahmen in einigen Browsern zu entfernen */
 }
 
 body {
@@ -139,6 +150,7 @@ body {
     margin: 0;
     margin-bottom: 80px;
     padding: 0;
+    font-family: Arimo-Bold, Arial, sans-serif !important;
 }
 
 .carousel-control-prev,
@@ -213,28 +225,30 @@ body {
 .roundEdges input,
 .roundEdges textarea,
 .roundEdges select {
-    background-color: #93B1A6;      /* Hintergrundfarbe für Input- und Textfelder */
-    color: black;                   /* Schriftfarbe innerhalb der Inputfelder Schwarz */
+    background-color: #93B1A6; /* Hintergrundfarbe für Input- und Textfelder */
+    color: black; /* Schriftfarbe innerhalb der Inputfelder Schwarz */
 }
 
-.roundEdges input::placeholder,
-.roundEdges textarea::placeholder {
-    color: black;                   /* Farbe des Platzhaltertextes Schwarz */
-    opacity: 1;                     /* Stellt sicher, dass der Platzhalter vollständig sichtbar ist */
-}
+    .roundEdges input::placeholder,
+    .roundEdges textarea::placeholder {
+        color: black; /* Farbe des Platzhaltertextes Schwarz */
+        opacity: 1; /* Stellt sicher, dass der Platzhalter vollst�ndig sichtbar ist */
+    }
 
 .form-control {
     background-color: #93B1A6;
-    color: black;
-    border-color: black;
-    transition: background-color 0.5s ease, border-color 0.5s ease, box-shadow 0.5s ease; /* Übergangseffekt */
+    color: white;
+    border-color: #93B1A6;
+    transition: background-color 0.5s ease, border-color 0.5s ease, box-shadow 0.5s ease; /* �bergangseffekt */
 }
 
-.form-control:focus {
-    background-color: white;
-    border-color: black;
-    box-shadow: 0 0 0 0.2rem rgba(38, 143, 255, 0.25); /* Setzt den Schatten um das Element (Bootstrap-Stil für Fokus) */
-}
+    .form-control:focus {
+        background-color: white;
+        border-color: black;
+        box-shadow: 0 0 0 0.2rem rgba(38, 143, 255, 0.25); /* Setzt den Schatten um das Element (Bootstrap-Stil für Fokus) */
+    }
+
+
 
 .btn-outline-primary {
     color: white;
@@ -250,14 +264,14 @@ body {
 
 .btn-primary {
     color: white;
-    border: none;
-    background-color: #5900A6;
+    border-color: rgb(92, 131, 116, 70%);
+    background-color: rgb(92, 131, 116, 70%);
 }
 
     .btn-primary:hover {
         color: white;
-        border: none;
-        background-color: #8B3AFF;
+        border-color: #125D5D;
+        background-color: #125D5D;
     }
 
 .btn-success {
@@ -265,6 +279,7 @@ body {
     border: none;
     background-color: #1B7932;
 }
+
     .btn-success:hover {
         color: white;
         background-color: #2E8E3F;
@@ -329,12 +344,12 @@ body {
     float: left;
 }
 
-.carousel-item.active,
-.carousel-item-next,
-.carousel-item-prev {
-    display: flex;
-    justify-content: space-evenly;
-}
+    .carousel-item.active,
+    .carousel-item-next,
+    .carousel-item-prev {
+        display: flex;
+        justify-content: space-evenly;
+    }
 
 .table {
     color: white;
@@ -366,9 +381,9 @@ body {
     display: block;
 }
 
-.event-link:hover {
-    color: white;
-}
+    .event-link:hover {
+        color: white;
+    }
 
 .event-content {
     display: flex;
@@ -390,7 +405,7 @@ body {
 .event-tickets,
 .event-date {
     margin: 5px 0;
-    /* font-size: 1em; */
+    /*font-size: 1em;*/
     color: white;
 }
 
@@ -490,6 +505,9 @@ body {
     font-style: normal;
     font-size: 16pt;
     margin-bottom: 0;
+    background: linear-gradient(45deg, #ff8a00, #e52e71);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 /* SuccessMessage */
