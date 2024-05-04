@@ -223,6 +223,19 @@ body {
     -webkit-backdrop-filter: blur(10px);
 }
 
+    .roundEdgesSmall input,
+    .roundEdgesSmall textarea,
+    .roundEdgesSmall select {
+        background-color: #93B1A6; /* Hintergrundfarbe für Input- und Textfelder */
+        color: black; /* Schriftfarbe innerhalb der Inputfelder Schwarz */
+    }
+
+    .roundEdgesSmall input::placeholder,
+    .roundEdgesSmall textarea::placeholder {
+        color: black; /* Farbe des Platzhaltertextes Schwarz */
+        opacity: 1; /* Stellt sicher, dass der Platzhalter vollst�ndig sichtbar ist */
+    }
+
 .roundEdges input,
 .roundEdges textarea,
 .roundEdges select {
@@ -238,7 +251,7 @@ body {
 
 .form-control {
     background-color: #93B1A6;
-    color: white;
+    color: black;
     border-color: #93B1A6;
     transition: background-color 0.5s ease, border-color 0.5s ease, box-shadow 0.5s ease; /* Übergangseffekt */
 
@@ -266,27 +279,27 @@ body {
 
 .btn-primary {
     color: white;
-    border-color: rgb(92, 131, 116, 70%);
-    background-color: rgb(92, 131, 116, 70%);
+    border: none;
+    background-color: #56317F;
 }
 
 /*damit buttons nach klick nicht blau werden*/
     .btn-primary::after visited {
         color: white;
-        border-color: rgb(92, 131, 116, 70%);
-        background-color: rgb(92, 131, 116, 70%);
+        border: none;
+        background-color: #8B3AFF;
     }
 
     .btn-primary:focus {
         color: white;
-        background-color: #125D5D;
-        border-color: #125D5D;
+        border: none;
+        background-color: #8B3AFF;
     }
 
     .btn-primary:hover {
         color: white;
-        border-color: #125D5D;
-        background-color: #125D5D;
+        border: none;
+        background-color: #8B3AFF;
     }
 
 .btn-success {
@@ -299,6 +312,10 @@ body {
         color: white;
         background-color: #2E8E3F;
     }
+
+.btn-danger {
+    height: 36px;
+}
 
 .card {
     margin: auto;
@@ -344,13 +361,13 @@ body {
 
     /* Griff (beweglicher Teil) des Scrollbalkens */
     ::-webkit-scrollbar-thumb {
-        background: rgba(24, 61, 61, 0.6);
+        background: #56317F;
         border-radius: 10px;
     }
 
         /* Hover-Stil für den Griff des Scrollbalkens */
         ::-webkit-scrollbar-thumb:hover {
-            background: rgba(24, 61, 61, 0.8);
+            background: rgba(139, 58, 255, 0.8);
             border-radius: 10px;
             cursor: pointer;
         }
